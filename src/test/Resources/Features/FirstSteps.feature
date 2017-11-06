@@ -1,7 +1,8 @@
-Feature: Refund item
+Feature: Cucumber example
 
-  Scenario: Jeff returns a faulty microwave
-    Given Jeff has bought a microwave for $100
-    And he has a receipt
-    When he returns the microwave
-    Then Jeff should be refunded $100
+  Scenario: Someone needs a success example
+    Given this test is successful
+
+  @skip
+  Scenario: Someone needs a failure example that is skipped
+    And this test fails
