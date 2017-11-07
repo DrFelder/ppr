@@ -45,5 +45,5 @@ junitPlatform {
 
 checkstyle {
     toolVersion = '8.4'
-    configFile = new File("config/Checkstyle/google_checks.xml")
+    configFile = new File("config/Checkstyle/google_checks_updated.xml")
 }
