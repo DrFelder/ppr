@@ -1,3 +1,5 @@
+package Steps;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -22,7 +24,7 @@ public class StepDefinitions {
         // else if (OS.contains("nix") || OS.contains("nux") || OS.contains("aix")) {
         //     System.setProperty("webdriver.chrome.driver", "path");
         // }
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
     }
 
     @After
@@ -44,7 +46,5 @@ public class StepDefinitions {
     public void iVisit(String arg0) throws Throwable {
         driver.get(arg0);
         System.out.println(driver.getTitle());
-        driver.close();
-        driver.quit();
     }
 }
