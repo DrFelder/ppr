@@ -29,7 +29,6 @@ public class StepDefinitions {
     public void cleanup() {
         driver.close();
     }
-
     @Given("^this test is successful$")
     public void thisTestIsSuccessful() throws Throwable {
         System.out.println("This test is successful!");
