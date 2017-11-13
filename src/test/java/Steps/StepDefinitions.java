@@ -56,7 +56,7 @@ public class StepDefinitions {
         driver.get(arg0);
     }
 
-    @When("^I visit the homepage$")
+    @When("^I am on the homepage$")
     public void iVisitTheHomepage() throws Throwable {
         driver.get("http://ppr.surreal.is/");
     }
