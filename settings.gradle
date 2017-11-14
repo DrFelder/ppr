@@ -1,2 +1,14 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'org.junit.platform.gradle.plugin') {
+                useModule('org.junit.platform:junit-platform-gradle-plugin:1.0.1')
+            }
+        }
+    }
+    repositories {
+        gradlePluginPortal()
+        maven { url = ArtifactRepositoryContainer.MAVEN_CENTRAL_URL }
+    }
+}
 rootProject.name = 'ppr'
-
