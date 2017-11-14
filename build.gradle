@@ -1,13 +1,27 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.eu.leontebbens.gradle:chromedriver-updater-plugin:1.6"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'war'
+    id 'idea'
+    id 'eclipse'
+    id 'checkstyle'
+    id 'org.junit.platform.gradle.plugin' version '1.0.1'
+    id 'eu.leontebbens.gradle.chromedriver-updater' version '1.6'
+}
+
 group 'is.surreal.webengineering'
 version '0.1-ALPHA'
-
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-apply plugin: 'org.junit.platform.gradle.plugin'
-apply plugin: 'checkstyle'
-apply plugin: "eu.leontebbens.gradle.chromedriver-updater"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -28,20 +42,12 @@ dependencies {
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.7.1'
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
-        classpath "gradle.plugin.eu.leontebbens.gradle:chromedriver-updater-plugin:1.6"
-    }
+war {
+    archiveName = "ROOT##${version}.war"
 }
 
 junitPlatform {
+    platformVersion = "1.0.1"
     filters {
         engines {
             include 'junit-jupiter'
