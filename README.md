@@ -1,5 +1,7 @@
-Project Puerto Rico Documentation
+Project Puerto Rico
 =
+
+[![Build Status](https://travis-ci.org/DrFelder/ppr.svg?branch=master)](https://travis-ci.org/DrFelder/ppr)
 
 This repository contains the famous Project Puerto Rico.
 
