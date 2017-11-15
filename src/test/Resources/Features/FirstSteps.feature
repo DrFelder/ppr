@@ -12,5 +12,5 @@ Feature: Cucumber example
     When I visit "https://google.com"
 
   Scenario: I want to look at the homepage
-    When I visit the homepage
+    When I am on the homepage
     Then the title should be "Example"
