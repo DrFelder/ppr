@@ -7,6 +7,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -67,5 +68,32 @@ public class StepDefinitions {
             System.out.println("Failure! The title is '" + driver.getTitle() + "'!");
             throw new PendingException();
         }
+    }
+
+    @Given("^I am signed in with username \"(.*?)\" and password \"(.*?)\"$")
+    public void iAmSignedIn(String arg0, String arg1) throws Throwable{
+        driver.findElement(By.id("username")).sendKeys(arg0);
+        driver.findElement(By.id("password")).sendKeys(arg1);
+        driver.findElement(By.id("btnLogin")).click();
+    }
+
+    @Given("^I am on the \"(.*?)\" page$")
+    public void iAmOnThePage(String arg0) throws Throwable{
+        //driver.get(baseUrl+"/#!" + arg0);
+    }
+
+    @When("^I enter \"(.*?)\" in the field \"(.*?)\"$")
+    public void enterDataInField(String arg0, String arg1){
+        driver.findElement(By.id("txt"+arg0)).sendKeys(arg1);
+    }
+
+    @When("^I press the \"(.*?)\" button$")
+    public void pressButton(String arg0){
+        driver.findElement(By.id("btn"+arg0)).click();
+    }
+
+    @Then("^I receive a \"(.*?)\" message$")
+    public void receiveMessage(String arg0){
+        //TODO
     }
 }
