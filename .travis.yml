@@ -14,6 +14,14 @@ addons:
   apt:
     packages:
       - unzip
+      - figlet
+      - cowsay
+      - fortune
+
+before_script:
+- echo 'Project Puerto Rico' | figlet -w 120
+- sed -n '633,649p' LICENSE.md
+
 
 script:
 - curl -OL http://artfiles.org/apache.org/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.zip
@@ -41,6 +49,9 @@ deploy:
   script: rsync -az --recursive --delete-after --progress --force --delete $TRAVIS_BUILD_DIR/build/libs/* proserver@vpro0052.proserver.punkt.de:/var/tomcat/webapps
   on:
     branch: master
+
+after_success:
+- fortune | cowsay
 
 notifications:
   email: travisdeployment@surreal.is
