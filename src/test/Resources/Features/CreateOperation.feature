@@ -1,4 +1,4 @@
-Feature: new operation
+Feature: create operation
 
   As a signed in user
   i want to create a new operation
@@ -6,17 +6,17 @@ Feature: new operation
   in order to find willing helpers.
 
   Background:
-    And I am on the homepage
+    Given I am on the homepage
 
   @skip
-  Scenario: open new operation dialog
+  Scenario: Open new operation dialog
     Given I am signed in with username "USER" and password "PASSWORD"
     And I am on the "main" page
     When I press the "new operation" button
     Then I am on the "new operation" page
 
   @skip
-  Scenario: enter valid data and save the operation
+  Scenario: Enter valid data and save the operation
     Given I am signed in with username "USER" and password "PASSWORD"
     And I am on the "new operation" page
     When I enter "operation XY" in the field "title"
@@ -29,7 +29,7 @@ Feature: new operation
     And I receive a "success" message
 
   @skip
-  Scenario: enter invalid data and save the operation
+  Scenario: Enter invalid data and save the operation
     Given I am signed in with username "USER" and password "PASSWORD"
     And I am on the "new operation" page
     When I enter "operation XY" in the field "title"
