@@ -17,6 +17,6 @@ mysql> FLUSH PRIVILEGES;
 mysql> exit
 ```
 
-Now you can use the database via the ppruser. To fill the database with tables and such, simply use the [MySql script](mysqlscript.sql) provided by the repository.
+Now you can use the database via the ppruser. To fill the database with tables and such, simply use the [MySQL script](mysqlscript.sql) provided by the repository.
 
 You can find the documentation under https://github.com/DrFelder/ppr-documentation
