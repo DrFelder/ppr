@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>is.surreal.ppr</OriginalElement>
+  <nodes>
+    <node x="0.0" y="542.0">is.surreal.ppr.model.Equipment</node>
+    <node x="255.0" y="2389.0">is.surreal.ppr.WebSecurityConfig</node>
+    <node x="0.0" y="1799.0">is.surreal.ppr.repository.JdbcAdminDao</node>
+    <node x="798.0" y="1102.0">is.surreal.ppr.model.Application</node>
+    <node x="1384.0" y="1895.0">is.surreal.ppr.controller.ApplicationController</node>
+    <node x="599.0" y="1895.0">is.surreal.ppr.repository.JdbcAddressDao</node>
+    <node x="2403.0" y="1895.0">is.surreal.ppr.controller.OperationListController</node>
+    <node x="2147.0" y="0.0">is.surreal.ppr.model.User</node>
+    <node x="693.0" y="2389.0">is.surreal.ppr.MvcConfig</node>
+    <node x="5.0" y="1102.0">is.surreal.ppr.repository.JdbcUserDao</node>
+    <node x="1358.0" y="2389.0">is.surreal.ppr.Application</node>
+    <node x="855.0" y="476.0">is.surreal.ppr.repository.JdbcEquipmentDao</node>
+    <node x="428.0" y="542.0">is.surreal.ppr.model.Helper</node>
+    <node x="1099.0" y="1895.0">is.surreal.ppr.model.Operation</node>
+    <node x="2142.0" y="763.0">is.surreal.ppr.model.Admin</node>
+    <node x="0.0" y="1895.0">is.surreal.ppr.repository.JdbcOperationDao</node>
+    <node x="0.0" y="2389.0">is.surreal.ppr.controller.CreateOperationController</node>
+    <node x="1506.0" y="1102.0">is.surreal.ppr.repository.JdbcApplicationDao</node>
+    <node x="1499.0" y="476.0">is.surreal.ppr.repository.JdbcHelperDao</node>
+    <node x="1314.5" y="0.0">is.surreal.ppr.repository.JdbcRequirementDao</node>
+    <node x="2135.0" y="1895.0">is.surreal.ppr.controller.OperationDetailController</node>
+    <node x="2352.0" y="1102.0">is.surreal.ppr.model.Address</node>
+    <node x="1106.0" y="2389.0">is.surreal.ppr.controller.NotificationController</node>
+    <node x="270.5" y="0.0">is.surreal.ppr.model.Requirement</node>
+    <node x="1640.0" y="1895.0">is.surreal.ppr.controller.ProfileFormController</node>
+    <node x="1892.0" y="1895.0">is.surreal.ppr.controller.ProfileController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="is.surreal.ppr.repository.JdbcHelperDao" target="is.surreal.ppr.repository.JdbcRequirementDao">
+      <point x="0.0" y="-224.5" />
+      <point x="1798.0" y="451.0" />
+      <point x="1566.5" y="451.0" />
+      <point x="84.0" y="213.0" />
+    </edge>
+    <edge source="is.surreal.ppr.repository.JdbcEquipmentDao" target="is.surreal.ppr.repository.JdbcRequirementDao">
+      <point x="0.0" y="-224.5" />
+      <point x="1167.0" y="451.0" />
+      <point x="1398.5" y="451.0" />
+      <point x="-84.0" y="213.0" />
+    </edge>
+    <edge source="is.surreal.ppr.model.Admin" target="is.surreal.ppr.model.User">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="356.5" />
+    </edge>
+    <edge source="is.surreal.ppr.model.Helper" target="is.surreal.ppr.model.Requirement">
+      <point x="0.0" y="-257.5" />
+      <point x="619.0" y="517.0" />
+      <point x="482.0" y="517.0" />
+      <point x="70.5" y="246.0" />
+    </edge>
+    <edge source="is.surreal.ppr.model.Equipment" target="is.surreal.ppr.model.Requirement">
+      <point x="0.0" y="-257.5" />
+      <point x="204.0" y="517.0" />
+      <point x="341.0" y="517.0" />
+      <point x="-70.5" y="246.0" />
+    </edge>
+    <edge source="is.surreal.ppr.repository.JdbcAdminDao" target="is.surreal.ppr.repository.JdbcUserDao">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="323.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5514815557419914" x="1299.6344041406053" y="515.8397338344954" />
+  <SelectedNodes>
+    <node>is.surreal.ppr.model.Equipment</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

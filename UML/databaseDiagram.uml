@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>b942be0f-29a3-412b-98e3-7df85aa5313f.SCHEMA:ppr</OriginalElement>
+  <nodes>
+    <node x="0.0" y="867.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operationparticipation</node>
+    <node x="195.0" y="856.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.helper</node>
+    <node x="50.375" y="278.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.user</node>
+    <node x="185.75" y="578.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operation</node>
+    <node x="425.0" y="856.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.equipment</node>
+    <node x="80.375" y="0.0">b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.address</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.helper" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operation">
+      <point x="0.0" y="-81.0" />
+      <point x="300.0" y="831.0" />
+      <point x="319.25" y="831.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operationparticipation" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.user">
+      <point x="-43.75" y="-70.0" />
+      <point x="43.75" y="553.0" />
+      <point x="111.125" y="553.0" />
+      <point x="-60.75" y="125.0" />
+    </edge>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.user" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.address">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operationparticipation" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operation">
+      <point x="43.75" y="-70.0" />
+      <point x="131.25" y="831.0" />
+      <point x="230.25" y="831.0" />
+      <point x="-89.0" y="114.0" />
+    </edge>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.equipment" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operation">
+      <point x="0.0" y="-81.0" />
+      <point x="530.0" y="831.0" />
+      <point x="408.25" y="831.0" />
+      <point x="89.0" y="114.0" />
+    </edge>
+    <edge source="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operation" target="b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.user">
+      <point x="0.0" y="-114.0" />
+      <point x="319.25" y="553.0" />
+      <point x="232.625" y="553.0" />
+      <point x="60.75" y="125.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4229107217899613" x="507.7806008104086" y="757.0075709421599" />
+  <SelectedNodes>
+    <node>b942be0f-29a3-412b-98e3-7df85aa5313f.TABLE:ppr.operationparticipation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+  </Categories>
+</Diagram>
+

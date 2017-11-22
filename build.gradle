@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.eu.leontebbens.gradle:chromedriver-updater-plugin:1.6"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
     }
 }
 
@@ -19,6 +20,8 @@ plugins {
     id 'org.junit.platform.gradle.plugin' version '1.0.1'
     id 'eu.leontebbens.gradle.chromedriver-updater' version '1.6'
 }
+
+apply plugin: 'org.springframework.boot'
 
 group 'is.surreal.webengineering'
 version '0.1-ALPHA'
@@ -36,10 +39,15 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testRuntime("org.junit.vintage:junit-vintage-engine:4.12.1")
 
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile 'io.cucumber:cucumber-java8:2.1.0'
     compile 'io.cucumber:cucumber-junit:2.1.0'
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile 'org.springframework:spring-jdbc:2.0.6'
 
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.7.1'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.security:spring-security-test")
 }
 
 war {
