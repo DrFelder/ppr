@@ -22,6 +22,8 @@ import java.sql.Timestamp;
 
 public class Helper extends Requirement {
     private int id;
+    String title;
+    String description;
     private Operation operation;
     private User user;
     private Timestamp created;
@@ -32,6 +34,26 @@ public class Helper extends Requirement {
         this.user = user;
         this.created = created;
         this.applications = applications;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

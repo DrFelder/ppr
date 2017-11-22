@@ -23,10 +23,20 @@ import java.sql.Timestamp;
 
 public abstract class Requirement implements Serializable {
     int id = 0;
+    String title = "";
+    String description = "";
     Operation operation = null;
     User user = null;
     Timestamp created = null;
     Application[] applications = null;
+
+    public abstract String getTitle();
+
+    public abstract void setTitle(String title);
+
+    public abstract String getDescription();
+
+    public abstract void setDescription(String description);
 
     public abstract Operation getOperation();
 

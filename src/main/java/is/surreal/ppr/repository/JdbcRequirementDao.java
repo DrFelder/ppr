@@ -23,10 +23,20 @@ import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 import java.sql.Timestamp;
 
 public abstract class JdbcRequirementDao extends SimpleJdbcDaoSupport {
+    String title;
+    String description;
     JdbcOperationDao operation = null;
     JdbcUserDao user = null;
     Timestamp created = null;
     JdbcApplicationDao[] applications = null;
+
+    public abstract String getTitle();
+
+    public abstract void setTitle(String title);
+
+    public abstract String getDescription();
+
+    public abstract void setDescription(String description);
 
     public abstract JdbcOperationDao getOperation();
 

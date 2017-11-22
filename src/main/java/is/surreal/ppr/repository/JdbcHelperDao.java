@@ -22,6 +22,8 @@ import java.sql.Timestamp;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
 public class JdbcHelperDao extends JdbcRequirementDao {
+    private String title;
+    private String description;
     private JdbcOperationDao operation;
     private JdbcUserDao user;
     private Timestamp created;
@@ -32,6 +34,26 @@ public class JdbcHelperDao extends JdbcRequirementDao {
         this.user = user;
         this.created = created;
         this.applications = applications;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
