@@ -18,7 +18,6 @@
 
 package is.surreal.ppr.repository;
 
-import is.surreal.ppr.model.Address;
 import java.util.Date;
 import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
@@ -27,13 +26,13 @@ public class JdbcUserDao extends SimpleJdbcDaoSupport {
     private String lastName;
     private String username;
     private Date dateOfBirth;
-    private Address address;
+    private JdbcAddressDao address;
     private String telephoneNumber;
     private String emailAddress;
     private JdbcOperationDao[] operationsOwned;
     private JdbcOperationDao[] operationsParticipate;
 
-    public JdbcUserDao(String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
+    public JdbcUserDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -77,11 +76,11 @@ public class JdbcUserDao extends SimpleJdbcDaoSupport {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Address getAddress() {
+    public JdbcAddressDao getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(JdbcAddressDao address) {
         this.address = address;
     }
 
