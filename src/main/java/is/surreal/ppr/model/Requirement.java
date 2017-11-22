@@ -19,14 +19,33 @@
 package is.surreal.ppr.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
-public class Operation implements Serializable {
-    private Integer id;
-    private String name;
-    private String location;
-    private Date dateOfExecution;
-    private String publicDescription;
-    private String privateDescription;
-    private Requirement[] requirements;
+public abstract class Requirement implements Serializable {
+    int id = 0;
+    Operation operation = null;
+    User user = null;
+    Timestamp created = null;
+    Application[] applications = null;
+
+    public abstract Operation getOperation();
+
+    public abstract void setOperation(Operation operation);
+
+    public abstract int getId();
+
+    public abstract void setId(int id);
+
+    public abstract User getUser();
+
+    public abstract void setUser(User user);
+
+    public abstract Timestamp getCreated();
+
+    public abstract void setCreated(Timestamp created);
+
+    public abstract Application[] getApplications();
+
+    public abstract void setApplications(Application[] applications);
+
 }

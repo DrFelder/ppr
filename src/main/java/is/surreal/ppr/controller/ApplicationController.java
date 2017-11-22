@@ -16,17 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.controller;
 
-import java.io.Serializable;
-import java.util.Date;
+import is.surreal.ppr.model.Application;
 
-public class Operation implements Serializable {
-    private Integer id;
-    private String name;
-    private String location;
-    private Date dateOfExecution;
-    private String publicDescription;
-    private String privateDescription;
-    private Requirement[] requirements;
+public class ApplicationController {
+    private Application application;
+
+    public void apply() {
+
+    }
+
+    public void acceptOperation() {
+
+    }
+
+    public void rejectApplication() {
+
+    }
 }

@@ -16,17 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr;
 
-import java.io.Serializable;
-import java.util.Date;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class Operation implements Serializable {
-    private Integer id;
-    private String name;
-    private String location;
-    private Date dateOfExecution;
-    private String publicDescription;
-    private String privateDescription;
-    private Requirement[] requirements;
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) throws Throwable {
+        SpringApplication.run(Application.class, args);
+    }
+
 }

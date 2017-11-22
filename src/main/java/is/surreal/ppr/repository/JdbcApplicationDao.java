@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.repository;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
-public class Application implements Serializable {
-    private int id;
-    private User user;
-    private Operation operation;
+public class JdbcApplicationDao extends SimpleJdbcDaoSupport{
+    private JdbcUserDao user;
+    private JdbcOperationDao operation;
     private String comment;
     private Timestamp commentTime;
     private String answer;
@@ -32,8 +31,7 @@ public class Application implements Serializable {
     private Timestamp created;
     private Timestamp accepted;
 
-    public Application(int id, User user, Operation operation, String comment, Timestamp commentTime, String answer, Timestamp answerTime, Timestamp created, Timestamp accepted) {
-        this.id = id;
+    public JdbcApplicationDao(JdbcUserDao user, JdbcOperationDao operation, String comment, Timestamp commentTime, String answer, Timestamp answerTime, Timestamp created, Timestamp accepted) {
         this.user = user;
         this.operation = operation;
         this.comment = comment;
@@ -44,7 +42,7 @@ public class Application implements Serializable {
         this.accepted = accepted;
     }
 
-    public Application(User user, Operation operation) {
+    public JdbcApplicationDao(JdbcUserDao user, JdbcOperationDao operation) {
     }
 
     public void applyForOperation() {
@@ -53,27 +51,19 @@ public class Application implements Serializable {
     public void answerApplication() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUser() {
+    public JdbcUserDao getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(JdbcUserDao user) {
         this.user = user;
     }
 
-    public Operation getOperation() {
+    public JdbcOperationDao getOperation() {
         return operation;
     }
 
-    public void setOperation(Operation operation) {
+    public void setOperation(JdbcOperationDao operation) {
         this.operation = operation;
     }
 

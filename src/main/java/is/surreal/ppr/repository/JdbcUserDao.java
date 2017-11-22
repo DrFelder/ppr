@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.repository;
 
-import java.io.Serializable;
+import is.surreal.ppr.model.Address;
 import java.util.Date;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
-public class User implements Serializable {
-    private Integer id;
+public class JdbcUserDao extends SimpleJdbcDaoSupport {
     private String firstName;
     private String lastName;
     private String username;
@@ -30,11 +30,10 @@ public class User implements Serializable {
     private Address address;
     private String telephoneNumber;
     private String emailAddress;
-    private Operation[] operationsOwned;
-    private Operation[] operationsParticipate;
+    private JdbcOperationDao[] operationsOwned;
+    private JdbcOperationDao[] operationsParticipate;
 
-    public User(Integer id, String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, Operation[] operationsOwned, Operation[] operationsParticipate) {
-        this.id = id;
+    public JdbcUserDao(String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -44,14 +43,6 @@ public class User implements Serializable {
         this.emailAddress = emailAddress;
         this.operationsOwned = operationsOwned;
         this.operationsParticipate = operationsParticipate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -110,19 +101,19 @@ public class User implements Serializable {
         this.emailAddress = emailAddress;
     }
 
-    public Operation[] getOperationsOwned() {
+    public JdbcOperationDao[] getOperationsOwned() {
         return operationsOwned;
     }
 
-    public void setOperationsOwned(Operation[] operationsOwned) {
+    public void setOperationsOwned(JdbcOperationDao[] operationsOwned) {
         this.operationsOwned = operationsOwned;
     }
 
-    public Operation[] getOperationsParticipate() {
+    public JdbcOperationDao[] getOperationsParticipate() {
         return operationsParticipate;
     }
 
-    public void setOperationsParticipate(Operation[] operationsParticipate) {
+    public void setOperationsParticipate(JdbcOperationDao[] operationsParticipate) {
         this.operationsParticipate = operationsParticipate;
     }
 }

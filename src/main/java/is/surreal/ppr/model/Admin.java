@@ -18,5 +18,11 @@
 
 package is.surreal.ppr.model;
 
-public class Admin extends User {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Admin extends User implements Serializable {
+    public Admin(Integer id, String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, Operation[] operationsOwned, Operation[] operationsParticipate) {
+        super(id, firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
+    }
 }

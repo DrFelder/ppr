@@ -16,12 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.repository;
 
-import java.io.Serializable;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
-public class Address implements Serializable {
-    private int id;
+public class JdbcAddressDao extends SimpleJdbcDaoSupport {
     private String street;
     private Integer streetNumber;
     private String zipCode;
@@ -29,22 +28,13 @@ public class Address implements Serializable {
     private String city;
     private String state;
 
-    public Address(int id, String street, Integer streetNumber, String zipCode, String country, String city, String state) {
-        this.id = id;
+    public JdbcAddressDao(String street, Integer streetNumber, String zipCode, String country, String city, String state) {
         this.street = street;
         this.streetNumber = streetNumber;
         this.zipCode = zipCode;
         this.country = country;
         this.city = city;
         this.state = state;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getStreet() {

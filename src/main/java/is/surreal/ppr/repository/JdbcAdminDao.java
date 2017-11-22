@@ -16,13 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.repository;
 
-public class Requirements {
-    private Operation operation;
-    private String description;
-    private enum type{
-        humanResources, equipment
+import java.util.Date;
+
+import is.surreal.ppr.model.Address;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+
+public class JdbcAdminDao extends JdbcUserDao {
+    public JdbcAdminDao(String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
+        super(firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
     }
-
 }
