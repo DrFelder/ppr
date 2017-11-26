@@ -18,9 +18,9 @@
 
 package is.surreal.ppr.repository;
 
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-public class JdbcAddressDao extends SimpleJdbcDaoSupport {
+public class JdbcAddressDao extends JdbcTemplate {
     private String street;
     private Integer streetNumber;
     private String zipCode;

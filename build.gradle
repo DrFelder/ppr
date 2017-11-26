@@ -31,6 +31,8 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
@@ -39,15 +41,18 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testRuntime("org.junit.vintage:junit-vintage-engine:4.12.1")
 
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile 'io.cucumber:cucumber-java8:2.1.0'
     compile 'io.cucumber:cucumber-junit:2.1.0'
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile 'org.springframework:spring-jdbc:2.0.6'
+
+    compile 'com.google.guava:guava:19.0'
+
+    compile 'org.springframework:spring-jdbc:4.3.8.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.7.1'
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile("org.springframework.security:spring-security-test")
 }
 
 war {
