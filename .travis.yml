@@ -5,26 +5,25 @@ jdk:
 - oraclejdk8
 
 services:
-  - mysql
+- mysql
 
 addons:
   ssh_known_hosts:
-    - vpro0052.proserver.punkt.de
-    - 217.29.41.52
+  - vpro0052.proserver.punkt.de
+  - 217.29.41.52
   hosts:
-    - ppr.surreal.is
+  - ppr.surreal.is
   chrome: stable
   apt:
     packages:
-      - unzip
-      - figlet
-      - cowsay
-      - fortune
+    - unzip
+    - figlet
+    - cowsay
+    - fortune
 
 before_script:
 - echo 'Project Puerto Rico' | figlet -w 120
 - sed -n '633,649p' LICENSE.md
-
 - mysql -e 'CREATE DATABASE IF NOT EXISTS ppr;'
 - mysql -u root --default-character-set=utf8 ppr < structure.sql
 - mysql -u root --default-character-set=utf8 ppr < filler.sql
@@ -38,18 +37,20 @@ script:
 - sudo mv deployment/server.xml /opt/tomcat/conf/server.xml
 - sudo chmod +x /opt/tomcat/bin/*
 - sudo rm -rf /opt/tomcat/webapps/*
-- ./gradlew clean --console=plain
-- ./gradlew updateChromedriver --console=plain
-- ./gradlew assemble --console=plain
+- "./gradlew clean --console=plain"
+- "./gradlew updateChromedriver --console=plain"
+- "./gradlew assemble --console=plain"
 - sudo cp $TRAVIS_BUILD_DIR/build/libs/* /opt/tomcat/webapps
 - sudo /opt/tomcat/bin/startup.sh
-- ./gradlew test --console=plain
+- "./gradlew test --console=plain"
 
 before_deploy:
+- openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in deployment/secrets/secrets.tar.enc -out deployment/secrets/secrets.tar -d
+- tar xvf deployment/secrets/secrets.tar
 - sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
-- openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in database.properties.enc -out $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties -d
-- ./gradlew assemble
-- openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+- sudo mv deployment/secrets/database.properties src/main/resources/config/database.properties
+- "./gradlew assemble"
+- sudo mv deployment/secrets/deploy_rsa /tmp/deploy_rsa
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa
 - ssh-add /tmp/deploy_rsa
