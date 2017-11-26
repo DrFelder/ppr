@@ -13,4 +13,4 @@ Feature: Cucumber example
 
   Scenario: I want to look at the homepage
     When I am on the homepage
-    Then the title should be "Example"
+    Then the title should be "Getting Started: Serving Web Content"

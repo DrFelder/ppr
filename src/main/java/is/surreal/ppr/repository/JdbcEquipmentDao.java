@@ -19,7 +19,6 @@
 package is.surreal.ppr.repository;
 
 import java.sql.Timestamp;
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
 
 public class JdbcEquipmentDao extends JdbcRequirementDao {
     private String title;

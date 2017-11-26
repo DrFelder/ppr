@@ -18,10 +18,11 @@
 
 package is.surreal.ppr.repository;
 
-import java.util.Date;
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-public class JdbcOperationDao extends SimpleJdbcDaoSupport {
+import java.util.Date;
+
+public class JdbcOperationDao extends JdbcTemplate {
     private String name;
     private String location;
     private Date dateOfExecution;

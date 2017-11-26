@@ -18,10 +18,11 @@
 
 package is.surreal.ppr.repository;
 
-import java.sql.Timestamp;
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-public class JdbcApplicationDao extends SimpleJdbcDaoSupport{
+import java.sql.Timestamp;
+
+public class JdbcApplicationDao extends JdbcTemplate {
     private JdbcUserDao user;
     private JdbcOperationDao operation;
     private String comment;

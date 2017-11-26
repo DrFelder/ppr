@@ -59,7 +59,7 @@ public class StepDefinitions {
 
     @When("^I am on the homepage$")
     public void iVisitTheHomepage() throws Throwable {
-        driver.get("http://ppr.surreal.is/");
+        driver.get("http://ppr.surreal.is:8080/");
     }
 
     @Then("^the title should be \"([^\"]*)\"$")

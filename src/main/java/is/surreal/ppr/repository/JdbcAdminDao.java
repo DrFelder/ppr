@@ -20,9 +20,6 @@ package is.surreal.ppr.repository;
 
 import java.util.Date;
 
-import is.surreal.ppr.model.Address;
-import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
-
 public class JdbcAdminDao extends JdbcUserDao {
     public JdbcAdminDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
         super(firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
