@@ -19,4 +19,7 @@ mysql> exit
 
 Now you can use the database via the ppruser. To fill the database with tables and such, simply use the [MySQL script](mysqlscript.sql) provided by the repository.
 
+If you want to use the application now, you'll have to specify the access data for your database.
+To do that, edit the [configuration file src/main/resources/config/database.properties](src/main/resources/config/database.properties).
+
 You can find the documentation under https://github.com/DrFelder/ppr-documentation

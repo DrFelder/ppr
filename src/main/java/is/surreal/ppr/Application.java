@@ -16,12 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.repository;
+package is.surreal.ppr;
 
-import java.util.Date;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-public class JdbcAdminDao extends JdbcUserDao {
-    public JdbcAdminDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, OperationDaoImpl[] operationsOwned, OperationDaoImpl[] operationsParticipate) {
-        super(firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
+@SpringBootApplication
+public class Application extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
     }
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Application.class, args);
+    }
+
 }

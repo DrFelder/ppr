@@ -23,12 +23,12 @@ import java.sql.Timestamp;
 public class JdbcHelperDao extends JdbcRequirementDao {
     private String title;
     private String description;
-    private JdbcOperationDao operation;
+    private OperationDaoImpl operation;
     private JdbcUserDao user;
     private Timestamp created;
     private JdbcApplicationDao[] applications;
 
-    public JdbcHelperDao(JdbcOperationDao operation, JdbcUserDao user, Timestamp created, JdbcApplicationDao[] applications) {
+    public JdbcHelperDao(OperationDaoImpl operation, JdbcUserDao user, Timestamp created, JdbcApplicationDao[] applications) {
         this.operation = operation;
         this.user = user;
         this.created = created;
@@ -56,12 +56,12 @@ public class JdbcHelperDao extends JdbcRequirementDao {
     }
 
     @Override
-    public JdbcOperationDao getOperation() {
+    public OperationDaoImpl getOperation() {
         return operation;
     }
 
     @Override
-    public void setOperation(JdbcOperationDao operation) {
+    public void setOperation(OperationDaoImpl operation) {
         this.operation = operation;
     }
 

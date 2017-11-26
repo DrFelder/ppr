@@ -7,7 +7,7 @@ create table address
   street varchar(40) null,
   streetnumber int null,
   zipcode varchar(20) null,
-  country varchar(20) null,
+  country varchar(60) null,
   city varchar(20) null,
   state varchar(20) null
 )
@@ -19,7 +19,7 @@ create table equipment
   id int auto_increment
     primary key,
   title varchar(60) null,
-  description varchar(400) null,
+  description varchar(2000) null,
   created timestamp default CURRENT_TIMESTAMP not null,
   updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   operation_id int null
@@ -36,7 +36,7 @@ create table helper
   id int auto_increment
     primary key,
   title varchar(60) null,
-  description varchar(400) null,
+  description varchar(2000) null,
   created timestamp default CURRENT_TIMESTAMP not null,
   updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   operation_id int null
@@ -132,4 +132,3 @@ alter table operationparticipation
   add constraint operationparticipation_user_id_fk
 foreign key (user_id) references user (id)
 ;
-

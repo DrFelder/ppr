@@ -24,7 +24,7 @@ import java.sql.Timestamp;
 
 public class JdbcApplicationDao extends JdbcTemplate {
     private JdbcUserDao user;
-    private JdbcOperationDao operation;
+    private OperationDaoImpl operation;
     private String comment;
     private Timestamp commentTime;
     private String answer;
@@ -32,7 +32,7 @@ public class JdbcApplicationDao extends JdbcTemplate {
     private Timestamp created;
     private Timestamp accepted;
 
-    public JdbcApplicationDao(JdbcUserDao user, JdbcOperationDao operation, String comment, Timestamp commentTime, String answer, Timestamp answerTime, Timestamp created, Timestamp accepted) {
+    public JdbcApplicationDao(JdbcUserDao user, OperationDaoImpl operation, String comment, Timestamp commentTime, String answer, Timestamp answerTime, Timestamp created, Timestamp accepted) {
         this.user = user;
         this.operation = operation;
         this.comment = comment;
@@ -43,7 +43,7 @@ public class JdbcApplicationDao extends JdbcTemplate {
         this.accepted = accepted;
     }
 
-    public JdbcApplicationDao(JdbcUserDao user, JdbcOperationDao operation) {
+    public JdbcApplicationDao(JdbcUserDao user, OperationDaoImpl operation) {
     }
 
     public void applyForOperation() {
@@ -60,11 +60,11 @@ public class JdbcApplicationDao extends JdbcTemplate {
         this.user = user;
     }
 
-    public JdbcOperationDao getOperation() {
+    public OperationDaoImpl getOperation() {
         return operation;
     }
 
-    public void setOperation(JdbcOperationDao operation) {
+    public void setOperation(OperationDaoImpl operation) {
         this.operation = operation;
     }
 

@@ -23,10 +23,69 @@ import java.util.Date;
 
 public class Operation implements Serializable {
     private Integer id;
-    private String name;
-    private String location;
-    private Date dateOfExecution;
+    private String title;
+    private Date date;
     private String publicDescription;
     private String privateDescription;
-    private Requirement[] requirements;
+    private String location;
+
+    public Operation() {
+    }
+
+    public Operation(Integer id, String title, Date date, String publicDescription, String privateDescription, String location) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+        this.publicDescription = publicDescription;
+        this.privateDescription = privateDescription;
+        this.location = location;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getPublicDescription() {
+        return publicDescription;
+    }
+
+    public void setPublicDescription(String publicDescription) {
+        this.publicDescription = publicDescription;
+    }
+
+    public String getPrivateDescription() {
+        return privateDescription;
+    }
+
+    public void setPrivateDescription(String privateDescription) {
+        this.privateDescription = privateDescription;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

@@ -16,12 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.repository;
+package is.surreal.ppr;
 
-import java.util.Date;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-public class JdbcAdminDao extends JdbcUserDao {
-    public JdbcAdminDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, OperationDaoImpl[] operationsOwned, OperationDaoImpl[] operationsParticipate) {
-        super(firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
+@Controller
+public class DefaultController {
+
+    @RequestMapping(value = "/")
+    public ModelAndView homepage(ModelAndView model) {
+        model.setViewName("index");
+
+        return model;
     }
+
+    @RequestMapping(value = "/index")
+    public ModelAndView index(ModelAndView model) {
+        model.setViewName("index");
+
+        return model;
+    }
+
+    @RequestMapping(value = "/index.html")
+    public ModelAndView indexHtml(ModelAndView model) {
+        model.setViewName("index");
+
+        return model;
+    }
+
 }

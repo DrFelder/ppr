@@ -17,12 +17,28 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
-<p>Get your greeting <a href="/greeting">here</a></p>
+<table style="width:100%">
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Public description</th>
+        <th>Private description</th>
+        <th>Location</th>
+    </tr>
+    <tr th:each="operation : ${operationList}">
+        <td th:text="${operation.title}"></td>
+        <td th:text="${operation.date}"></td>
+        <td th:text="${operation.publicDescription}"></td>
+        <td th:text="${operation.privateDescription}"></td>
+        <td th:text="${operation.location}"></td>
+    </tr>
+</table>
 </body>
 </html>

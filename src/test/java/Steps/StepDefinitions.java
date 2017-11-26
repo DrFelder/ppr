@@ -96,4 +96,11 @@ public class StepDefinitions {
     public void receiveMessage(String arg0){
         //TODO
     }
+
+    @Then("^I should see \"([^\"]*)\"$")
+    public void iShouldSee(String string) throws Throwable {
+        if (!driver.getPageSource().contains(string)) {
+            throw new PendingException();
+        }
+    }
 }

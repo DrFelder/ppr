@@ -4,6 +4,9 @@ dist: trusty
 jdk:
 - oraclejdk8
 
+services:
+  - mysql
+
 addons:
   ssh_known_hosts:
     - vpro0052.proserver.punkt.de
@@ -22,6 +25,11 @@ before_script:
 - echo 'Project Puerto Rico' | figlet -w 120
 - sed -n '633,649p' LICENSE.md
 
+- mysql -e 'CREATE DATABASE IF NOT EXISTS ppr;'
+- mysql -u root --default-character-set=utf8 ppr < structure.sql
+- mysql -u root --default-character-set=utf8 ppr < filler.sql
+- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
+- sudo mv $TRAVIS_BUILD_DIR/deployment/database.properties $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
 
 script:
 - curl -OL http://artfiles.org/apache.org/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.zip
@@ -38,6 +46,9 @@ script:
 - ./gradlew test --console=plain
 
 before_deploy:
+- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
+- openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in database.properties.enc -out $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties -d
+- ./gradlew assemble
 - openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa

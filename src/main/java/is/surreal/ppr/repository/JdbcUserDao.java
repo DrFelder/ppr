@@ -30,10 +30,10 @@ public class JdbcUserDao extends JdbcTemplate {
     private JdbcAddressDao address;
     private String telephoneNumber;
     private String emailAddress;
-    private JdbcOperationDao[] operationsOwned;
-    private JdbcOperationDao[] operationsParticipate;
+    private OperationDaoImpl[] operationsOwned;
+    private OperationDaoImpl[] operationsParticipate;
 
-    public JdbcUserDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, JdbcOperationDao[] operationsOwned, JdbcOperationDao[] operationsParticipate) {
+    public JdbcUserDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, OperationDaoImpl[] operationsOwned, OperationDaoImpl[] operationsParticipate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -101,19 +101,19 @@ public class JdbcUserDao extends JdbcTemplate {
         this.emailAddress = emailAddress;
     }
 
-    public JdbcOperationDao[] getOperationsOwned() {
+    public OperationDaoImpl[] getOperationsOwned() {
         return operationsOwned;
     }
 
-    public void setOperationsOwned(JdbcOperationDao[] operationsOwned) {
+    public void setOperationsOwned(OperationDaoImpl[] operationsOwned) {
         this.operationsOwned = operationsOwned;
     }
 
-    public JdbcOperationDao[] getOperationsParticipate() {
+    public OperationDaoImpl[] getOperationsParticipate() {
         return operationsParticipate;
     }
 
-    public void setOperationsParticipate(JdbcOperationDao[] operationsParticipate) {
+    public void setOperationsParticipate(OperationDaoImpl[] operationsParticipate) {
         this.operationsParticipate = operationsParticipate;
     }
 }

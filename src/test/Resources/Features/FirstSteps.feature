@@ -14,3 +14,5 @@ Feature: Cucumber example
   Scenario: I want to look at the homepage
     When I am on the homepage
     Then the title should be "Getting Started: Serving Web Content"
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then I should see "at,mollitia,libero"

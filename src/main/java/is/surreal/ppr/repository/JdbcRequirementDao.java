@@ -25,7 +25,7 @@ import java.sql.Timestamp;
 public abstract class JdbcRequirementDao extends JdbcTemplate {
     String title;
     String description;
-    JdbcOperationDao operation = null;
+    OperationDaoImpl operation = null;
     JdbcUserDao user = null;
     Timestamp created = null;
     JdbcApplicationDao[] applications = null;
@@ -38,9 +38,9 @@ public abstract class JdbcRequirementDao extends JdbcTemplate {
 
     public abstract void setDescription(String description);
 
-    public abstract JdbcOperationDao getOperation();
+    public abstract OperationDaoImpl getOperation();
 
-    public abstract void setOperation(JdbcOperationDao operation);
+    public abstract void setOperation(OperationDaoImpl operation);
 
     public abstract JdbcUserDao getUser();
 
