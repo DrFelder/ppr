@@ -16,13 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.model;
+package is.surreal.ppr.repository;
 
-import java.io.Serializable;
-import java.util.Date;
+import is.surreal.ppr.model.Equipment;
 
-public class Admin extends User implements Serializable {
-    public Admin(Integer id, String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, Operation[] operationsOwned, Operation[] operationsParticipate) {
-        super(id, firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
-    }
+import java.util.List;
+
+public interface EquipmentDao {
+
+    void saveOrUpdate(Equipment equipment);
+
+    void delete(int equipmentId);
+
+    Equipment get(int equipmentId);
+
+    List<Equipment> list();
+
 }

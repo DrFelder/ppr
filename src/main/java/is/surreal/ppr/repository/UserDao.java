@@ -18,10 +18,18 @@
 
 package is.surreal.ppr.repository;
 
-import java.util.Date;
+import is.surreal.ppr.model.User;
 
-public class JdbcAdminDao extends JdbcUserDao {
-    public JdbcAdminDao(String firstName, String lastName, String username, Date dateOfBirth, JdbcAddressDao address, String telephoneNumber, String emailAddress, OperationDaoImpl[] operationsOwned, OperationDaoImpl[] operationsParticipate) {
-        super(firstName, lastName, username, dateOfBirth, address, telephoneNumber, emailAddress, operationsOwned, operationsParticipate);
-    }
+import java.util.List;
+
+public interface UserDao {
+
+    public void saveOrUpdate(User user);
+
+    public void delete(int userId);
+
+    public User get(int userId);
+
+    public List<User> list();
+
 }

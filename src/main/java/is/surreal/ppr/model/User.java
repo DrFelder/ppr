@@ -26,24 +26,23 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String username;
-    private Date dateOfBirth;
+    private Date birthDay;
     private Address address;
     private String telephoneNumber;
-    private String emailAddress;
-    private Operation[] operationsOwned;
-    private Operation[] operationsParticipate;
+    private String email;
 
-    public User(Integer id, String firstName, String lastName, String username, Date dateOfBirth, Address address, String telephoneNumber, String emailAddress, Operation[] operationsOwned, Operation[] operationsParticipate) {
+    public User() {
+    }
+
+    public User(Integer id, String firstName, String lastName, String username, Date birthDay, Address address, String telephoneNumber, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.dateOfBirth = dateOfBirth;
+        this.birthDay = birthDay;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
-        this.emailAddress = emailAddress;
-        this.operationsOwned = operationsOwned;
-        this.operationsParticipate = operationsParticipate;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -78,12 +77,12 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getBirthDay() {
+        return birthDay;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     public Address getAddress() {
@@ -102,27 +101,12 @@ public class User implements Serializable {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Operation[] getOperationsOwned() {
-        return operationsOwned;
-    }
-
-    public void setOperationsOwned(Operation[] operationsOwned) {
-        this.operationsOwned = operationsOwned;
-    }
-
-    public Operation[] getOperationsParticipate() {
-        return operationsParticipate;
-    }
-
-    public void setOperationsParticipate(Operation[] operationsParticipate) {
-        this.operationsParticipate = operationsParticipate;
-    }
 }

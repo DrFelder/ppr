@@ -32,6 +32,9 @@ public class Application implements Serializable {
     private Timestamp created;
     private Timestamp accepted;
 
+    public Application() {
+    }
+
     public Application(int id, User user, Operation operation, String comment, Timestamp commentTime, String answer, Timestamp answerTime, Timestamp created, Timestamp accepted) {
         this.id = id;
         this.user = user;
@@ -42,15 +45,6 @@ public class Application implements Serializable {
         this.answerTime = answerTime;
         this.created = created;
         this.accepted = accepted;
-    }
-
-    public Application(User user, Operation operation) {
-    }
-
-    public void applyForOperation() {
-    }
-
-    public void answerApplication() {
     }
 
     public int getId() {
@@ -124,4 +118,5 @@ public class Application implements Serializable {
     public void setAccepted(Timestamp accepted) {
         this.accepted = accepted;
     }
+
 }

@@ -18,91 +18,44 @@
 
 package is.surreal.ppr.model;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 
-public class Equipment extends Requirement {
+public class Equipment implements Serializable {
     private int id;
-    String title;
-    String description;
-    private Operation operation;
-    private User user;
-    private Timestamp created;
-    private Application[] applications;
+    private String title;
+    private String description;
 
-    public Equipment(Operation operation, User user, Timestamp created, Application[] applications) {
-        this.operation = operation;
-        this.user = user;
-        this.created = created;
-        this.applications = applications;
+    public Equipment() {
     }
 
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public void setTitle(String title) {
+    public Equipment(int id, String title, String description) {
+        this.id = id;
         this.title = title;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public void setDescription(String description) {
         this.description = description;
     }
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(int requirementId) {
-        this.id = requirementId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Override
-    public Operation getOperation() {
-        return operation;
+    public String getTitle() {
+        return title;
     }
 
-    @Override
-    public void setOperation(Operation operation) {
-        this.operation = operation;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Override
-    public User getUser() {
-        return user;
+    public String getDescription() {
+        return description;
     }
 
-    @Override
-    public void setUser(User user) {
-        this.user = user;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @Override
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    @Override
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
-
-    @Override
-    public Application[] getApplications() {
-        return applications;
-    }
-
-    @Override
-    public void setApplications(Application[] applications) {
-        this.applications = applications;
-    }
 }
