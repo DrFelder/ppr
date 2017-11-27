@@ -34,7 +34,7 @@ public class ListController {
     @Autowired
     private OperationDao operationDao;
 
-    @RequestMapping(value="/list")
+    @RequestMapping(value = "/list")
     public ModelAndView listContact(ModelAndView model) throws IOException {
         List<Operation> operationList = operationDao.list();
         model.addObject("operationList", operationList);
@@ -42,4 +42,5 @@ public class ListController {
 
         return model;
     }
+
 }

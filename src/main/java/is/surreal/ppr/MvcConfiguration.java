@@ -86,4 +86,5 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     public OperationDao getOperationDao() {
         return new OperationDaoImpl(getDataSource());
     }
+
 }
