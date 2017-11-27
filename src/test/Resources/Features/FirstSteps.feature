@@ -13,6 +13,7 @@ Feature: Cucumber example
 
   Scenario: I want to look at the homepage
     When I am on the homepage
-    Then the title should be "Getting Started: Serving Web Content"
+    Then the title should be "Project Puerto Rico - Homepage"
     When I visit "http://ppr.surreal.is:8080/list/"
-    Then I should see "at,mollitia,libero"
+    Then the title should be "Project Puerto Rico - Operation List"
+    And I should see "at,mollitia,libero"

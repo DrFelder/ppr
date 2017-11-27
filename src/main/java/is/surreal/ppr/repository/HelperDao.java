@@ -16,31 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.repository;
 
-import is.surreal.ppr.model.Operation;
-import is.surreal.ppr.repository.OperationDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import is.surreal.ppr.model.Helper;
 
-import java.io.IOException;
 import java.util.List;
 
-@Controller
-public class ListController {
+public interface HelperDao {
 
-    @Autowired
-    private OperationDao operationDao;
+    void saveOrUpdate(Helper helper);
 
-    @RequestMapping(value = "/list")
-    public ModelAndView listContact(ModelAndView model) throws IOException {
-        List<Operation> operationList = operationDao.list();
-        model.addObject("operationList", operationList);
-        model.setViewName("list");
+    void delete(int helperId);
 
-        return model;
-    }
+    Helper get(int helperId);
+
+    List<Helper> list();
 
 }

@@ -29,6 +29,9 @@ public class Address implements Serializable {
     private String city;
     private String state;
 
+    public Address() {
+    }
+
     public Address(int id, String street, Integer streetNumber, String zipCode, String country, String city, String state) {
         this.id = id;
         this.street = street;
@@ -94,4 +97,5 @@ public class Address implements Serializable {
     public void setState(String state) {
         this.state = state;
     }
+
 }
