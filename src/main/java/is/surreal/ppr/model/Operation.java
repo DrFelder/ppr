@@ -28,17 +28,20 @@ public class Operation implements Serializable {
     private String publicDescription;
     private String privateDescription;
     private String location;
+    private User organizer;
 
     public Operation() {
     }
 
-    public Operation(Integer id, String title, Date date, String publicDescription, String privateDescription, String location) {
+
+    public Operation(Integer id, String title, Date date, String publicDescription, String privateDescription, String location, User organizer) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.publicDescription = publicDescription;
         this.privateDescription = privateDescription;
         this.location = location;
+        this.organizer = organizer;
     }
 
     public Integer getId() {
@@ -87,6 +90,14 @@ public class Operation implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public User getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(User organizer) {
+        this.organizer = organizer;
     }
 
 }
