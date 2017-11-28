@@ -20,35 +20,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Details</title>
+    <title>Title</title>
 </head>
 <body>
 
 <table style="width:100%">
     <tr>
         <th>Title</th>
-        <td th:text="${operation.title}"></td>
+        <td th:text="${user.firstName}"></td>
     </tr>
-    <tr>
-        <th>Date</th>
-        <td th:text="${operation.date}"></td>
-    </tr>
-    <tr>
-        <th>Location</th>
-        <td th:text="${operation.location}"></td>
-    </tr>
-    <tr>
-        <th>Organizer</th>
-        <td><a th:text="${operation.organizer.firstName +' '+ operation.organizer.lastName}" th:href="@{/detailUser(id=${operation.organizer.id})}">details</a></td>
-    </tr>
-    <tr>
-        <th>Public description</th>
-        <td th:text="${operation.publicDescription}"></td>
-    </tr>
-    <tr>
-        <th>Private Description</th>
-        <td th:text="${operation.privateDescription}"></td>
-    </tr>
+
 </table>
 </body>
 </html>

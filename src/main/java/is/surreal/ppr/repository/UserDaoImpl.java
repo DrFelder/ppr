@@ -18,12 +18,13 @@
 
 package is.surreal.ppr.repository;
 
-import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.model.Address;
 import is.surreal.ppr.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,6 +32,10 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     private JdbcTemplate jdbcTemplate;
+
+    public UserDaoImpl(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public void saveOrUpdate(User user) {
@@ -44,7 +49,17 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User get(int userId) {
-        String query = "SELECT * FROM user where id=" + userId;
+        String query = "SELECT user.*, " +
+                "a.id as address_id, " +
+                "street, " +
+                "streetnumber, " +
+                "zipcode, " +
+                "country, " +
+                "city, " +
+                "state " +
+                "FROM user " +
+                "JOIN address a ON user.address_id = a.id " +
+                "where user.id=" + userId;
 
         return jdbcTemplate.query(query, new ResultSetExtractor<User>() {
 
@@ -55,12 +70,22 @@ public class UserDaoImpl implements UserDao {
                     User user = new User();
                     user.setId(resultSet.getInt("id"));
                     user.setFirstName(resultSet.getString("firstName"));
-                    //user.setAddress(resultSet.getString("address"));
                     user.setBirthDay(resultSet.getDate("birthDay"));
                     user.setEmail(resultSet.getString("email"));
                     user.setLastName(resultSet.getString("lastName"));
                     user.setTelephoneNumber(resultSet.getString("telephoneNumber"));
                     user.setUsername(resultSet.getString("userName"));
+
+                    Address address = new Address();
+                    address.setCity(resultSet.getString("city"));
+                    address.setCountry(resultSet.getString("country"));
+                    address.setId(resultSet.getInt("address_id"));
+                    address.setState(resultSet.getString("state"));
+                    address.setStreet(resultSet.getString("street"));
+                    address.setStreetNumber(resultSet.getInt("streetNumber"));
+                    address.setZipCode(resultSet.getString("zipCode"));
+                    user.setAddress(address);
+
                     return user;
                 }
                 return null;

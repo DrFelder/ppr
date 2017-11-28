@@ -20,6 +20,8 @@ package is.surreal.ppr;
 
 import is.surreal.ppr.repository.OperationDao;
 import is.surreal.ppr.repository.OperationDaoImpl;
+import is.surreal.ppr.repository.UserDao;
+import is.surreal.ppr.repository.UserDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -85,6 +87,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public OperationDao getOperationDao() {
         return new OperationDaoImpl(getDataSource());
+    }
+
+    @Bean
+    public UserDao getUserDao() {
+        return new UserDaoImpl(getDataSource());
     }
 
 }
