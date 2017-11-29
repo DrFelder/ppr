@@ -83,18 +83,13 @@ public class StepDefinitions {
     }
 
     @When("^I enter \"(.*?)\" in the field \"(.*?)\"$")
-    public void enterDataInField(String arg0, String arg1){
-        driver.findElement(By.id("txt"+arg0)).sendKeys(arg1);
+    public void enterDataInField(String text, String id){
+        driver.findElement(By.id(id)).sendKeys(text);
     }
 
     @When("^I press the \"(.*?)\" button$")
-    public void pressButton(String arg0){
-        driver.findElement(By.id("btn"+arg0)).click();
-    }
-
-    @Then("^I receive a \"(.*?)\" message$")
-    public void receiveMessage(String arg0){
-        //TODO
+    public void pressButton(String id){
+        driver.findElement(By.id(id)).click();
     }
 
     @Then("^I should see \"([^\"]*)\"$")
