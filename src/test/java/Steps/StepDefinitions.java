@@ -103,4 +103,9 @@ public class StepDefinitions {
             throw new PendingException();
         }
     }
+
+    @When("^I click on link having text \"([^\"]*)\"$")
+    public void iClickOnLinkHavingText(String linkText) throws Throwable {
+        driver.findElement(By.linkText(linkText)).click();
+    }
 }

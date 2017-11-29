@@ -19,8 +19,9 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Details</title>
+    <title th:inline="text">Detail page for [[${operation.title}]]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
 

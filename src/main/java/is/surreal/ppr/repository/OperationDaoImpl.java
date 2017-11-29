@@ -77,12 +77,8 @@ public class OperationDaoImpl implements OperationDao {
                         "birthday, " +
                         "telephonenumber " +
                         "FROM operation o "+
-                        "JOIN user u on o.organizer_id=u.id";
-        /*
-        String query = "SELECT * FROM operation" +
-                " LEFT JOIN  user  on user.id=operation.organizer_id" +
-                " WHERE operation.id=" + operationId;
-                */
+                        "JOIN user u on o.organizer_id=u.id " +
+                        "WHERE o.id=" + operationId;
 
         return jdbcTemplate.query(query, new ResultSetExtractor<Operation>() {
 
@@ -106,7 +102,6 @@ public class OperationDaoImpl implements OperationDao {
                     user.setEmail(resultSet.getString("email"));
                     user.setBirthDay(resultSet.getDate("birthday"));
                     user.setId(resultSet.getInt("user_id"));
-                    //Addresse wird momentan ausgelassen, da nicht benoetogt
 
                     operation.setOrganizer(user);
 

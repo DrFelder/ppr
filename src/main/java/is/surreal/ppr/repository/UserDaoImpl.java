@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
                 "state " +
                 "FROM user " +
                 "JOIN address a ON user.address_id = a.id " +
-                "where user.id=" + userId;
+                "WHERE user.id=" + userId;
 
         return jdbcTemplate.query(query, new ResultSetExtractor<User>() {
 
