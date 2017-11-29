@@ -18,7 +18,9 @@
 
 package is.surreal.ppr.repository;
 
+import is.surreal.ppr.model.Address;
 import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -56,7 +58,28 @@ public class OperationDaoImpl implements OperationDao {
 
     @Override
     public Operation get(int operationId) {
-        String query = "SELECT * FROM operation WHERE operation_id=" + operationId;
+        String query =
+                "SELECT " +
+                        "o.id as operation_id, " +
+                        "o.created as operation_created, " +
+                        "o.updated as operation_updated, " +
+                        "title, " +
+                        "date, " +
+                        "publicDescription, "+
+                        "privateDescription, "+
+                        "location, "+
+                        "organizer_id, " +
+                        "u.id as user_id, " +
+                        "username, " +
+                        "email, " +
+                        "lastname, " +
+                        "firstname, " +
+                        "birthday, " +
+                        "telephonenumber " +
+                        "FROM operation o "+
+                        "JOIN user u on o.organizer_id=u.id " +
+                        "WHERE o.id=" + operationId;
+
         return jdbcTemplate.query(query, new ResultSetExtractor<Operation>() {
 
             @Override
@@ -64,12 +87,24 @@ public class OperationDaoImpl implements OperationDao {
                     DataAccessException {
                 if (resultSet.next()) {
                     Operation operation = new Operation();
-                    operation.setId(resultSet.getInt("id"));
+                    operation.setId(resultSet.getInt("operation_id"));
                     operation.setTitle(resultSet.getString("title"));
                     operation.setDate(resultSet.getDate("date"));
                     operation.setPublicDescription(resultSet.getString("publicDescription"));
                     operation.setPrivateDescription(resultSet.getString("privateDescription"));
                     operation.setLocation(resultSet.getString("location"));
+
+                    User user = new User();
+                    user.setUsername(resultSet.getString("username"));
+                    user.setTelephoneNumber(resultSet.getString("telephoneNumber"));
+                    user.setFirstName(resultSet.getString("firstName"));
+                    user.setLastName(resultSet.getString("lastName"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setBirthDay(resultSet.getDate("birthday"));
+                    user.setId(resultSet.getInt("user_id"));
+
+                    operation.setOrganizer(user);
+
                     return operation;
                 }
                 return null;

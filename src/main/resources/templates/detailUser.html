@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
   ~ Project Puerto Rico
   ~ Copyright (C) 2017  Thomas Pötzsch, Stephan Stroh
@@ -17,27 +17,37 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Project Puerto Rico - Operation List</title>
+    <title th:inline="text">Detail page for [[${user.firstName}]] [[${user.lastName}]]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
 <table style="width:100%">
     <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Public description</th>
-        <th>Location</th>
-        <th>More</th>
+        <th>First Name</th>
+        <td th:text="${user.firstName}"></td>
     </tr>
-    <tr th:each="operation : ${operationList}">
-        <td th:text="${operation.title}"></td>
-        <td th:text="${operation.date}"></td>
-        <td th:text="${#strings.substring(operation.publicDescription,0,99) + '...'}"></td>
-        <td th:text="${operation.location}"></td>
-        <td><a th:href="@{/detail(id=${operation.id})}">details</a></td>
+    <tr>
+        <th>Last Name</th>
+        <td th:text="${user.lastName}"></td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td th:text="${user.username}"></td>
+    </tr>
+    <tr>
+        <th>E-Mail address</th>
+        <td th:text="${user.email}"></td>
+    </tr>
+    <tr>
+        <th>Birthday</th>
+        <td th:text="${user.birthDay}"></td>
+    </tr>
+    <tr>
+        <th>Telephone Number</th>
+        <td th:text="${user.telephoneNumber}"></td>
     </tr>
 </table>
 </body>

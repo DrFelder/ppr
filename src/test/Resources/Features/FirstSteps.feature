@@ -1,19 +1,22 @@
-Feature: Cucumber example
-
-  Scenario: Someone needs a success example
-    Given this test is successful
-
-  @skip
-  Scenario: Someone needs a failure example that is skipped
-    Given this test fails
-
-  @skip
-  Scenario: I want to access a website
-    When I visit "https://google.com"
-
-  Scenario: I want to look at the homepage
+Feature: First Steps
+  Scenario: I want to look at the operation list
     When I am on the homepage
     Then the title should be "Project Puerto Rico - Homepage"
     When I visit "http://ppr.surreal.is:8080/list/"
     Then the title should be "Project Puerto Rico - Operation List"
     And I should see "at,mollitia,libero"
+
+  Scenario: I want to access the operation detail page
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then the title should be "Project Puerto Rico - Operation List"
+    When I click on link having text "details"
+    Then the title should be "Detail page for delectus,aut,at"
+    And I should see "Aut quaerat non aut odit enim sunt est"
+    
+  Scenario: I want to access the organizer detail page
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then the title should be "Project Puerto Rico - Operation List"
+    When I click on link having text "details"
+    And I click on link having text "Kennedi Lowe"
+    Then the title should be "Detail page for Kennedi Lowe"
+    Then I should see "+00(8)9096522708"
