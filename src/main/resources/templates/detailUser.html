@@ -19,11 +19,12 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:inline="text">Detail page for [[${user.firstName}]] [[${user.lastName}]]</title>
+    <title th:inline="text">PPR - Detail page for [[${user.firstName}]] [[${user.lastName}]]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
+<div th:replace="fragments/template :: login"></div>
 <table style="width:100%">
     <tr>
         <th>First Name</th>
