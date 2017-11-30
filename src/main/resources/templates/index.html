@@ -17,12 +17,20 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Project Puerto Rico - Homepage</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title id="pageTitle">PPR - Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<title th:include=":: #pageTitle">Layout Generic Title</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 <body>
-<p>Look at a list of operations <a href="/list">here</a></p>
+<div th:replace="fragments/template :: login"></div>
+<h3>Project Puerto Rico</h3>
+<p>Please <a href="/list">log in</a> first to use the application.</p>
+<p>Look at a list of operations <a href="/list">here</a>.</p>
+<p>Look at a operation details <a href="/detail?id=9">here</a>.</p>
+<p>Look at user details <a href="/detailUser?id=45">here</a>.</p>
 </body>
 </html>
