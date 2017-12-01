@@ -78,7 +78,7 @@ public class OperationDaoImpl implements OperationDao {
                         "telephonenumber " +
                         "FROM operation o "+
                         "JOIN user u on o.organizer_id=u.id " +
-                        "WHERE o.id=" + operationId;
+                        "WHERE o.id=?";
 
         return jdbcTemplate.query(query, new ResultSetExtractor<Operation>() {
 
@@ -109,7 +109,7 @@ public class OperationDaoImpl implements OperationDao {
                 }
                 return null;
             }
-        });
+        }, operationId);
 
     }
 

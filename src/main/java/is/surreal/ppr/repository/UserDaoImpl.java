@@ -23,6 +23,7 @@ import is.surreal.ppr.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -39,12 +40,25 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveOrUpdate(User user) {
-
+        if (user.getId() > 0) {
+            String query = "UPDATE user SET email=?, lastname=?, firstname=?, birthday=?, telephonenumber=? WHERE id=?";
+            jdbcTemplate.update(query,
+                    user.getEmail(), user.getLastName(), user.getFirstName(),
+                    user.getBirthDay(), user.getTelephoneNumber(), user.getId()
+            );
+        } else {
+            String query = "INSERT INTO user (email,lastname, firstname, birthday, telephonenumber) VALUES (?,?,?,?,?)";
+            jdbcTemplate.update(query,
+                    user.getEmail(), user.getLastName(), user.getFirstName(),
+                    user.getBirthDay(), user.getTelephoneNumber()
+            );
+        }
     }
 
     @Override
     public void delete(int userId) {
-
+        String query = "DELETE FROM user WHERE id=?";
+        jdbcTemplate.update(query, userId);
     }
 
     @Override
@@ -59,7 +73,7 @@ public class UserDaoImpl implements UserDao {
                 "state " +
                 "FROM user " +
                 "JOIN address a ON user.address_id = a.id " +
-                "WHERE user.id=" + userId;
+                "WHERE user.id=?";
 
         return jdbcTemplate.query(query, new ResultSetExtractor<User>() {
 
@@ -90,11 +104,48 @@ public class UserDaoImpl implements UserDao {
                 }
                 return null;
             }
-        });
+        }, userId);
     }
 
     @Override
     public List<User> list() {
-        return null;
+        String query = "SELECT user.*, " +
+                "address.id as address_id, " +
+                "street, " +
+                "streetnumber, " +
+                "zipcode, " +
+                "country, " +
+                "city, " +
+                "state " +
+                "FROM user " +
+                "JOIN address on user.address_id = address.id";
+
+        List<User> listUser = jdbcTemplate.query(query, new RowMapper<User>() {
+
+            @Override
+            public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setFirstName(resultSet.getString("firstname"));
+                user.setBirthDay(resultSet.getDate("birthday"));
+                user.setEmail(resultSet.getString("email"));
+                user.setLastName(resultSet.getString("lastname"));
+                user.setTelephoneNumber(resultSet.getString("telephoneNumber"));
+                user.setUsername(resultSet.getString("username"));
+
+                Address address = new Address();
+                address.setCity(resultSet.getString("city"));
+                address.setCountry(resultSet.getString("country"));
+                address.setId(resultSet.getInt("address_id"));
+                address.setState(resultSet.getString("state"));
+                address.setStreet(resultSet.getString("street"));
+                address.setStreetNumber(resultSet.getInt("streetNumber"));
+                address.setZipCode(resultSet.getString("zipCode"));
+                user.setAddress(address);
+
+                return user;
+            }
+        });
+        return listUser;
     }
 }
