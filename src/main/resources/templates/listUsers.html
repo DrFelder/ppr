@@ -19,27 +19,18 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title id="pageTitle">PPR - Operation List</title>
+    <title id="pageTitle">PPR - User List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
 <div th:replace="fragments/template :: login"></div>
-<a th:href="@{/listUsers}">All Users</a>
 <table style="width:100%">
     <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Public description</th>
-        <th>Location</th>
-        <th>More</th>
+        <th>Name</th>
     </tr>
-    <tr th:each="operation : ${operationList}">
-        <td th:text="${operation.title}"></td>
-        <td th:text="${operation.date}"></td>
-        <td th:text="${#strings.substring(operation.publicDescription,0,99) + '...'}"></td>
-        <td th:text="${operation.location}"></td>
-        <td><a th:href="@{/detail(id=${operation.id})}">details</a></td>
+    <tr th:each="user : ${userList}">
+        <td><a th:text="${user.firstName +' '+ user.lastName}" th:href="@{/detailUser(id=${user.id})}"></a></td>
     </tr>
 </table>
 </body>
