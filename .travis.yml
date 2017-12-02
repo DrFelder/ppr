@@ -31,9 +31,9 @@ before_script:
 - sudo mv $TRAVIS_BUILD_DIR/deployment/database.properties $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
 
 script:
-- curl -OL http://artfiles.org/apache.org/tomcat/tomcat-8/v8.5.23/bin/apache-tomcat-8.5.23.zip
+- curl -OL http://ftp.heikorichter.name/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.zip
 - sudo unzip -q apache-tomcat-8*.zip -d /opt
-- sudo mv /opt/apache-tomcat-8.5.23 /opt/tomcat
+- sudo mv /opt/apache-tomcat-8.5.24 /opt/tomcat
 - sudo mv deployment/server.xml /opt/tomcat/conf/server.xml
 - sudo chmod +x /opt/tomcat/bin/*
 - sudo rm -rf /opt/tomcat/webapps/*
@@ -63,7 +63,7 @@ deploy:
     branch: master
 
 after_success:
-- fortune | cowsay
+- /usr/games/fortune | /usr/games/cowsay
 
 notifications:
   email: travisdeployment@surreal.is
