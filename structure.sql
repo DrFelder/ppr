@@ -2,14 +2,14 @@ create table address
 (
   id int auto_increment
     primary key,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   street varchar(40) null,
   streetnumber int null,
   zipcode varchar(20) null,
   country varchar(60) null,
   city varchar(20) null,
-  state varchar(20) null
+  state varchar(20) null,
+  constraint address_id_uindex
+  unique (id)
 )
   engine=InnoDB
 ;
@@ -20,9 +20,9 @@ create table equipment
     primary key,
   title varchar(60) null,
   description varchar(2000) null,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-  operation_id int null
+  operation_id int null,
+  constraint equipment_id_uindex
+  unique (id)
 )
   engine=InnoDB
 ;
@@ -37,9 +37,9 @@ create table helper
     primary key,
   title varchar(60) null,
   description varchar(2000) null,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-  operation_id int null
+  operation_id int null,
+  constraint helper_id_uindex
+  unique (id)
 )
   engine=InnoDB
 ;
@@ -52,14 +52,14 @@ create table operation
 (
   id int auto_increment
     primary key,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   title varchar(40) null,
   date date null,
   publicDescription varchar(2000) null,
   privateDescription varchar(2000) null,
   location varchar(60) null,
-  organizer_id int null
+  organizer_id int null,
+  constraint operation_id_uindex
+  unique (id)
 )
   engine=InnoDB
 ;
@@ -82,10 +82,10 @@ create table operationparticipation
 (
   id int auto_increment
     primary key,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   user_id int null,
   operation_id int null,
+  constraint operationparticipation_id_uindex
+  unique (id),
   constraint operationparticipation_operation_id_fk
   foreign key (operation_id) references operation (id)
 )
@@ -104,23 +104,19 @@ create table user
 (
   id int auto_increment
     primary key,
-  created timestamp default CURRENT_TIMESTAMP not null,
-  updated timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
   username varchar(40) null,
+  password varchar(400) null,
   email varchar(40) null,
-  lastname varchar(40) null,
-  firstname varchar(40) null,
-  address_id int null,
-  birthday date null,
-  telephonenumber varchar(20) null,
-  constraint user_address_id_fk
-  foreign key (address_id) references address (id)
+  roles varchar(200) null,
+  userdata_id int null,
+  constraint user_id_uindex
+  unique (id)
 )
   engine=InnoDB
 ;
 
-create index user_address_id_fk
-  on user (address_id)
+create index user_userdata_id_fk
+  on user (userdata_id)
 ;
 
 alter table operation
@@ -132,3 +128,29 @@ alter table operationparticipation
   add constraint operationparticipation_user_id_fk
 foreign key (user_id) references user (id)
 ;
+
+create table userdata
+(
+  id int auto_increment
+    primary key,
+  firstname varchar(100) null,
+  lastname varchar(100) null,
+  birthday date null,
+  address_id int null,
+  constraint userdata_id_uindex
+  unique (id),
+  constraint userdata_address_id_fk
+  foreign key (address_id) references address (id)
+)
+  engine=InnoDB
+;
+
+create index userdata_address_id_fk
+  on userdata (address_id)
+;
+
+alter table user
+  add constraint user_userdata_id_fk
+foreign key (userdata_id) references userdata (id)
+;
+
