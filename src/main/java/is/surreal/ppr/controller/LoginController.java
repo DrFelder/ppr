@@ -18,12 +18,18 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Operation;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-public class OperationListController {
-    private Operation[] operations;
+@Controller
+public class LoginController {
 
-    public void getOperationList() {
+    @RequestMapping(value = "/login")
+    public ModelAndView homepage(ModelAndView model) {
+        model.setViewName("login");
 
+        return model;
     }
+
 }

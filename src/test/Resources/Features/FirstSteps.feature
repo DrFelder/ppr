@@ -20,6 +20,12 @@ Feature: First Steps
     When I click on link having text "details"
     Then the title should be "PPR - Detail page for delectus,aut,at"
     And I should see "Aut quaerat non aut odit enim sunt est"
+    And I should see "Equipment:"
+    And I should see "est,autem,possimus"
+    And I should see "Eveniet optio eveniet dolor harum."
+    And I should see "Helpers:"
+    And I should see "voluptas,quis,reprehenderit"
+    And I should see "Ea ut qui quasi exercitationem et ut."
 
   Scenario: I want to access the organizer detail page
     When I visit "http://ppr.surreal.is:8080/list/"

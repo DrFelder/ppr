@@ -16,10 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.User;
-import is.surreal.ppr.repository.UserRepository;
+import is.surreal.ppr.model.Equipment;
+import is.surreal.ppr.model.Helper;
+import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.repository.EquipmentRepository;
+import is.surreal.ppr.repository.HelperRepository;
+import is.surreal.ppr.repository.OperationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,18 +31,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
-public class DetailUserController {
+public class DetailController {
 
     @Autowired
-    private UserRepository userRepository;
+    private OperationRepository operationRepository;
 
-    @RequestMapping(value = "/detailUser")
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
+    @Autowired
+    private HelperRepository helperRepository;
+
+    @RequestMapping(value = "/detail")
     public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
-        User user = userRepository.findOne(id);
-        model.addObject("user", user);
-        model.setViewName("detailUser");
+        Operation operation = operationRepository.findOne(id);
+        model.addObject("operation", operation);
+        List<Equipment> equipmentList = equipmentRepository.findAll();
+        model.addObject("equipmentList", equipmentList);
+        List<Helper> helperList = helperRepository.findAll();
+        model.addObject("helperList", helperList);
+        model.setViewName("detail");
 
         return model;
     }
