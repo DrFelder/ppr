@@ -31,4 +31,4 @@ Feature: First Steps
     When I click on link having text "details"
     And I click on link having text "Kennedi Lowe"
     Then the title should be "PPR - Detail page for Kennedi Lowe"
-    Then I should see "+00(8)9096522708"
+    Then I should see "1973-05-24"

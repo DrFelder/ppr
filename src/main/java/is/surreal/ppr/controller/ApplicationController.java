@@ -18,10 +18,7 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Application;
-
 public class ApplicationController {
-    private Application application;
 
     public void apply() {
 

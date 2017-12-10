@@ -33,6 +33,7 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 
 dependencies {
@@ -46,11 +47,12 @@ dependencies {
 
     compile 'com.google.guava:guava:19.0'
 
-    compile 'org.springframework:spring-jdbc:4.3.8.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.44'
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 

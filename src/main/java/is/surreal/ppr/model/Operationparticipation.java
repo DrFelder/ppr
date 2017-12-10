@@ -3,14 +3,14 @@ package is.surreal.ppr.model;
 import javax.persistence.*;
 
 @Entity
-public class Equipment {
+public class Operationparticipation {
     private Long id;
-    private String title;
-    private String description;
+    private Integer userId;
     private Integer operationId;
+    private User userByUserId;
     private Operation operationByOperationId;
 
-    public Equipment() {
+    public Operationparticipation() {
     }
 
     @Id
@@ -24,23 +24,13 @@ public class Equipment {
     }
 
     @Basic
-    @Column(name = "title")
-    public String getTitle() {
-        return title;
+    @Column(name = "user_id")
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Basic
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -58,14 +48,11 @@ public class Equipment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Equipment equipment = (Equipment) o;
+        Operationparticipation that = (Operationparticipation) o;
 
-        if (id != equipment.id) return false;
-        if (title != null ? !title.equals(equipment.title) : equipment.title != null) return false;
-        if (description != null ? !description.equals(equipment.description) : equipment.description != null)
-            return false;
-        if (operationId != null ? !operationId.equals(equipment.operationId) : equipment.operationId != null)
-            return false;
+        if (id != that.id) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (operationId != null ? !operationId.equals(that.operationId) : that.operationId != null) return false;
 
         return true;
     }
@@ -73,10 +60,19 @@ public class Equipment {
     @Override
     public int hashCode() {
         int result = Long.hashCode(id);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public User getUserByUserId() {
+        return userByUserId;
+    }
+
+    public void setUserByUserId(User userByUserId) {
+        this.userByUserId = userByUserId;
     }
 
     @ManyToOne

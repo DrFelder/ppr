@@ -30,7 +30,7 @@
         <th>Name</th>
     </tr>
     <tr th:each="user : ${userList}">
-        <td><a th:text="${user.firstName +' '+ user.lastName}" th:href="@{/detailUser(id=${user.id})}"></a></td>
+        <td><a th:text="${user.userdataByUserdataId.firstname +' '+ user.userdataByUserdataId.lastname}" th:href="@{/detailUser(id=${user.id})}"></a></td>
     </tr>
 </table>
 </body>
