@@ -37,11 +37,7 @@
     <tr th:each="operation : ${operationList}">
         <td th:text="${operation.title}"></td>
         <td th:text="${operation.date}"></td>
-        <div th:switch="${operation.publicdescription}">
-            <td th:case="''" th:text="${''}"></td>
-            <td th:case="*" th:text="${#strings.substring(operation.publicdescription,0,99) + '...'}"></td>
-        </div>
-
+        <td th:text="${#strings.abbreviate(operation.publicdescription,100)}"></td>
         <td th:text="${operation.location}"></td>
         <td><a th:href="@{/detail(id=${operation.id})}">details</a></td>
     </tr>
