@@ -88,4 +88,13 @@ public class Equipment {
     public void setOperationparticipationsById(Collection<Operationparticipation> operationparticipationsById) {
         this.operationparticipationsById = operationparticipationsById;
     }
+
+    public Operationparticipation operationparticipationForUsername(String username) {
+        for (Operationparticipation operationparticipation : getOperationparticipationsById()) {
+            if (operationparticipation.getUserByUserId().getUsername().equals(username)) {
+                return operationparticipation;
+            }
+        }
+        return null;
+    }
 }
