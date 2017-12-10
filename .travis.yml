@@ -27,11 +27,12 @@ before_script:
 - mysql -e 'CREATE DATABASE IF NOT EXISTS ppr;'
 - mysql -u root --default-character-set=utf8 ppr < structure.sql
 - mysql -u root --default-character-set=utf8 ppr < filler.sql
-- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
-- sudo mv $TRAVIS_BUILD_DIR/deployment/database.properties $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
+- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/application.properties
+- sudo mv $TRAVIS_BUILD_DIR/deployment/application.properties $TRAVIS_BUILD_DIR/src/main/resources/application.properties
 
 script:
-- curl -OL http://ftp.heikorichter.name/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.zip
+- curl -OL http://mirror.funkfreundelandshut.de/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.zip
+- md5sum -c apache-tomcat-8.5.24.zip
 - sudo unzip -q apache-tomcat-8*.zip -d /opt
 - sudo mv /opt/apache-tomcat-8.5.24 /opt/tomcat
 - sudo mv deployment/server.xml /opt/tomcat/conf/server.xml
@@ -47,8 +48,8 @@ script:
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in deployment/secrets/secrets.tar.enc -out deployment/secrets/secrets.tar -d
 - tar xvf deployment/secrets/secrets.tar
-- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/config/database.properties
-- sudo mv deployment/secrets/database.properties src/main/resources/config/database.properties
+- sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/application.properties
+- sudo mv deployment/secrets/application.properties src/main/resources/application.properties
 - "./gradlew assemble"
 - sudo mv deployment/secrets/deploy_rsa /tmp/deploy_rsa
 - eval "$(ssh-agent -s)"
