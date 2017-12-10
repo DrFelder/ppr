@@ -39,20 +39,10 @@ public class DetailController {
     @Autowired
     private OperationRepository operationRepository;
 
-    @Autowired
-    private EquipmentRepository equipmentRepository;
-
-    @Autowired
-    private HelperRepository helperRepository;
-
     @RequestMapping(value = "/detail")
     public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
         Operation operation = operationRepository.findOne(id);
         model.addObject("operation", operation);
-        List<Equipment> equipmentList = equipmentRepository.findAll();
-        model.addObject("equipmentList", equipmentList);
-        List<Helper> helperList = helperRepository.findAll();
-        model.addObject("helperList", helperList);
         model.setViewName("detail");
 
         return model;
