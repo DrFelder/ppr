@@ -19,6 +19,7 @@ public class User {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -93,17 +94,6 @@ public class User {
         if (userdataId != null ? !userdataId.equals(user.userdataId) : user.userdataId != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        result = 31 * result + (userdataId != null ? userdataId.hashCode() : 0);
-        return result;
     }
 
     @OneToMany(mappedBy = "userByOrganizerId")

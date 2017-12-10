@@ -22,6 +22,7 @@ public class Operation {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -110,18 +111,6 @@ public class Operation {
             return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (publicdescription != null ? publicdescription.hashCode() : 0);
-        result = 31 * result + (privatedescription != null ? privatedescription.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (organizerId != null ? organizerId.hashCode() : 0);
-        return result;
     }
 
     @OneToMany(mappedBy = "operationByOperationId")
