@@ -16,6 +16,7 @@ public class Operationparticipation {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -79,16 +80,6 @@ public class Operationparticipation {
         if (declined != null ? !declined.equals(that.declined) : that.declined != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
-        result = 31 * result + (accepted != null ? accepted.hashCode() : 0);
-        result = 31 * result + (declined != null ? declined.hashCode() : 0);
-        return result;
     }
 
     @ManyToOne

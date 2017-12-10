@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
   ~ Project Puerto Rico
   ~ Copyright (C) 2017  Thomas Pötzsch, Stephan Stroh
@@ -17,30 +17,38 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title id="pageTitle">PPR - Operation List</title>
+    <title id="pageTitle" th:inline="text">Create Operation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
 </head>
 <body>
 <div th:replace="fragments/template :: login"></div>
-<a th:href="@{/listUsers}">All Users</a>
-<table style="width:100%">
-    <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Public description</th>
-        <th>Location</th>
-        <th>More</th>
-    </tr>
-    <tr th:each="operation : ${operationList}">
-        <td th:text="${operation.title}"></td>
-        <td th:text="${operation.date}"></td>
-        <td th:text="${#strings.abbreviate(operation.publicdescription,100)}"></td>
-        <td th:text="${operation.location}"></td>
-        <td><a th:href="@{/detail(id=${operation.id})}">details</a></td>
-    </tr>
-</table>
+<h3>Create Operation:</h3>
+<form action="#" th:action="@{/createoperation}" th:object="${operation}" method="post">
+    <label>
+        Title:
+        <input type="text" th:field="*{title}"/>
+    </label>
+    <label>
+        Date:
+        <input type="date" th:field="*{date}"/>
+    </label>
+    <label>
+        Public description:
+        <input type="text" th:field="*{publicdescription}"/>
+    </label>
+    <label>
+        Private description:
+        <input type="text" th:field="*{privatedescription}"/>
+    </label>
+    <label>
+        Location:
+        <input type="text" th:field="*{location}"/>
+    </label>
+    <input type="submit" id="submit" value="Create operation"/>
+    <input type="reset" id="reset" value="Reset"/>
+</form>
 </body>
 </html>

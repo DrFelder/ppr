@@ -18,6 +18,7 @@ public class Address {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -104,18 +105,6 @@ public class Address {
         if (state != null ? !state.equals(address.state) : address.state != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (streetnumber != null ? streetnumber.hashCode() : 0);
-        result = 31 * result + (zipcode != null ? zipcode.hashCode() : 0);
-        result = 31 * result + (country != null ? country.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        return result;
     }
 
     @OneToMany(mappedBy = "addressByAddressId")

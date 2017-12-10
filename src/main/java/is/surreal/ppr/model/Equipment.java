@@ -14,6 +14,7 @@ public class Equipment {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -68,15 +69,6 @@ public class Equipment {
             return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
-        return result;
     }
 
     @ManyToOne

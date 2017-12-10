@@ -18,6 +18,7 @@ public class Userdata {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -81,16 +82,6 @@ public class Userdata {
         if (addressId != null ? !addressId.equals(userdata.addressId) : userdata.addressId != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (addressId != null ? addressId.hashCode() : 0);
-        return result;
     }
 
     @OneToMany(mappedBy = "userdataByUserdataId")
