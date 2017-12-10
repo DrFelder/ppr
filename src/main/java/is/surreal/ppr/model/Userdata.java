@@ -14,11 +14,8 @@ public class Userdata {
     private Collection<User> usersById;
     private Address addressByAddressId;
 
-    public Userdata() {
-    }
-
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;

@@ -58,10 +58,14 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>Apply</th>
     </tr>
     <tr th:each="equipment : ${operation.getEquipmentById()}">
         <td th:text="${equipment.title}"></td>
         <td th:text="${equipment.description}"></td>
+        <td th:each="participation : ${equipment.getOperationparticipationsById()}">
+            <span th:text="${participation.userByUserId.username}"></span>
+        </td>
     </tr>
 </table>
 <br/>
@@ -70,10 +74,14 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>Apply</th>
     </tr>
     <tr th:each="helper : ${operation.getHelpersById()}">
         <td th:text="${helper.title}"></td>
         <td th:text="${helper.description}"></td>
+        <td th:each="participation : ${helper.getOperationparticipationsById()}">
+            <span th:text="${participation.userByUserId.username}"></span>
+        </td>
     </tr>
 </table>
 </body>

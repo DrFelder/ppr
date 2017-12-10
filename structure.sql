@@ -83,13 +83,16 @@ create table operationparticipation
   id int auto_increment
     primary key,
   user_id int null,
-  operation_id int null,
   accepted tinyint(1) null,
   declined tinyint(1) null,
+  equipment_id int null,
+  helper_id int null,
   constraint operationparticipation_id_uindex
   unique (id),
-  constraint operationparticipation_operation_id_fk
-  foreign key (operation_id) references operation (id)
+  constraint operationparticipation_equipment_id_fk
+  foreign key (equipment_id) references equipment (id),
+  constraint operationparticipation_helper_id_fk
+  foreign key (helper_id) references helper (id)
 )
   engine=InnoDB
 ;
@@ -98,8 +101,12 @@ create index operationparticipation_user_id_fk
   on operationparticipation (user_id)
 ;
 
-create index operationparticipation_operation_id_fk
-  on operationparticipation (operation_id)
+create index operationparticipation_equipment_id_fk
+  on operationparticipation (equipment_id)
+;
+
+create index operationparticipation_helper_id_fk
+  on operationparticipation (helper_id)
 ;
 
 create table user
@@ -155,4 +162,3 @@ alter table user
   add constraint user_userdata_id_fk
 foreign key (userdata_id) references userdata (id)
 ;
-

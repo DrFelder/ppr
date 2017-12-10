@@ -16,13 +16,9 @@ public class Operation {
     private Collection<Equipment> equipmentById;
     private Collection<Helper> helpersById;
     private User userByOrganizerId;
-    private Collection<Operationparticipation> operationparticipationsById;
-
-    public Operation() {
-    }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -139,14 +135,5 @@ public class Operation {
 
     public void setUserByOrganizerId(User userByOrganizerId) {
         this.userByOrganizerId = userByOrganizerId;
-    }
-
-    @OneToMany(mappedBy = "operationByOperationId")
-    public Collection<Operationparticipation> getOperationparticipationsById() {
-        return operationparticipationsById;
-    }
-
-    public void setOperationparticipationsById(Collection<Operationparticipation> operationparticipationsById) {
-        this.operationparticipationsById = operationparticipationsById;
     }
 }
