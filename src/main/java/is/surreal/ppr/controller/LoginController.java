@@ -16,30 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.User;
-import is.surreal.ppr.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-
 @Controller
-public class DetailUserController {
+public class LoginController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @RequestMapping(value = "/detailUser")
-    public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
-        User user = userRepository.findOne(id);
-        model.addObject("user", user);
-        model.setViewName("detailUser");
+    @RequestMapping(value = "/login")
+    public ModelAndView homepage(ModelAndView model) {
+        model.setViewName("login");
 
         return model;
     }
+
 }

@@ -16,31 +16,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Operation;
-import is.surreal.ppr.repository.OperationRepository;
+import is.surreal.ppr.model.User;
+import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
-public class ListController {
+public class DetailUserController {
 
     @Autowired
-    private OperationRepository operationRepository;
+    private UserRepository userRepository;
 
-    @RequestMapping(value = "/list")
-    public ModelAndView listContact(ModelAndView model) throws IOException {
-        List<Operation> operationList = operationRepository.findAll();
-        model.addObject("operationList", operationList);
-        model.setViewName("list");
+    @RequestMapping(value = "/detailUser")
+    public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
+        User user = userRepository.findOne(id);
+        model.addObject("user", user);
+        model.setViewName("detailUser");
 
         return model;
     }
-
 }

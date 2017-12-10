@@ -19,11 +19,27 @@
 package is.surreal.ppr.controller;
 
 import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.repository.OperationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-public class OperationListController {
-    private Operation[] operations;
+import java.io.IOException;
 
-    public void getOperationList() {
+@Controller
+public class DetailController {
 
+    @Autowired
+    private OperationRepository operationRepository;
+
+    @RequestMapping(value = "/detail")
+    public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
+        Operation operation = operationRepository.findOne(id);
+        model.addObject("operation", operation);
+        model.setViewName("detail");
+
+        return model;
     }
 }

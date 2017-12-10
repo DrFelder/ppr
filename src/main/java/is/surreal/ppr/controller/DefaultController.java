@@ -16,30 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Operation;
-import is.surreal.ppr.repository.OperationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-
 @Controller
-public class DetailController {
+public class DefaultController {
 
-    @Autowired
-    private OperationRepository operationRepository;
-
-    @RequestMapping(value = "/detail")
-    public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
-        Operation operation = operationRepository.findOne(id);
-        model.addObject("operation", operation);
-        model.setViewName("detail");
+    @RequestMapping(value = "/")
+    public ModelAndView homepage(ModelAndView model) {
+        model.setViewName("index");
 
         return model;
     }
+
+    @RequestMapping(value = "/index")
+    public ModelAndView index(ModelAndView model) {
+        model.setViewName("index");
+
+        return model;
+    }
+
+    @RequestMapping(value = "/index.html")
+    public ModelAndView indexHtml(ModelAndView model) {
+        model.setViewName("index");
+
+        return model;
+    }
+
 }

@@ -16,34 +16,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr;
+package is.surreal.ppr.controller;
 
+import is.surreal.ppr.model.User;
+import is.surreal.ppr.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.util.List;
+
 @Controller
-public class DefaultController {
+public class ListUserController {
 
-    @RequestMapping(value = "/")
-    public ModelAndView homepage(ModelAndView model) {
-        model.setViewName("index");
+    @Autowired
+    private UserRepository userRepository;
 
-        return model;
-    }
-
-    @RequestMapping(value = "/index")
-    public ModelAndView index(ModelAndView model) {
-        model.setViewName("index");
+    @RequestMapping(value = "/listUsers")
+    public ModelAndView listContact(ModelAndView model) throws IOException {
+        List<User> userList = userRepository.findAll();
+        model.addObject("userList", userList);
+        model.setViewName("listUsers");
 
         return model;
     }
-
-    @RequestMapping(value = "/index.html")
-    public ModelAndView indexHtml(ModelAndView model) {
-        model.setViewName("index");
-
-        return model;
-    }
-
 }
