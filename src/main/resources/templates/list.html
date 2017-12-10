@@ -37,7 +37,7 @@
     <tr th:each="operation : ${operationList}">
         <td th:text="${operation.title}"></td>
         <td th:text="${operation.date}"></td>
-        <td th:text="${#strings.substring(operation.publicDescription,0,99) + '...'}"></td>
+        <td th:text="${#strings.substring(operation.publicdescription,0,99) + '...'}"></td>
         <td th:text="${operation.location}"></td>
         <td><a th:href="@{/detail(id=${operation.id})}">details</a></td>
     </tr>

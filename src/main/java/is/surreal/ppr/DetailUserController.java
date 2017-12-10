@@ -18,10 +18,8 @@
 
 package is.surreal.ppr;
 
-import is.surreal.ppr.model.Operation;
 import is.surreal.ppr.model.User;
-import is.surreal.ppr.repository.OperationDao;
-import is.surreal.ppr.repository.UserDao;
+import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,11 +32,11 @@ import java.io.IOException;
 public class DetailUserController {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/detailUser")
-    public ModelAndView detail(ModelAndView model, @RequestParam Integer id) throws IOException {
-        User user = userDao.get(id);
+    public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
+        User user = userRepository.findOne(id);
         model.addObject("user", user);
         model.setViewName("detailUser");
 

@@ -19,7 +19,7 @@
 package is.surreal.ppr;
 
 import is.surreal.ppr.model.User;
-import is.surreal.ppr.repository.UserDao;
+import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +32,11 @@ import java.util.List;
 public class ListUserController {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/listUsers")
     public ModelAndView listContact(ModelAndView model) throws IOException {
-        List<User> userList = userDao.list();
+        List<User> userList = userRepository.findAll();
         model.addObject("userList", userList);
         model.setViewName("listUsers");
 

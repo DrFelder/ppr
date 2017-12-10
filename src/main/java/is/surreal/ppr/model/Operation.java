@@ -1,57 +1,38 @@
-/*
- * Project Puerto Rico
- * Copyright (C) 2017  Thomas Pötzsch, Stephan Stroh
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package is.surreal.ppr.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Date;
+import java.util.Collection;
 
-public class Operation implements Serializable {
-    private Integer id;
+@Entity
+public class Operation {
+    private Long id;
     private String title;
     private Date date;
-    private String publicDescription;
-    private String privateDescription;
+    private String publicdescription;
+    private String privatedescription;
     private String location;
-    private User organizer;
+    private Integer organizerId;
+    private Collection<Equipment> equipmentById;
+    private Collection<Helper> helpersById;
+    private User userByOrganizerId;
+    private Collection<Operationparticipation> operationparticipationsById;
 
     public Operation() {
     }
 
-
-    public Operation(Integer id, String title, Date date, String publicDescription, String privateDescription, String location, User organizer) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.publicDescription = publicDescription;
-        this.privateDescription = privateDescription;
-        this.location = location;
-        this.organizer = organizer;
-    }
-
-    public Integer getId() {
+    @Id
+    @Column(name = "id")
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -60,6 +41,8 @@ public class Operation implements Serializable {
         this.title = title;
     }
 
+    @Basic
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -68,22 +51,28 @@ public class Operation implements Serializable {
         this.date = date;
     }
 
-    public String getPublicDescription() {
-        return publicDescription;
+    @Basic
+    @Column(name = "publicdescription")
+    public String getPublicdescription() {
+        return publicdescription;
     }
 
-    public void setPublicDescription(String publicDescription) {
-        this.publicDescription = publicDescription;
+    public void setPublicdescription(String publicdescription) {
+        this.publicdescription = publicdescription;
     }
 
-    public String getPrivateDescription() {
-        return privateDescription;
+    @Basic
+    @Column(name = "privatedescription")
+    public String getPrivatedescription() {
+        return privatedescription;
     }
 
-    public void setPrivateDescription(String privateDescription) {
-        this.privateDescription = privateDescription;
+    public void setPrivatedescription(String privatedescription) {
+        this.privatedescription = privatedescription;
     }
 
+    @Basic
+    @Column(name = "location")
     public String getLocation() {
         return location;
     }
@@ -92,12 +81,83 @@ public class Operation implements Serializable {
         this.location = location;
     }
 
-    public User getOrganizer() {
-        return organizer;
+    @Basic
+    @Column(name = "organizer_id")
+    public Integer getOrganizerId() {
+        return organizerId;
     }
 
-    public void setOrganizer(User organizer) {
-        this.organizer = organizer;
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Operation operation = (Operation) o;
+
+        if (id != operation.id) return false;
+        if (title != null ? !title.equals(operation.title) : operation.title != null) return false;
+        if (date != null ? !date.equals(operation.date) : operation.date != null) return false;
+        if (publicdescription != null ? !publicdescription.equals(operation.publicdescription) : operation.publicdescription != null)
+            return false;
+        if (privatedescription != null ? !privatedescription.equals(operation.privatedescription) : operation.privatedescription != null)
+            return false;
+        if (location != null ? !location.equals(operation.location) : operation.location != null) return false;
+        if (organizerId != null ? !organizerId.equals(operation.organizerId) : operation.organizerId != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Long.hashCode(id);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (publicdescription != null ? publicdescription.hashCode() : 0);
+        result = 31 * result + (privatedescription != null ? privatedescription.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (organizerId != null ? organizerId.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "operationByOperationId")
+    public Collection<Equipment> getEquipmentById() {
+        return equipmentById;
+    }
+
+    public void setEquipmentById(Collection<Equipment> equipmentById) {
+        this.equipmentById = equipmentById;
+    }
+
+    @OneToMany(mappedBy = "operationByOperationId")
+    public Collection<Helper> getHelpersById() {
+        return helpersById;
+    }
+
+    public void setHelpersById(Collection<Helper> helpersById) {
+        this.helpersById = helpersById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "organizer_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public User getUserByOrganizerId() {
+        return userByOrganizerId;
+    }
+
+    public void setUserByOrganizerId(User userByOrganizerId) {
+        this.userByOrganizerId = userByOrganizerId;
+    }
+
+    @OneToMany(mappedBy = "operationByOperationId")
+    public Collection<Operationparticipation> getOperationparticipationsById() {
+        return operationparticipationsById;
+    }
+
+    public void setOperationparticipationsById(Collection<Operationparticipation> operationparticipationsById) {
+        this.operationparticipationsById = operationparticipationsById;
+    }
 }

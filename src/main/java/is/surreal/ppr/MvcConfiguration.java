@@ -18,29 +18,15 @@
 
 package is.surreal.ppr;
 
-import is.surreal.ppr.repository.OperationDao;
-import is.surreal.ppr.repository.OperationDaoImpl;
-import is.surreal.ppr.repository.UserDao;
-import is.surreal.ppr.repository.UserDaoImpl;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.sql.DataSource;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 @Configuration
-@ComponentScan(basePackages = "is.surreal.ppr.*")
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
@@ -55,43 +41,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
-
-    @Bean
-    public DataSource getDataSource() {
-        Properties prop = new Properties();
-        InputStream input = null;
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        try {
-            input = new FileInputStream(new ClassPathResource("config/database.properties").getFile());
-            prop.load(input);
-            dataSource.setDriverClassName(prop.getProperty("driverClassName"));
-            dataSource.setUrl(prop.getProperty("databaseUrl"));
-            dataSource.setUsername(prop.getProperty("databaseUser"));
-            dataSource.setPassword(prop.getProperty("databasePassword"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                    return dataSource;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
-
-    @Bean
-    public OperationDao getOperationDao() {
-        return new OperationDaoImpl(getDataSource());
-    }
-
-    @Bean
-    public UserDao getUserDao() {
-        return new UserDaoImpl(getDataSource());
     }
 
 }
