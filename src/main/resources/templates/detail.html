@@ -21,11 +21,11 @@
 <head>
     <title id="pageTitle" th:inline="text">PPR - Detail page for [[${operation.title}]]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 </head>
 <body>
-<div th:replace="fragments/template :: login"></div>
-<h3>Operation Details:</h3>
+<div th:replace="fragments/template :: menu"></div>
+<h3>Detail page for [[${operation.title}]]</h3>
 <table style="width:100%">
     <tr>
         <th>Title</th>

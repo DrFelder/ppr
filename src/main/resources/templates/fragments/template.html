@@ -19,21 +19,26 @@
 <head th:fragment="header">
     <title th:include=":: #pageTitle">Layout Generic Title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 </head>
 <body>
-<div th:fragment="login">
-    <div th:switch="${#httpServletRequest.remoteUser}">
-        <span th:case="null">You are not logged in.</span>
-        <div th:case="*" >
-            <span th:inline="text">You are logged in as <i>[[${#httpServletRequest.remoteUser}]]</i></span>
-            <br/>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
+<ul th:fragment="menu">
+    <li style="float: left"><a th:href="@{/}">home</a></li>
+    <li style="float: left"><a th:href="@{/list}">browse operations</a></li>
+    <li style="float: left"><a th:href="@{/createoperation}">create operation</a></li>
+
+    <li style="float: right">
+        <div th:switch="${#httpServletRequest.remoteUser}">
+            <span th:case="null"><a th:href="@{/login}">log in</a></span>
+            <div th:case="*">
+                <span class="menu-text"
+                      th:inline="text">You are logged in as <i>[[${#httpServletRequest.remoteUser}]]</i></span>
+                <form class="menu-form" th:action="@{/logout}" method="post">
+                    <button class="menu-button" type="submit">sign out</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <br/>
-</div>
+    </li>
+</ul>
 </body>
 </html>
