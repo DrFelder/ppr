@@ -3,7 +3,7 @@ Feature: First Steps
     When I am on the homepage
     Then the title should be "PPR - Home"
     When I visit "http://ppr.surreal.is:8080/list/"
-    Then I should see "Please log in:"
+    Then I should see "Login"
     When I enter "user" in the field "username_login"
     And I enter "password" in the field "password_login"
     And I press the "submit_login" button
@@ -12,7 +12,7 @@ Feature: First Steps
 
   Scenario: I want to access the operation detail page
     When I visit "http://ppr.surreal.is:8080/list/"
-    Then I should see "Please log in:"
+    Then I should see "Login"
     When I enter "user" in the field "username_login"
     And I enter "password" in the field "password_login"
     And I press the "submit_login" button
@@ -29,7 +29,7 @@ Feature: First Steps
 
   Scenario: I want to access the organizer detail page
     When I visit "http://ppr.surreal.is:8080/list/"
-    Then I should see "Please log in:"
+    Then I should see "Login"
     When I enter "user" in the field "username_login"
     And I enter "password" in the field "password_login"
     And I press the "submit_login" button

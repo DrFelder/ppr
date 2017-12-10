@@ -22,16 +22,19 @@
     <title id="pageTitle">PPR - Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-<title th:include=":: #pageTitle">Layout Generic Title</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="stylesheet" type="text/css" href="resources/css/list.css"/>
+<link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 <body>
-<div th:replace="fragments/template :: login"></div>
+<div th:replace="fragments/template :: menu"></div>
 <h3>Project Puerto Rico</h3>
-<p>Please <a href="/list">log in</a> first to use the application.</p>
-<p>Look at a list of operations <a href="/list">here</a>.</p>
-<p>Create a operation <a href="/createoperation">here</a>.</p>
-<p>Look at a operation details <a href="/detail?id=9">here</a>.</p>
-<p>Look at user details <a href="/detailUser?id=45">here</a>.</p>
+<div>Welcome to our page!</div>
+<br/>
+<div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+    elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+    dolor sit amet.
+</div>
 </body>
 </html>
