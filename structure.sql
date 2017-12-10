@@ -54,8 +54,8 @@ create table operation
     primary key,
   title varchar(40) null,
   date date null,
-  publicDescription varchar(2000) null,
-  privateDescription varchar(2000) null,
+  publicdescription varchar(2000) null,
+  privatedescription varchar(2000) null,
   location varchar(60) null,
   organizer_id int null,
   constraint operation_id_uindex
@@ -84,6 +84,8 @@ create table operationparticipation
     primary key,
   user_id int null,
   operation_id int null,
+  accepted tinyint(1) null,
+  declined tinyint(1) null,
   constraint operationparticipation_id_uindex
   unique (id),
   constraint operationparticipation_operation_id_fk

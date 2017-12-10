@@ -9,6 +9,8 @@ public class Operationparticipation {
     private Integer operationId;
     private User userByUserId;
     private Operation operationByOperationId;
+    private Byte accepted;
+    private Byte declined;
 
     public Operationparticipation() {
     }
@@ -43,6 +45,26 @@ public class Operationparticipation {
         this.operationId = operationId;
     }
 
+    @Basic
+    @Column(name = "accepted")
+    public Byte getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Byte accepted) {
+        this.accepted = accepted;
+    }
+
+    @Basic
+    @Column(name = "declined")
+    public Byte getDeclined() {
+        return declined;
+    }
+
+    public void setDeclined(Byte declined) {
+        this.declined = declined;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,6 +75,8 @@ public class Operationparticipation {
         if (id != that.id) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (operationId != null ? !operationId.equals(that.operationId) : that.operationId != null) return false;
+        if (accepted != null ? !accepted.equals(that.accepted) : that.accepted != null) return false;
+        if (declined != null ? !declined.equals(that.declined) : that.declined != null) return false;
 
         return true;
     }
@@ -62,6 +86,8 @@ public class Operationparticipation {
         int result = Long.hashCode(id);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
+        result = 31 * result + (accepted != null ? accepted.hashCode() : 0);
+        result = 31 * result + (declined != null ? declined.hashCode() : 0);
         return result;
     }
 
