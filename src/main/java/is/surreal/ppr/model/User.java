@@ -15,11 +15,8 @@ public class User {
     private Collection<Operationparticipation> operationparticipationsById;
     private Userdata userdataByUserdataId;
 
-    public User() {
-    }
-
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;

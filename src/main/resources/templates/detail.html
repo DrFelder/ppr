@@ -41,7 +41,9 @@
     </tr>
     <tr>
         <th>Organizer</th>
-        <td><a th:text="${operation.userByOrganizerId.userdataByUserdataId.firstname +' '+ operation.userByOrganizerId.userdataByUserdataId.lastname}" th:href="@{/detailUser(id=${operation.userByOrganizerId.userdataByUserdataId.id})}">details</a></td>
+        <td>
+            <a th:text="${operation.userByOrganizerId.userdataByUserdataId.firstname +' '+ operation.userByOrganizerId.userdataByUserdataId.lastname}"
+               th:href="@{/detailUser(id=${operation.userByOrganizerId.userdataByUserdataId.id})}">details</a></td>
     </tr>
     <tr>
         <th>Public description</th>
@@ -58,10 +60,29 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>Apply</th>
     </tr>
     <tr th:each="equipment : ${operation.getEquipmentById()}">
         <td th:text="${equipment.title}"></td>
         <td th:text="${equipment.description}"></td>
+        <td th:with="operationparticipation=${equipment.operationparticipationForUsername('user')}">
+            <div th:if="${operationparticipation}">
+                <div th:if="${operationparticipation.accepted}">
+                    <span>Accepted</span>
+                </div>
+                <div th:if="${operationparticipation.declined}">
+                    <span>Declined</span>
+                </div>
+                <div th:unless="${operationparticipation.accepted}">
+                    <div th:unless="${operationparticipation.declined}">
+                        <span>Applied</span>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${operationparticipation}">
+                <a th:href="@{/applyforequipment(userId=${101}, equipmentId=${equipment.id}, operationId=${operation.id})}">Apply</a>
+            </div>
+        </td>
     </tr>
 </table>
 <br/>
@@ -70,10 +91,29 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>Apply</th>
     </tr>
     <tr th:each="helper : ${operation.getHelpersById()}">
         <td th:text="${helper.title}"></td>
         <td th:text="${helper.description}"></td>
+        <td th:with="operationparticipation=${helper.operationparticipationForUsername('user')}">
+            <div th:if="${operationparticipation}">
+                <div th:if="${operationparticipation.accepted}">
+                    <span>Accepted</span>
+                </div>
+                <div th:if="${operationparticipation.declined}">
+                    <span>Declined</span>
+                </div>
+                <div th:unless="${operationparticipation.accepted}">
+                    <div th:unless="${operationparticipation.declined}">
+                        <span>Applied</span>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${operationparticipation}">
+                <a th:href="@{/applyforhelper(userId=${101}, helperId=${helper.id}, operationId=${operation.id})}">Apply</a>
+            </div>
+        </td>
     </tr>
 </table>
 </body>

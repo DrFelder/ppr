@@ -1,6 +1,7 @@
 package is.surreal.ppr.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Helper {
@@ -9,12 +10,10 @@ public class Helper {
     private String description;
     private Integer operationId;
     private Operation operationByOperationId;
-
-    public Helper() {
-    }
+    private Collection<Operationparticipation> operationparticipationsById;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -77,5 +76,23 @@ public class Helper {
 
     public void setOperationByOperationId(Operation operationByOperationId) {
         this.operationByOperationId = operationByOperationId;
+    }
+
+    @OneToMany(mappedBy = "helperByHelperId")
+    public Collection<Operationparticipation> getOperationparticipationsById() {
+        return operationparticipationsById;
+    }
+
+    public void setOperationparticipationsById(Collection<Operationparticipation> operationparticipationsById) {
+        this.operationparticipationsById = operationparticipationsById;
+    }
+
+    public Operationparticipation operationparticipationForUsername(String username) {
+        for (Operationparticipation operationparticipation : getOperationparticipationsById()) {
+            if (operationparticipation.getUserByUserId().getUsername().equals(username)) {
+                return operationparticipation;
+            }
+        }
+        return null;
     }
 }

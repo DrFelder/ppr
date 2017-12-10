@@ -6,17 +6,16 @@ import javax.persistence.*;
 public class Operationparticipation {
     private Long id;
     private Integer userId;
-    private Integer operationId;
-    private User userByUserId;
-    private Operation operationByOperationId;
     private Byte accepted;
     private Byte declined;
-
-    public Operationparticipation() {
-    }
+    private Integer equipmentId;
+    private Integer helperId;
+    private User userByUserId;
+    private Equipment equipmentByEquipmentId;
+    private Helper helperByHelperId;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -34,16 +33,6 @@ public class Operationparticipation {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "operation_id")
-    public Integer getOperationId() {
-        return operationId;
-    }
-
-    public void setOperationId(Integer operationId) {
-        this.operationId = operationId;
     }
 
     @Basic
@@ -66,6 +55,26 @@ public class Operationparticipation {
         this.declined = declined;
     }
 
+    @Basic
+    @Column(name = "equipment_id")
+    public Integer getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Integer equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
+    @Basic
+    @Column(name = "helper_id")
+    public Integer getHelperId() {
+        return helperId;
+    }
+
+    public void setHelperId(Integer helperId) {
+        this.helperId = helperId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,9 +84,10 @@ public class Operationparticipation {
 
         if (id != that.id) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (operationId != null ? !operationId.equals(that.operationId) : that.operationId != null) return false;
         if (accepted != null ? !accepted.equals(that.accepted) : that.accepted != null) return false;
         if (declined != null ? !declined.equals(that.declined) : that.declined != null) return false;
+        if (equipmentId != null ? !equipmentId.equals(that.equipmentId) : that.equipmentId != null) return false;
+        if (helperId != null ? !helperId.equals(that.helperId) : that.helperId != null) return false;
 
         return true;
     }
@@ -93,12 +103,22 @@ public class Operationparticipation {
     }
 
     @ManyToOne
-    @JoinColumn(name = "operation_id", referencedColumnName = "id", insertable = false, updatable = false)
-    public Operation getOperationByOperationId() {
-        return operationByOperationId;
+    @JoinColumn(name = "equipment_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public Equipment getEquipmentByEquipmentId() {
+        return equipmentByEquipmentId;
     }
 
-    public void setOperationByOperationId(Operation operationByOperationId) {
-        this.operationByOperationId = operationByOperationId;
+    public void setEquipmentByEquipmentId(Equipment equipmentByEquipmentId) {
+        this.equipmentByEquipmentId = equipmentByEquipmentId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "helper_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public Helper getHelperByHelperId() {
+        return helperByHelperId;
+    }
+
+    public void setHelperByHelperId(Helper helperByHelperId) {
+        this.helperByHelperId = helperByHelperId;
     }
 }
