@@ -68,14 +68,19 @@
         <td th:with="operationparticipation=${equipment.operationparticipationForUsername('user')}">
             <div th:if="${operationparticipation}">
                 <div th:if="${operationparticipation.accepted}">
-                    <span>Applied</span>
+                    <span>Accepted</span>
                 </div>
                 <div th:if="${operationparticipation.declined}">
                     <span>Declined</span>
                 </div>
+                <div th:unless="${operationparticipation.accepted}">
+                    <div th:unless="${operationparticipation.declined}">
+                        <span>Applied</span>
+                    </div>
+                </div>
             </div>
             <div th:unless="${operationparticipation}">
-                <a th:href="@{/applyforoperation}">Apply</a>
+                <a th:href="@{/applyforequipment(userId=${101}, equipmentId=${equipment.id}, operationId=${operation.id})}">Apply</a>
             </div>
         </td>
     </tr>
@@ -94,14 +99,19 @@
         <td th:with="operationparticipation=${helper.operationparticipationForUsername('user')}">
             <div th:if="${operationparticipation}">
                 <div th:if="${operationparticipation.accepted}">
-                    <span>Applied</span>
+                    <span>Accepted</span>
                 </div>
                 <div th:if="${operationparticipation.declined}">
                     <span>Declined</span>
                 </div>
+                <div th:unless="${operationparticipation.accepted}">
+                    <div th:unless="${operationparticipation.declined}">
+                        <span>Applied</span>
+                    </div>
+                </div>
             </div>
             <div th:unless="${operationparticipation}">
-                <a th:href="@{/applyforoperation}">Apply</a>
+                <a th:href="@{/applyforhelper(userId=${101}, helperId=${helper.id}, operationId=${operation.id})}">Apply</a>
             </div>
         </td>
     </tr>
