@@ -80,13 +80,15 @@ foreign key (operation_id) references operation (id)
 
 create table operationparticipation
 (
-  id int auto_increment
+  id           int auto_increment
     primary key,
-  user_id int null,
-  accepted tinyint(1) null,
-  declined tinyint(1) null,
-  equipment_id int null,
-  helper_id int null,
+  user_id      int           null,
+  accepted     tinyint(1)    null,
+  declined     tinyint(1)    null,
+  equipment_id int           null,
+  helper_id    int           null,
+  question     VARCHAR(2000) NULL,
+  answer       VARCHAR(2000) NULL,
   constraint operationparticipation_id_uindex
   unique (id),
   constraint operationparticipation_equipment_id_fk
@@ -162,3 +164,4 @@ alter table user
   add constraint user_userdata_id_fk
 foreign key (userdata_id) references userdata (id)
 ;
+

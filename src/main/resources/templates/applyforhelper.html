@@ -17,44 +17,27 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title id="pageTitle" th:inline="text">Create Operation</title>
+    <title id="pageTitle" th:inline="text">Apply for helper role</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 </head>
 <body>
 <div th:replace="fragments/template :: menu"></div>
-<h3>Create Operation</h3>
-<form action="#" th:action="@{/createoperation}" th:object="${operation}" method="post">
+<h3>Apply for helper role</h3>
+
+<form action="#" th:action="@{/applyforhelper}" th:object="${operationparticipation}" method="post">
     <label>
-        Title:
-        <input type="text" th:field="*{title}"/>
-    </label>
-    <br/>
-    <label>
-        Date:
-        <input type="date" th:field="*{date}"/>
-    </label>
-    <br/>
-    <label>
-        Public description:
+        Do you have a question on your mind for the operation organizer?
         <br/>
-        <textarea rows="5" cols="100" th:field="*{publicdescription}"></textarea>
+        <textarea rows="5" cols="100" th:field="*{question}"></textarea>
     </label>
     <br/>
-    <label>
-        Private description:
-        <br/>
-        <textarea rows="5" cols="100" th:field="*{privatedescription}"></textarea>
-    </label>
-    <br/>
-    <label>
-        Location:
-        <input type="text" th:field="*{location}"/>
-    </label>
-    <br/>
-    <input type="submit" id="submit" value="Create operation"/>
+    <input type="hidden" th:field="*{equipmentId}"/>
+    <input type="hidden" th:field="*{helperId}"/>
+    <input type="hidden" th:field="*{userId}"/>
+    <input type="submit" id="submit" value="Apply"/>
     <input type="reset" id="reset" value="Reset"/>
 </form>
 </body>
