@@ -10,6 +10,8 @@ public class Operationparticipation {
     private Byte declined;
     private Integer equipmentId;
     private Integer helperId;
+    private String question;
+    private String answer;
     private User userByUserId;
     private Equipment equipmentByEquipmentId;
     private Helper helperByHelperId;
@@ -75,6 +77,26 @@ public class Operationparticipation {
         this.helperId = helperId;
     }
 
+    @Basic
+    @Column(name = "question")
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    @Basic
+    @Column(name = "answer")
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,6 +110,8 @@ public class Operationparticipation {
         if (declined != null ? !declined.equals(that.declined) : that.declined != null) return false;
         if (equipmentId != null ? !equipmentId.equals(that.equipmentId) : that.equipmentId != null) return false;
         if (helperId != null ? !helperId.equals(that.helperId) : that.helperId != null) return false;
+        if (question != null ? !question.equals(that.question) : that.question != null) return false;
+        if (answer != null ? !answer.equals(that.answer) : that.answer != null) return false;
 
         return true;
     }

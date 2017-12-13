@@ -25,7 +25,7 @@
 </head>
 <body>
 <div th:replace="fragments/template :: menu"></div>
-<h3>Detail page for [[${operation.title}]]</h3>
+<h3 th:inline="text">Detail page for [[${operation.title}]]</h3>
 <table style="width:100%">
     <tr>
         <th>Title</th>
