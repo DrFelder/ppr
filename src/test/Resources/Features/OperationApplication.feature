@@ -3,36 +3,46 @@ Feature: Applying for an operation
   I want to be able to apply for an operation to fulfil a requirement
 
   Background:
-    Given The testing database is used
     And I am on the homepage
 
-  @skip
-  Scenario: Apply for helper role
-    Given I am signed in with username "user" and password "password"
-    And I am on the operation detail page for operation "Delivering paper towels"
-    Then I should see "Requirements"
-    And I should see the "Driver" requirement
-    When I click on "apply" at the "Driver" requirement
-    And I enter "Is this a test question?" in the "Add a comment or question:" field
-    And I click on "Send application"
-    Then I should be on the operation detail page for operation "Delivering paper towels"
-    And I should see "applied"
+  Scenario: Requirements can be seen
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then I should see "Login"
+    When I enter "user" in the field "username_login"
+    And I enter "password" in the field "password_login"
+    And I press the "submit_login" button
+    And I visit "http://ppr.surreal.is:8080/detail?id=1"
+    Then I should see "Equipment:"
+    And I should see "est,autem,possimus"
+    Then I should see "Helpers:"
+    And I should see "voluptas,quis,reprehenderit"
 
-  @skip
-  Scenario: Abort application for helper role
-    Given I am signed in with username "user" and password "password"
-    And I am on the operation detail page for operation "Delivering paper towels"
-    Then I should see "Requirements"
-    And I should see the "Driver" requirement
-    When I click on "apply" at the "Driver" requirement
-    And I click on "Abort application"
-    Then I should be on the operation detail page for operation "Delivering paper towels"
-    And I should not see "applied"
+  Scenario: Apply for requirement and helper role
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then I should see "Login"
+    When I enter "user" in the field "username_login"
+    And I enter "password" in the field "password_login"
+    And I press the "submit_login" button
+    And I visit "http://ppr.surreal.is:8080/detail?id=10"
+    When I click on link having text "Apply"
+    Then I am on the "http://ppr.surreal.is:8080/applyforequipment" page
+    When I press the "submit" button
+    Then I am on the "http://ppr.surreal.is:8080/detail" page
+    And I should see "Applied"
+    When I click on link having text "Apply"
+    Then I am on the "http://ppr.surreal.is:8080/applyforhelper" page
+    When I press the "submit" button
+    Then I am on the "http://ppr.surreal.is:8080/detail" page
 
-  @skip
-  Scenario: The organizer can't apply for helper role
-    Given I am signed in with username "user" and password "password"
-    And I am on the operation detail page for operation "Delivering paper towels"
-    Then I should see "Requirements"
-    And I should see the "Driver" requirement
-    Then I should not see "apply"
+  Scenario: See application status
+    When I visit "http://ppr.surreal.is:8080/list/"
+    Then I should see "Login"
+    When I enter "user" in the field "username_login"
+    And I enter "password" in the field "password_login"
+    And I press the "submit_login" button
+    And I visit "http://ppr.surreal.is:8080/detail?id=2"
+    Then I should see "Applied"
+    When I visit "http://ppr.surreal.is:8080/detail?id=1"
+    Then I should see "Declined"
+    Then I should see "Accepted"
+

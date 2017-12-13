@@ -29,29 +29,29 @@
 <form action="#" th:action="@{/createoperation}" th:object="${operation}" method="post">
     <label>
         Title:
-        <input type="text" th:field="*{title}"/>
+        <input type="text" required="required" th:field="*{title}"/>
     </label>
     <br/>
     <label>
         Date:
-        <input type="date" th:field="*{date}"/>
+        <input type="date" required="required" th:field="*{date}"/>
     </label>
     <br/>
     <label>
         Public description:
         <br/>
-        <textarea rows="5" cols="100" th:field="*{publicdescription}"></textarea>
+        <textarea rows="5" cols="100" required="required" th:field="*{publicdescription}"></textarea>
     </label>
     <br/>
     <label>
         Private description:
         <br/>
-        <textarea rows="5" cols="100" th:field="*{privatedescription}"></textarea>
+        <textarea rows="5" cols="100" required="required" th:field="*{privatedescription}"></textarea>
     </label>
     <br/>
     <label>
         Location:
-        <input type="text" th:field="*{location}"/>
+        <input type="text" required="required" th:field="*{location}"/>
     </label>
     <br/>
     <input type="submit" id="submit" value="Create operation"/>

@@ -78,8 +78,10 @@ public class StepDefinitions {
     }
 
     @Given("^I am on the \"(.*?)\" page$")
-    public void iAmOnThePage(String arg0) throws Throwable{
-        //driver.get(baseUrl+"/#!" + arg0);
+    public void iAmOnThePage(String url) throws Throwable {
+        if (!driver.getCurrentUrl().split("\\?")[0].equals(url)) {
+            throw new PendingException();
+        }
     }
 
     @When("^I enter \"(.*?)\" in the field \"(.*?)\"$")
@@ -102,5 +104,12 @@ public class StepDefinitions {
     @When("^I click on link having text \"([^\"]*)\"$")
     public void iClickOnLinkHavingText(String linkText) throws Throwable {
         driver.findElement(By.linkText(linkText)).click();
+    }
+
+    @And("^I should not see \"([^\"]*)\"$")
+    public void iShouldNotSee(String string) throws Throwable {
+        if (driver.getPageSource().contains(string)) {
+            throw new PendingException();
+        }
     }
 }
