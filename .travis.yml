@@ -31,10 +31,10 @@ before_script:
 - sudo mv $TRAVIS_BUILD_DIR/deployment/application.properties $TRAVIS_BUILD_DIR/src/main/resources/application.properties
 
 script:
-- curl -OL http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/tomcat/tomcat-8/v8.5.29/bin/apache-tomcat-8.5.29.zip
-- md5sum -c deployment/tomcat_md5
+- curl -OL https://ftp-stud.hs-esslingen.de/Mirrors/ftp.apache.org/dist/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.zip
+- sha1sum -c deployment/tomcat_sha1
 - sudo unzip -q apache-tomcat-8*.zip -d /opt
-- sudo mv /opt/apache-tomcat-8.5.29 /opt/tomcat
+- sudo mv /opt/apache-tomcat-8.5.31 /opt/tomcat
 - sudo mv deployment/server.xml /opt/tomcat/conf/server.xml
 - sudo chmod +x /opt/tomcat/bin/*
 - sudo rm -rf /opt/tomcat/webapps/*

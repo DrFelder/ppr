@@ -21,6 +21,7 @@ package is.surreal.ppr.controller;
 import is.surreal.ppr.model.Equipment;
 import is.surreal.ppr.model.Helper;
 import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.model.User;
 import is.surreal.ppr.repository.EquipmentRepository;
 import is.surreal.ppr.repository.HelperRepository;
 import is.surreal.ppr.repository.OperationRepository;
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DetailController {
@@ -41,7 +43,8 @@ public class DetailController {
 
     @RequestMapping(value = "/detail")
     public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
-        Operation operation = operationRepository.findOne(id);
+        Optional<Operation> optOperation = operationRepository.findById(id);
+        Operation operation = optOperation.get();
         model.addObject("operation", operation);
         model.setViewName("detail");
 

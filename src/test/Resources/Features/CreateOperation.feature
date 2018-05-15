@@ -29,6 +29,7 @@ Feature: create operation
     And I enter "01.01.2018" in the field "date"
     And I enter "public description" in the field "publicdescription"
     And I enter "private description" in the field "privatedescription"
+    And I enter "public location" in the field "location"
     And I press the "submit" button
     Then I am on the "http://ppr.surreal.is:8080/detail" page
     And I should see "operation XY"

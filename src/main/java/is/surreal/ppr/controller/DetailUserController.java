@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class DetailUserController {
@@ -36,7 +37,8 @@ public class DetailUserController {
 
     @RequestMapping(value = "/detailUser")
     public ModelAndView detail(ModelAndView model, @RequestParam Long id) throws IOException {
-        User user = userRepository.findOne(id);
+        Optional<User> optUser = userRepository.findById(id);
+        User user = optUser.get();
         model.addObject("user", user);
         model.setViewName("detailUser");
 
