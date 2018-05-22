@@ -1,0 +1,126 @@
+/*
+ * Project Puerto Rico
+ * Copyright (C) 2017  Thomas Pötzsch, Stephan Stroh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+body {
+  margin: 40px;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+li {
+  display: inline;
+}
+
+li a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li span {
+  font-size: 16px;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #216E37;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  margin: -40px -40px 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #219653;
+}
+
+.menu-form {
+  display: inline;
+}
+
+.menu-button {
+  font-size: 16px;
+  border-radius: 0;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  background-color: #219653;
+  border: none;
+  color: white;
+  padding: 14px 16px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background-color: #216E37;
+  color: white;
+}
+
+.menu-text {
+  margin-right: 14px;
+}
+
+.error-list {
+  color: red;
+  background-color: white;
+}
+
+.error-list-item {
+  color: red;
+}
+
+.popup
+{
+  border: solid 1px black;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  z-index: 100;
+
+  height: 400px;
+  margin-top: -200px;
+
+  width: 600px;
+  margin-left: -300px;
+}

@@ -1,10 +1,10 @@
 package is.surreal.ppr.repository;
 
 import is.surreal.ppr.model.Equipment;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
-public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
+@RepositoryRestResource(collectionResourceRel = "equipment", path = "equipment")
+public interface EquipmentRepository extends PagingAndSortingRepository<Equipment, Long> {
 
 }

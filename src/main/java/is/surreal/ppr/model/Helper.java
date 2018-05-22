@@ -1,5 +1,7 @@
 package is.surreal.ppr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -8,7 +10,7 @@ public class Helper {
     private Long id;
     private String title;
     private String description;
-    private Integer operationId;
+    private Long operationId;
     private Operation operationByOperationId;
     private Collection<Operationparticipation> operationparticipationsById;
 
@@ -45,11 +47,11 @@ public class Helper {
 
     @Basic
     @Column(name = "operation_id")
-    public Integer getOperationId() {
+    public Long getOperationId() {
         return operationId;
     }
 
-    public void setOperationId(Integer operationId) {
+    public void setOperationId(Long operationId) {
         this.operationId = operationId;
     }
 
@@ -70,6 +72,7 @@ public class Helper {
 
     @ManyToOne
     @JoinColumn(name = "operation_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonIgnore
     public Operation getOperationByOperationId() {
         return operationByOperationId;
     }
@@ -79,6 +82,7 @@ public class Helper {
     }
 
     @OneToMany(mappedBy = "helperByHelperId")
+    @JsonIgnore
     public Collection<Operationparticipation> getOperationparticipationsById() {
         return operationparticipationsById;
     }

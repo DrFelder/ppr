@@ -12,15 +12,16 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
-@TestPropertySource(locations = "classpath:testing.properties")
 public class CreateOperationTest {
 
     @Autowired
@@ -29,16 +30,16 @@ public class CreateOperationTest {
     @Test
     void operationRepositoryTest() {
         Operation operation = new Operation();
-        operation.setDate(new Date(1982, 6, 5));
+        operation.setDate(new Date(1370145732000L));
         operation.setLocation("This is a testing location");
 
         operationRepository.save(operation);
 
-        Optional<Operation> optOperation = operationRepository.findById(1L);
+        Optional<Operation> optOperation = operationRepository.findById(102L);
         Operation savedOperation = optOperation.get();
-        assertEquals(new Date(1982, 6, 5), savedOperation.getDate());
+        assertEquals(new Date(1370145732000L), savedOperation.getDate());
 
-        Optional<Operation> optSecondOperation = operationRepository.findById(1L);
+        Optional<Operation> optSecondOperation = operationRepository.findById(102L);
         Operation secondOperation = optSecondOperation.get();
         assertEquals(operation, secondOperation);
 

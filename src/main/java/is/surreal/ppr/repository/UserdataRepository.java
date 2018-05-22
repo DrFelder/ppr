@@ -1,10 +1,11 @@
 package is.surreal.ppr.repository;
 
 import is.surreal.ppr.model.Userdata;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
-public interface UserdataRepository extends JpaRepository<Userdata, Long> {
+// TODO: Für alles CRUD-Repo nehmen?
+@RepositoryRestResource(collectionResourceRel = "userdetails", path = "userdetails")
+public interface UserdataRepository extends PagingAndSortingRepository<Userdata, Long> {
 
 }

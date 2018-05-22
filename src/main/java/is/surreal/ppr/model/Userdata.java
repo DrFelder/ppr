@@ -1,5 +1,7 @@
 package is.surreal.ppr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
@@ -10,7 +12,7 @@ public class Userdata {
     private String firstname;
     private String lastname;
     private Date birthday;
-    private Integer addressId;
+    private Long addressId;
     private Collection<User> usersById;
     private Address addressByAddressId;
 
@@ -57,15 +59,17 @@ public class Userdata {
 
     @Basic
     @Column(name = "address_id")
-    public Integer getAddressId() {
+    @JsonIgnore
+    public Long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(Integer addressId) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
 
     @Override
+    @JsonIgnore
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -82,6 +86,7 @@ public class Userdata {
     }
 
     @OneToMany(mappedBy = "userdataByUserdataId")
+    @JsonIgnore
     public Collection<User> getUsersById() {
         return usersById;
     }

@@ -1,6 +1,7 @@
 package is.surreal.ppr.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -12,7 +13,7 @@ public class Operation {
     private String publicdescription;
     private String privatedescription;
     private String location;
-    private Integer organizerId;
+    private Long organizerId;
     private Collection<Equipment> equipmentById;
     private Collection<Helper> helpersById;
     private User userByOrganizerId;
@@ -29,6 +30,7 @@ public class Operation {
     }
 
     @Basic
+    @Size(min = 1, max = 40, message = "Title should have between 1 and 60 characters.")
     @Column(name = "title")
     public String getTitle() {
         return title;
@@ -49,6 +51,7 @@ public class Operation {
     }
 
     @Basic
+    @Size(min = 1, max = 2000, message = "Public description should have between 1 and 2000 characters.")
     @Column(name = "publicdescription")
     public String getPublicdescription() {
         return publicdescription;
@@ -59,6 +62,7 @@ public class Operation {
     }
 
     @Basic
+    @Size(min = 1, max = 2000, message = "Private description should have between 1 and 2000 characters.")
     @Column(name = "privatedescription")
     public String getPrivatedescription() {
         return privatedescription;
@@ -69,6 +73,7 @@ public class Operation {
     }
 
     @Basic
+    @Size(min = 1, max = 60, message = "Location should have between 1 and 60 characters.")
     @Column(name = "location")
     public String getLocation() {
         return location;
@@ -80,11 +85,11 @@ public class Operation {
 
     @Basic
     @Column(name = "organizer_id")
-    public Integer getOrganizerId() {
+    public Long getOrganizerId() {
         return organizerId;
     }
 
-    public void setOrganizerId(Integer organizerId) {
+    public void setOrganizerId(Long organizerId) {
         this.organizerId = organizerId;
     }
 

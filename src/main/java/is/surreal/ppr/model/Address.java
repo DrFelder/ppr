@@ -1,5 +1,7 @@
 package is.surreal.ppr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -86,6 +88,7 @@ public class Address {
     }
 
     @Override
+    @JsonIgnore
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -105,6 +108,7 @@ public class Address {
     }
 
     @OneToMany(mappedBy = "addressByAddressId")
+    @JsonIgnore
     public Collection<Userdata> getUserdataById() {
         return userdataById;
     }
