@@ -27,9 +27,9 @@ public interface ChangingStyleStrategy {
 //GetUserRole
 ChangingStyle changeStyle = new ChangingStyle(new NormalUserStyle());
 if(userRole = "admin"){
-        changeStyle.changeStyle(new AdminStyle()):
+        changeStyle.changeStrategy(new AdminStyle()):
         } else if(userRole = "operationOwner"){
-        changeStyle.changeStyle(new OperationOwnerStyle()):
+        changeStyle.changeStrategy(new OperationOwnerStyle()):
         }
 changeStyle.applyStyle();
 */
