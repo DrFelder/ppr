@@ -21,3 +21,15 @@ package is.surreal.ppr.strategy;
 public interface ChangingStyleStrategy {
     void applyStyle();
 }
+
+// Nutzung
+  /*
+//GetUserRole
+ChangingStyle changeStyle = new ChangingStyle(new NormalUserStyle());
+if(userRole = "admin"){
+        changeStyle.changeStyle(new AdminStyle()):
+        } else if(userRole = "operationOwner"){
+        changeStyle.changeStyle(new OperationOwnerStyle()):
+        }
+changeStyle.applyStyle();
+*/
