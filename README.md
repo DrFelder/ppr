@@ -2,6 +2,7 @@ Project Puerto Rico
 =
 
 [![Build Status](https://travis-ci.org/DrFelder/ppr.svg?branch=master)](https://travis-ci.org/DrFelder/ppr)
+[![codecov](https://codecov.io/gh/DrFelder/ppr/branch/master/graph/badge.svg)](https://codecov.io/gh/DrFelder/ppr)
 
 This repository contains the famous Project Puerto Rico.
 
