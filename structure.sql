@@ -1,4 +1,13 @@
-create table address
+SET foreign_key_checks = 0;
+drop table if exists Address, ClientDetails, Equipment, Helper, oauth_access_token, oauth_approvals,
+  oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token, Operation, Operationparticipation,
+  User, Userdata, app_role, user_role;
+SET foreign_key_checks = 1;
+
+# TODO: Hier auf _jeden_ fall refactoren
+# TODO: Hier muss noch der richtige user benutzt werden
+
+create table Address
 (
   id int auto_increment
     primary key,
@@ -14,7 +23,7 @@ create table address
   engine=InnoDB
 ;
 
-create table equipment
+create table Equipment
 (
   id int auto_increment
     primary key,
@@ -28,10 +37,10 @@ create table equipment
 ;
 
 create index equipment_operation_id_fk
-  on equipment (operation_id)
+  on Equipment (operation_id)
 ;
 
-create table helper
+create table Helper
 (
   id int auto_increment
     primary key,
@@ -45,10 +54,10 @@ create table helper
 ;
 
 create index helper_operation_id_fk
-  on helper (operation_id)
+  on Helper (operation_id)
 ;
 
-create table operation
+create table Operation
 (
   id int auto_increment
     primary key,
@@ -65,20 +74,20 @@ create table operation
 ;
 
 create index operation_user_id_fk
-  on operation (organizer_id)
+  on Operation (organizer_id)
 ;
 
-alter table equipment
+alter table Equipment
   add constraint equipment_operation_id_fk
-foreign key (operation_id) references operation (id)
+foreign key (operation_id) references Operation (id)
 ;
 
-alter table helper
+alter table Helper
   add constraint helper_operation_id_fk
-foreign key (operation_id) references operation (id)
+foreign key (operation_id) references Operation (id)
 ;
 
-create table operationparticipation
+create table Operationparticipation
 (
   id           int auto_increment
     primary key,
@@ -92,26 +101,26 @@ create table operationparticipation
   constraint operationparticipation_id_uindex
   unique (id),
   constraint operationparticipation_equipment_id_fk
-  foreign key (equipment_id) references equipment (id),
+  foreign key (equipment_id) references Equipment (id),
   constraint operationparticipation_helper_id_fk
-  foreign key (helper_id) references helper (id)
+  foreign key (helper_id) references Helper (id)
 )
   engine=InnoDB
 ;
 
 create index operationparticipation_user_id_fk
-  on operationparticipation (user_id)
+  on Operationparticipation (user_id)
 ;
 
 create index operationparticipation_equipment_id_fk
-  on operationparticipation (equipment_id)
+  on Operationparticipation (equipment_id)
 ;
 
 create index operationparticipation_helper_id_fk
-  on operationparticipation (helper_id)
+  on Operationparticipation (helper_id)
 ;
 
-create table user
+create table User
 (
   id int auto_increment
     primary key,
@@ -127,20 +136,38 @@ create table user
 ;
 
 create index user_userdata_id_fk
-  on user (userdata_id)
+  on User (userdata_id)
 ;
 
-alter table operation
+CREATE TABLE app_role (
+  id int NOT NULL AUTO_INCREMENT primary key ,
+  description varchar(255) DEFAULT NULL,
+  role_name varchar(255) DEFAULT NULL
+)
+  engine=InnoDB
+;
+
+
+CREATE TABLE user_role (
+  user_id int NOT NULL,
+  role_id int NOT NULL,
+  CONSTRAINT FK859n2jvi8ivhui0rl0esws6o FOREIGN KEY (user_id) REFERENCES User (id),
+  CONSTRAINT FKa68196081fvovjhkek5m97n3y FOREIGN KEY (role_id) REFERENCES app_role (id)
+)
+  engine=InnoDB
+;
+
+alter table Operation
   add constraint operation_user_id_fk
-foreign key (organizer_id) references user (id)
+foreign key (organizer_id) references User (id)
 ;
 
-alter table operationparticipation
+alter table Operationparticipation
   add constraint operationparticipation_user_id_fk
-foreign key (user_id) references user (id)
+foreign key (user_id) references User (id)
 ;
 
-create table userdata
+create table Userdata
 (
   id int auto_increment
     primary key,
@@ -151,17 +178,17 @@ create table userdata
   constraint userdata_id_uindex
   unique (id),
   constraint userdata_address_id_fk
-  foreign key (address_id) references address (id)
+  foreign key (address_id) references Address (id)
 )
   engine=InnoDB
 ;
 
 create index userdata_address_id_fk
-  on userdata (address_id)
+  on Userdata (address_id)
 ;
 
-alter table user
+alter table User
   add constraint user_userdata_id_fk
-foreign key (userdata_id) references userdata (id)
+foreign key (userdata_id) references Userdata (id)
 ;
 

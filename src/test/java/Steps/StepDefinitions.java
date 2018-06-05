@@ -12,9 +12,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class StepDefinitions {
 
     private static WebDriver driver = null;
+
+    private void waitForJS() {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ie) {
+        }
+    }
 
     @Before
     public void setup() {
@@ -43,27 +55,32 @@ public class StepDefinitions {
 
     @Given("^this test is successful$")
     public void thisTestIsSuccessful() throws Throwable {
+        waitForJS();
         System.out.println("This test is successful!");
     }
 
     @And("^this test fails$")
     public void thisTestFails() throws Throwable {
+        waitForJS();
         System.out.println("This test fails!");
         throw new PendingException();
     }
 
     @When("^I visit \"([^\"]*)\"$")
     public void iVisit(String arg0) throws Throwable {
+        waitForJS();
         driver.get(arg0);
     }
 
     @When("^I am on the homepage$")
     public void iVisitTheHomepage() throws Throwable {
-        driver.get("http://ppr.surreal.is:8080/");
+        waitForJS();
+        driver.get("http://localhost:8081/#/Home");
     }
 
     @Then("^the title should be \"([^\"]*)\"$")
     public void theTitleShouldBe(String arg0) throws Throwable {
+        waitForJS();
         if (!driver.getTitle().equals(arg0)) {
             System.out.println("Failure! The title is '" + driver.getTitle() + "'!");
             throw new PendingException();
@@ -71,7 +88,8 @@ public class StepDefinitions {
     }
 
     @Given("^I am signed in with username \"(.*?)\" and password \"(.*?)\"$")
-    public void iAmSignedIn(String arg0, String arg1) throws Throwable{
+    public void iAmSignedIn(String arg0, String arg1) throws Throwable {
+        waitForJS();
         driver.findElement(By.id("username")).sendKeys(arg0);
         driver.findElement(By.id("password")).sendKeys(arg1);
         driver.findElement(By.id("btnLogin")).click();
@@ -79,23 +97,28 @@ public class StepDefinitions {
 
     @Given("^I am on the \"(.*?)\" page$")
     public void iAmOnThePage(String url) throws Throwable {
+        waitForJS();
         if (!driver.getCurrentUrl().split("\\?")[0].equals(url)) {
+            System.out.println("I should be on the " + url + " page, even though I am on " + driver.getCurrentUrl());
             throw new PendingException();
         }
     }
 
     @When("^I enter \"(.*?)\" in the field \"(.*?)\"$")
-    public void enterDataInField(String text, String id){
+    public void enterDataInField(String text, String id) {
+        waitForJS();
         driver.findElement(By.id(id)).sendKeys(text);
     }
 
     @When("^I press the \"(.*?)\" button$")
-    public void pressButton(String id){
+    public void pressButton(String id) {
+        waitForJS();
         driver.findElement(By.id(id)).click();
     }
 
     @Then("^I should see \"([^\"]*)\"$")
     public void iShouldSee(String string) throws Throwable {
+        waitForJS();
         if (!driver.getPageSource().contains(string)) {
             throw new PendingException();
         }
@@ -103,13 +126,29 @@ public class StepDefinitions {
 
     @When("^I click on link having text \"([^\"]*)\"$")
     public void iClickOnLinkHavingText(String linkText) throws Throwable {
+        waitForJS();
         driver.findElement(By.linkText(linkText)).click();
+    }
+
+    @When("^I click on link having id \"([^\"]*)\"$")
+    public void iClickOnLinkHavingId(String id) throws Throwable {
+        waitForJS();
+        driver.findElement(By.id(id)).click();
     }
 
     @And("^I should not see \"([^\"]*)\"$")
     public void iShouldNotSee(String string) throws Throwable {
+        waitForJS();
         if (driver.getPageSource().contains(string)) {
             throw new PendingException();
+        }
+    }
+
+    @And("^I wait for (\\d+) seconds$")
+    public void iWaitForSeconds(int seconds) throws Throwable {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException ie) {
         }
     }
 }

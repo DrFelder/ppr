@@ -31,18 +31,14 @@ before_script:
 - sudo mv $TRAVIS_BUILD_DIR/deployment/application.properties $TRAVIS_BUILD_DIR/src/main/resources/application.properties
 
 script:
-- curl -OL http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/tomcat/tomcat-8/v8.5.29/bin/apache-tomcat-8.5.29.zip
-- md5sum -c deployment/tomcat_md5
-- sudo unzip -q apache-tomcat-8*.zip -d /opt
-- sudo mv /opt/apache-tomcat-8.5.29 /opt/tomcat
-- sudo mv deployment/server.xml /opt/tomcat/conf/server.xml
-- sudo chmod +x /opt/tomcat/bin/*
-- sudo rm -rf /opt/tomcat/webapps/*
-- "./gradlew clean --console=plain"
+- "./gradlew npmSetup --console=plain"
+- "./gradlew npmInstall --console=plain"
+- "./gradlew nodeSetup --console=plain"
+- "./gradlew npm_run_dev --console=plain &"
+- sleep 20
 - "./gradlew updateChromedriver --console=plain"
-- "./gradlew assemble --console=plain"
-- sudo cp $TRAVIS_BUILD_DIR/build/libs/* /opt/tomcat/webapps
-- sudo /opt/tomcat/bin/startup.sh
+- "./gradlew bootRun --console=plain &"
+- sleep 30
 - "./gradlew test --console=plain"
 
 before_deploy:
@@ -50,7 +46,8 @@ before_deploy:
 - tar xvf deployment/secrets/secrets.tar
 - sudo rm -f $TRAVIS_BUILD_DIR/src/main/resources/application.properties
 - sudo mv deployment/secrets/application.properties src/main/resources/application.properties
-- "./gradlew assemble"
+- "./gradlew npm_run_build --console=plain"
+- "./gradlew clean assemble --console=plain"
 - sudo mv deployment/secrets/deploy_rsa /tmp/deploy_rsa
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/deploy_rsa

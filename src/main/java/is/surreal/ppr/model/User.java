@@ -1,7 +1,12 @@
 package is.surreal.ppr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+
+//TODO: Zur Datenbank hinzufügen
 
 @Entity
 public class User {
@@ -9,14 +14,28 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String roles;
-    private Integer userdataId;
+    private Long userdataId;
     private Collection<Operation> operationsById;
     private Collection<Operationparticipation> operationparticipationsById;
     private Userdata userdataByUserdataId;
+    private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns
+            = @JoinColumn(name = "user_id",
+            referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",
+                    referencedColumnName = "id"))
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -38,6 +57,7 @@ public class User {
 
     @Basic
     @Column(name = "password")
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -57,22 +77,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "roles")
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    @Basic
     @Column(name = "userdata_id")
-    public Integer getUserdataId() {
+    @JsonIgnore
+    public Long getUserdataId() {
         return userdataId;
     }
 
-    public void setUserdataId(Integer userdataId) {
+    public void setUserdataId(Long userdataId) {
         this.userdataId = userdataId;
     }
 
@@ -94,6 +105,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "userByOrganizerId")
+    @JsonIgnore
     public Collection<Operation> getOperationsById() {
         return operationsById;
     }
@@ -103,6 +115,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "userByUserId")
+    @JsonIgnore
     public Collection<Operationparticipation> getOperationparticipationsById() {
         return operationparticipationsById;
     }

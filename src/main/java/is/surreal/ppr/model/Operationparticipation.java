@@ -5,11 +5,11 @@ import javax.persistence.*;
 @Entity
 public class Operationparticipation {
     private Long id;
-    private Integer userId;
+    private Long userId;
     private Byte accepted;
     private Byte declined;
-    private Integer equipmentId;
-    private Integer helperId;
+    private Long equipmentId;
+    private Long helperId;
     private String question;
     private String answer;
     private User userByUserId;
@@ -17,7 +17,7 @@ public class Operationparticipation {
     private Helper helperByHelperId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Operationparticipation {
 
     @Basic
     @Column(name = "user_id")
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -59,21 +59,21 @@ public class Operationparticipation {
 
     @Basic
     @Column(name = "equipment_id")
-    public Integer getEquipmentId() {
+    public Long getEquipmentId() {
         return equipmentId;
     }
 
-    public void setEquipmentId(Integer equipmentId) {
+    public void setEquipmentId(Long equipmentId) {
         this.equipmentId = equipmentId;
     }
 
     @Basic
     @Column(name = "helper_id")
-    public Integer getHelperId() {
+    public Long getHelperId() {
         return helperId;
     }
 
-    public void setHelperId(Integer helperId) {
+    public void setHelperId(Long helperId) {
         this.helperId = helperId;
     }
 

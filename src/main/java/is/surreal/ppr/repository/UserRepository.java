@@ -1,10 +1,8 @@
 package is.surreal.ppr.repository;
 
 import is.surreal.ppr.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
 }

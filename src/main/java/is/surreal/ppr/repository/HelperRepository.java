@@ -1,10 +1,10 @@
 package is.surreal.ppr.repository;
 
 import is.surreal.ppr.model.Helper;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
-public interface HelperRepository extends JpaRepository<Helper, Long> {
+@RepositoryRestResource(collectionResourceRel = "helper", path = "helper")
+public interface HelperRepository extends PagingAndSortingRepository<Helper, Long> {
 
 }

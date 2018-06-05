@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.eu.leontebbens.gradle:chromedriver-updater-plugin:1.6"
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
     }
 }
 
@@ -19,9 +19,12 @@ plugins {
     id 'checkstyle'
     id 'org.junit.platform.gradle.plugin' version '1.0.1'
     id 'eu.leontebbens.gradle.chromedriver-updater' version '1.6'
+    id 'net.ltgt.apt' version '0.10'
+    id "com.moowork.node" version "1.2.0"
 }
 
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group 'is.surreal.webengineering'
 version '0.1-ALPHA'
@@ -37,30 +40,51 @@ repositories {
 }
 
 dependencies {
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
-    testCompile("org.junit.vintage:junit-vintage-engine:4.12.1")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+    testCompile("org.junit.jupiter:junit-jupiter-api")
+    testCompile("org.junit.jupiter:junit-jupiter-engine")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine")
     testRuntime("org.junit.vintage:junit-vintage-engine:4.12.1")
 
     compile 'io.cucumber:cucumber-java8:2.1.0'
     compile 'io.cucumber:cucumber-junit:2.1.0'
 
-    compile 'com.google.guava:guava:19.0'
+    compile 'com.google.guava:guava:23.0'
 
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-devtools")
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'org.projectlombok:lombok:1.16.20'
+
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.3.2.RELEASE")
+    compile("org.springframework.security:spring-security-jwt:1.0.9.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-security")
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile("org.apache.commons:commons-lang3:3.7")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework:spring-jdbc")
+    compile("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: 'junit', module: 'junit'
+    }
+    compile("javax.xml.bind:jaxb-api:2.3.0")
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.44'
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
+    testCompile 'com.h2database:h2:1.4.194'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.7.1'
+
+    apt "org.projectlombok:lombok:1.16.20"
 }
 
 war {
     archiveName = "ROOT##${version}.war"
+}
+
+node {
+    version = '10.1.0'
+    npmVersion = '5.6.0'
+    distBaseUrl = 'https://nodejs.org/dist'
+    download = true
+    workDir = file("${project.buildDir}/frontend")
+    npmWorkDir = file("${project.buildDir}/frontend/npm")
+    nodeModulesDir = file("${project.projectDir}/frontend/node_modules")
 }
 
 junitPlatform {
