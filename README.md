@@ -3,6 +3,9 @@ Project Puerto Rico
 
 [![Build Status](https://travis-ci.org/DrFelder/ppr.svg?branch=master)](https://travis-ci.org/DrFelder/ppr)
 [![codecov](https://codecov.io/gh/DrFelder/ppr/branch/master/graph/badge.svg)](https://codecov.io/gh/DrFelder/ppr)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ed762af37129eacf31b9/maintainability)](https://codeclimate.com/github/DrFelder/ppr/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6fdc611c8d1641998c6f93deef49a778)](https://www.codacy.com/app/DrFelder/ppr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DrFelder/ppr&amp;utm_campaign=Badge_Grade)
+
 
 This repository contains the famous Project Puerto Rico.
 
