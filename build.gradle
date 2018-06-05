@@ -25,6 +25,7 @@ plugins {
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
 
 group 'is.surreal.webengineering'
 version '0.1-ALPHA'
@@ -94,6 +95,13 @@ junitPlatform {
             include 'junit-jupiter'
             include 'junit-vintage'
         }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
     }
 }
 

@@ -40,6 +40,8 @@ script:
 - "./gradlew bootRun --console=plain &"
 - sleep 30
 - "./gradlew test --console=plain"
+- "./gradlew jacocoTestReport"
+- bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_a907d4bfebdd_key -iv $encrypted_a907d4bfebdd_iv -in deployment/secrets/secrets.tar.enc -out deployment/secrets/secrets.tar -d
