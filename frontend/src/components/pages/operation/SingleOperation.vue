@@ -46,6 +46,9 @@
       <th>
         Apply
       </th>
+      <th v-if="currentprivilege === 'ORGANIZER'">
+        Edit
+      </th>
     </tr>
     <!-- eslint-disable-next-line -->
     <tr v-for="equipment in response.equipmentById">
@@ -70,6 +73,13 @@
           Apply
         </router-link>
       </td>
+      <td v-if="currentprivilege==='ORGANIZER'">
+        <router-link :to="{ name: 'EditEquipment',
+        query: { equipment_id: equipment.id, equipment_title: equipment.title,
+        equipment_description: equipment.description }}">
+          Edit
+        </router-link>
+      </td>
     </tr>
     </tbody>
     <h2>Helpers</h2>
@@ -84,6 +94,9 @@
       </th>
       <th>
         Apply
+      </th>
+      <th v-if="currentprivilege === 'ORGANIZER'">
+        Edit
       </th>
     </tr>
     <!-- eslint-disable-next-line -->
@@ -108,6 +121,13 @@
           Apply
         </router-link>
       </td>
+      <td v-if="currentprivilege==='ORGANIZER'">
+        <router-link :to="{ name: 'EditHelper',
+        query: { helper_id: helper.id, helper_title: helper.title,
+        helper_description: helper.description }}">
+          Edit
+        </router-link>
+      </td>
     </tr>
     </tbody>
   </div>
@@ -118,6 +138,7 @@ import AXIOS from '../../../config/http-commons';
 export default {
   data() {
     return {
+      currentprivilege: '',
       response: [],
       operationparticipation: {},
       errors: [],
@@ -127,6 +148,17 @@ export default {
 
   created() {
     this.loading = true;
+    AXIOS.get(`http://localhost:8080/rest/currentprivileges/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+      .then((response) => {
+        // eslint-disable-next-line
+        console.log(response.data)
+        this.$store.dispatch('setPrivilege', response.data).then(() => {
+          this.currentprivilege = this.$store.getters.privilege;
+        });
+      })
+      .catch((err) => {
+        this.currentprivilege = JSON.stringify(err);
+      });
     AXIOS.get(`http://localhost:8080/rest/operation/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
       .then((operationResponse) => {
         AXIOS.get(`http://localhost:8080/rest/operationparticipation/equipment/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })

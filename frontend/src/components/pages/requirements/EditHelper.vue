@@ -9,11 +9,11 @@
     </p>
     <p>
       <label for="title">Title:</label>
-      <input id="title" v-model="equipment.title" placeholder="Title">
+      <input id="title" v-model="helper.title" placeholder="Title">
     </p>
     <p>
       <label for="description">Description:</label>
-      <textarea id="description" v-model="equipment.description"
+      <textarea id="description" v-model="helper.description"
                 placeholder="Description">
       </textarea>
     </p>
@@ -34,12 +34,18 @@ export default {
         title: null,
         description: null,
         operationId: null,
+        id: null,
       },
     };
   },
+  created() {
+    this.helper.id = this.$parent.$route.query.helper_id;
+    this.helper.title = this.$parent.$route.query.helper_title;
+    this.helper.description = this.$parent.$route.query.helper_description;
+  },
   methods: {
     checkForm(e) {
-      if (this.helper.title && this.helper.description) {
+      if (this.helper.title && this.helper.description && this.helper.id) {
         this.helper.operationId = this.$parent.$route.params.id;
         AXIOS.post('http://localhost:8080/rest/helper/', this.helper, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
           .then(() => {

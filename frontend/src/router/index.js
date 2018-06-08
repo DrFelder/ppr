@@ -8,6 +8,8 @@ import Login from '@/components/pages/login/Login';
 import Registration from '@/components/pages/login/Registration';
 import AddEquipment from '@/components/pages/requirements/AddEquipment';
 import AddHelper from '@/components/pages/requirements/AddHelper';
+import EditEquipment from '@/components/pages/requirements/EditEquipment';
+import EditHelper from '@/components/pages/requirements/EditHelper';
 import HelperApplication from '@/components/pages/requirements/HelperApplication';
 import EquipmentApplication from '@/components/pages/requirements/EquipmentApplication';
 import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
@@ -103,6 +105,18 @@ export default new Router({
               name: 'AddHelper',
               component: AddHelper,
               meta: { title: 'PPR - Add Helper' },
+            },
+            {
+              path: 'editequipment',
+              name: 'EditEquipment',
+              component: EditEquipment,
+              meta: { title: 'PPR - Edit Equipment' },
+            },
+            {
+              path: 'edithelper',
+              name: 'EditHelper',
+              component: EditHelper,
+              meta: { title: 'PPR - Edit Helper' },
             },
           ],
         },

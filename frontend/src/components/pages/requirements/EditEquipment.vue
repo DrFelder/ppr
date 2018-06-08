@@ -34,12 +34,18 @@ export default {
         title: null,
         description: null,
         operationId: null,
+        id: null,
       },
     };
   },
+  created() {
+    this.helper.id = this.$parent.$route.query.equipment_id;
+    this.helper.title = this.$parent.$route.query.equipment_title;
+    this.helper.description = this.$parent.$route.query.equipment_description;
+  },
   methods: {
     checkForm(e) {
-      if (this.helper.title && this.helper.description) {
+      if (this.helper.title && this.helper.description && this.helper.id) {
         this.helper.operationId = this.$parent.$route.params.id;
         AXIOS.post('http://localhost:8080/rest/helper/', this.helper, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
           .then(() => {
