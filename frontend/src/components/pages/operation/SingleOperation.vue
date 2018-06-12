@@ -12,12 +12,18 @@
         operation_privatedescription: response.privatedescription, operation_location: response.location}}" tag="button">
           Edit
         </router-link>
-        <router-link :to="{ name: 'StartOperation',
+
+        <router-link v-if="response.startDate == null" :to="{ name: 'StartOperation',
         query: { operation_id: response.id, operation_title: response.title,
         operation_date: response.date, operation_publicdescription: response.publicdescription,
-        operation_privatedescription: response.privatedescription, operation_location: response.location}}" tag="button">
+        operation_privatedescription: response.privatedescription, operation_location: response.location,
+        operation_startdate: response.startDate}}" tag="button">
           Start
         </router-link>
+        <span v-else>
+          Operation started: {{response.startDate}}
+        </span>
+      </td>
       </td>
     </tr>
     <tr>

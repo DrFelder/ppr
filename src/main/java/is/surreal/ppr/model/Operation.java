@@ -10,7 +10,7 @@ public class Operation {
     private Long id;
     private String title;
     private Date date;
-    private Date start_date;
+    private Date startDate;
     private String publicdescription;
     private String privatedescription;
     private String location;
@@ -54,11 +54,11 @@ public class Operation {
     @Basic
     @Column(name = "start_date")
     public Date getStartDate() {
-        return start_date;
+        return startDate;
     }
 
-    public void setStartDate(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Basic

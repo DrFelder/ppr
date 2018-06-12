@@ -31,17 +31,17 @@
 
     <p>
       <label for="date">Date:</label>
-      <input id="date" type="date" v-model="operation.date">
+      <input :disabled="true" id="date" type="date" v-model="operation.date">
     </p>
     <p>
       <label for="publicdescription">Public description:</label>
-      <textarea id="publicdescription" v-model="operation.publicdescription"
+      <textarea :disabled="true"  id="publicdescription" v-model="operation.publicdescription"
                 placeholder="Public description">
         </textarea>
     </p>
     <p>
       <label for="privatedescription">Private description:</label>
-      <textarea
+      <textarea :disabled="true"
         id="privatedescription" v-model="operation.privatedescription"
         placeholder="Private description"
       >
@@ -49,10 +49,10 @@
     </p>
     <p>
       <label for="location">Location:</label>
-      <input id="location" v-model="operation.location" placeholder="Location">
+      <input :disabled="true" id="location" v-model="operation.location" placeholder="Location">
     </p>
     <p>
-      <button id="submit" v-on:click="checkForm">Submit</button>
+      <button id="submit" v-on:click="checkForm">Start Operation</button>
       <button v-on:click="$router.go(-1)">back</button>
     </p>
 
@@ -82,11 +82,12 @@
       this.operation.publicdescription = this.$parent.$route.query.operation_publicdescription;
       this.operation.privatedescription = this.$parent.$route.query.operation_privatedescription;
       this.operation.location = this.$parent.$route.query.operation_location;
+      this.operation.startDate = this.$parent.$route.query.operation_startdate;;
     },
     methods: {
       checkForm(e) {
-        if (this.operation.title && this.operation.date && this.operation.publicdescription
-          && this.operation.privatedescription && this.operation.location) {
+        if (this.operation.id && this.operation.startDate == null) {
+          this.operation.startDate = new Date();
           AXIOS.post('http://localhost:8080/rest/operation/', this.operation, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
             .then((response) => {
             this.loading = false;
@@ -102,11 +103,7 @@
           return true;
         }
         this.errors = [];
-        if (!this.operation.title) this.errors.push('Title required.');
-        if (!this.operation.date) this.errors.push('Date required.');
-        if (!this.operation.publicdescription) this.errors.push('Public description required.');
-        if (!this.operation.privatedescription) this.errors.push('Private description required.');
-        if (!this.operation.location) this.errors.push('Location required.');
+        if (!this.operation.startDate) this.errors.push('Operation already started');
         e.preventDefault();
         return false;
       },
