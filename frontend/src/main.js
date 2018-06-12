@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+import './../node_modules/bulma/css/bulma.css';
 
 require('./assets/css/main.css');
 
