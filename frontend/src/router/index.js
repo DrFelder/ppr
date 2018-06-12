@@ -16,6 +16,8 @@ import SingleOperationDeletion from '@/components/pages/operation/SingleOperatio
 import OperationCreation from '@/components/pages/operation/OperationCreation';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/layouts/MainLayout';
+import EditOperation from '@/components/pages/operation/EditOperation';
+import StartOperation from '@/components/pages/operation/StartOperation';
 
 Vue.use(Router);
 
@@ -117,6 +119,18 @@ export default new Router({
               name: 'EditHelper',
               component: EditHelper,
               meta: { title: 'PPR - Edit Helper' },
+            },
+            {
+              path: 'editoperation',
+              name: 'EditOperation',
+              component: EditOperation,
+              meta: { title: 'PPR - Edit Operation' },
+            },
+            {
+              path: 'startoperation',
+              name: 'StartOperation',
+              component: StartOperation,
+              meta: { title: 'PPR - Start Operation' },
             },
           ],
         },

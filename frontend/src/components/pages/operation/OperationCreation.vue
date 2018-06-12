@@ -35,6 +35,7 @@
     </p>
     <p>
       <button id="submit" v-on:click="checkForm">Submit</button>
+      <button v-on:click="$router.go(-1)">back</button>
     </p>
   </div>
 </template>

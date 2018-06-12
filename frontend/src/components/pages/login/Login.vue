@@ -14,7 +14,7 @@
     </p>
     <p>
       <label for="password_login">Password:</label>
-      <input id="password_login" type="password" v-model="login.password">
+      <input id="password_login" type="password" v-model="login.password" @keyup.enter="checkForm">
     </p>
     <p>
       <button id="submit_login" v-on:click="checkForm">Submit</button>

@@ -67,6 +67,7 @@ create table Operation
   privatedescription varchar(2000) null,
   location varchar(60) null,
   organizer_id int null,
+  start_date date null,
   constraint operation_id_uindex
   unique (id)
 )
