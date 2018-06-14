@@ -23,10 +23,10 @@ If you can use the MySQL CLI, follow these steps (remember to provide your own p
     mysql> exit
 
 Now you can use the database via the ppruser. 
-To fill the database with tables and such, simply use the [MySQL structure script](structure.sql) provided by the repository.
-If you want to fill the database with testing data, you can use the [MySQL filler script](filler.sql) provided.
+To fill the database with tables and such, simply use the [MySQL structure script](structure.sql) `structire.sql` provided by the repository.
+If you want to fill the database with testing data, you can use the [MySQL filler script](filler.sql) `filler.sql` provided.
 
-After you have created a database and a user for it, you can start modifying the [application properties](src/main/resources/application.properties).
+After you have created a database and a user for it, you can start modifying the [application properties](src/main/resources/application.properties) `src/main/resources/application.properties`.
 You can follow along using the guidelines below:
 
     security.signing-key=
@@ -37,7 +37,7 @@ Add a realm for the authentication
 
     security.jwt.client-id=
     security.jwt.client-secret={noop}
-Change these values for the basic authentication. Remember to also change the values inside the [Vuex Store](frontend/src/store.js).
+Change these values for the basic authentication. Remember to also change the values inside the [Vuex Store](frontend/src/store.js) `frontend/src/store.js`.
 
     security.jwt.resource-ids=
 You can set a resource id if you want to.
@@ -57,10 +57,10 @@ To install the application, you will need to run a bunch of gradle tasks first (
     $ ./gradlew npm_run_build --console=plain
     $ ./gradlew assemble --console=plain
     
-After that, you will find the built frontend inside [the fronted build folder](build/frontend/dist).
+After that, you will find the built frontend inside [the fronted build folder](build/frontend/dist) `build/frontend/dist`.
 You will need to serve these files over a web server like nginx or apache.
 
-The Java Project will be inside [the build folder](build/libs).
+The Java Project will be inside [the build folder](build/libs) `build/libs`.
 The war file that is being created can then be deployed to a Java Webcontainer (e.g. Tomcat, glassfish jetty).
 
 To get an idea on how to deploy the application, you can take a look at our [travis.yml](.travis.yml), where we use rsync to copy the files.
