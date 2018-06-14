@@ -50,6 +50,7 @@ Change the database credentials according to your needs.
 
 To install the application, you will need to run a bunch of gradle tasks first (you can find the necessary ones below, but you are free to take a look at our [travis.yml](.travis.yml)):
 
+    $ ./gradlew --console=plain
     $ ./gradlew npmSetup --console=plain
     $ ./gradlew npmInstall --console=plain
     $ ./gradlew nodeSetup --console=plain
