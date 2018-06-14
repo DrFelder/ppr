@@ -55,7 +55,7 @@ To install the application, you will need to run a bunch of gradle tasks first (
     $ ./gradlew npmInstall --console=plain
     $ ./gradlew nodeSetup --console=plain
     $ ./gradlew npm_run_build --console=plain
-    $ ./gradlew clean assemble --console=plain
+    $ ./gradlew assemble --console=plain
     
 After that, you will find the built frontend inside [the fronted build folder](build/frontend/dist).
 You will need to serve these files over a web server like nginx or apache.
