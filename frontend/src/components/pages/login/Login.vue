@@ -1,37 +1,25 @@
 <template>
-  <section class="hero is-success is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-1">
-          <h3 class="title has-text-grey">Login</h3>
-            <div class="box">
-              <p v-if="errors.length">
-                <b>Please correct the following error(s):</b>
-                <ul class="error-list">
-                  <!-- eslint-disable-next-line -->
-                  <li class="error-list-item" v-for="error in errors">{{ error }}</li>
-                </ul>
-              </p>
-            <form>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" id="username_login" v-model="login.username" placeholder="Your Username">
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" id="password_login" type="password" placeholder="Your Password" v-model="login.password" @keyup.enter="checkForm">
-                </div>
-              </div>
-              <div>
-                <button class="button is-block is-info is-large is-fullwidth" id="submit_login" v-on:click="checkForm">Login</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div>
+    <h2>Login</h2>
+    <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+    <ul class="error-list">
+      <!-- eslint-disable-next-line -->
+      <li class="error-list-item" v-for="error in errors">{{ error }}</li>
+    </ul>
+    </p>
+    <p>
+      <label for="username_login">User:</label>
+      <input id="username_login" v-model="login.username" placeholder="Username">
+    </p>
+    <p>
+      <label for="password_login">Password:</label>
+      <input id="password_login" type="password" v-model="login.password" @keyup.enter="checkForm">
+    </p>
+    <p>
+      <button id="submit_login" v-on:click="checkForm">Submit</button>
+    </p>
+  </div>
 </template>
 
 <script>

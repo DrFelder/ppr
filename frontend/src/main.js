@@ -5,17 +5,19 @@ import App from './App';
 import router from './router';
 import store from './store';
 import './../node_modules/bulma/css/bulma.css';
+import './assets/css/fontawesome.min.css';
 
 require('./assets/css/main.css');
 
 Vue.config.productionTip = false;
 
-var filter = function(text, length, clamp){
-  clamp = clamp || '...';
-  var node = document.createElement('div');
+// eslint-disable-next-line func-names
+const filter = function (text, length, clamp) {
+  const compClamp = clamp || '...';
+  const node = document.createElement('div');
   node.innerHTML = text;
-  var content = node.textContent;
-  return content.length > length ? content.slice(0, length) + clamp : content;
+  const content = node.textContent;
+  return content.length > length ? content.slice(0, length) + compClamp : content;
 };
 
 Vue.filter('truncate', filter);

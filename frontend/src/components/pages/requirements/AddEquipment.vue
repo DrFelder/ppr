@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       errors: [],
-      helper: {
+      equipment: {
         title: null,
         description: null,
         operationId: null,
@@ -40,9 +40,9 @@ export default {
   },
   methods: {
     checkForm(e) {
-      if (this.helper.title && this.helper.description) {
-        this.helper.operationId = this.$parent.$route.params.id;
-        AXIOS.post('http://localhost:8080/rest/helper/', this.helper, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+      if (this.equipment.title && this.equipment.description) {
+        this.equipment.operationId = this.$parent.$route.params.id;
+        AXIOS.post('http://localhost:8080/rest/equipment/', this.equipment, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
           .then(() => {
             this.loading = false;
             this.$router.push({
@@ -58,8 +58,8 @@ export default {
         return true;
       }
       this.errors = [];
-      if (!this.helper.title) this.errors.push('Title required.');
-      if (!this.helper.description) this.errors.push('Description required.');
+      if (!this.equipment.title) this.errors.push('Title required.');
+      if (!this.equipment.description) this.errors.push('Description required.');
       e.preventDefault();
       return false;
     },

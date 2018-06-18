@@ -16,6 +16,14 @@
       </router-link>
     </li>
     <li style="float: right">
+      <a v-if="vuexNotifications.length === 0" class="notification-button-inactive"
+         @click="showModal">
+        bell
+      </a>
+      <a v-else class="notification-button-active" @click="showModal">bell</a>
+      <notificationPopup v-show="isModalVisible" @close="closeModal"/>
+    </li>
+    <li style="float: right">
       <div>
         <span v-if="!vuexIsLoggedIn">
           <router-link router-link to="/login">Login</router-link>
@@ -26,13 +34,22 @@
         </div>
       </div>
     </li>
-
   </ul>
 </template>
+
 <script>
+import notificationPopup from '@/components/pages/popup/Notification';
 import AXIOS from '../../config/http-commons';
 
 export default {
+  components: {
+    notificationPopup,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
   methods: {
     vuexLogout() {
       AXIOS.get().then(() => {
@@ -42,6 +59,12 @@ export default {
           });
       });
     },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
   },
   computed: {
     vuexIsLoggedIn() {
@@ -50,6 +73,9 @@ export default {
     vuexUser() {
       const userdata = this.$store.getters.userdata;
       return userdata.username ? userdata.username : null;
+    },
+    vuexNotifications() {
+      return this.$store.getters.notifications;
     },
   },
 };

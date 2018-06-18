@@ -27,6 +27,7 @@
     </p>
     <p>
     <h3>Start Operation: {{operation.title}}</h3>
+    <!-- eslint-disable-next-line -->
     </p>
 
     <p>
@@ -60,53 +61,53 @@
 </template>
 
 <script>
-  import AXIOS from '../../../config/http-commons';
+import AXIOS from '../../../config/http-commons';
 
-  export default {
-    data() {
-      return {
-        errors: [],
-        operation: {
-          title: null,
-          date: null,
-          publicdescription: null,
-          privatedescription: null,
-          location: null,
-        },
-      };
-    },
-    created() {
-      this.operation.id = this.$parent.$route.query.operation_id;
-      this.operation.title = this.$parent.$route.query.operation_title;
-      this.operation.date = this.$parent.$route.query.operation_date;
-      this.operation.publicdescription = this.$parent.$route.query.operation_publicdescription;
-      this.operation.privatedescription = this.$parent.$route.query.operation_privatedescription;
-      this.operation.location = this.$parent.$route.query.operation_location;
-      this.operation.startDate = this.$parent.$route.query.operation_startdate;;
-    },
-    methods: {
-      checkForm(e) {
-        if (this.operation.id && this.operation.startDate == null) {
-          this.operation.startDate = new Date();
-          AXIOS.post('http://localhost:8080/rest/operation/', this.operation, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
-            .then((response) => {
-            this.loading = false;
-          this.$router.push({
-            name: 'SingleOperation',
-            params: {  id: this.$parent.$route.params.id },
-            headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` },
-          });
-        })
-        .catch(() => {
-            this.loading = false;
-        });
-          return true;
-        }
-        this.errors = [];
-        if (!this.operation.startDate) this.errors.push('Operation already started');
-        e.preventDefault();
-        return false;
+export default {
+  data() {
+    return {
+      errors: [],
+      operation: {
+        title: null,
+        date: null,
+        publicdescription: null,
+        privatedescription: null,
+        location: null,
       },
+    };
+  },
+  created() {
+    this.operation.id = this.$parent.$route.query.operation_id;
+    this.operation.title = this.$parent.$route.query.operation_title;
+    this.operation.date = this.$parent.$route.query.operation_date;
+    this.operation.publicdescription = this.$parent.$route.query.operation_publicdescription;
+    this.operation.privatedescription = this.$parent.$route.query.operation_privatedescription;
+    this.operation.location = this.$parent.$route.query.operation_location;
+    this.operation.startDate = this.$parent.$route.query.operation_startdate;
+  },
+  methods: {
+    checkForm(e) {
+      if (this.operation.id && this.operation.startDate == null) {
+        this.operation.startDate = new Date();
+        AXIOS.post('http://localhost:8080/rest/operation/', this.operation, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+          .then(() => {
+            this.loading = false;
+            this.$router.push({
+              name: 'SingleOperation',
+              params: { id: this.$parent.$route.params.id },
+              headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` },
+            });
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+        return true;
+      }
+      this.errors = [];
+      if (!this.operation.startDate) this.errors.push('Operation already started');
+      e.preventDefault();
+      return false;
     },
-  };
+  },
+};
 </script>

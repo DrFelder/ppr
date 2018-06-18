@@ -17,6 +17,7 @@ public class Operation {
     private Long organizerId;
     private Collection<Equipment> equipmentById;
     private Collection<Helper> helpersById;
+    private Collection<Notification> notificationsById;
     private User userByOrganizerId;
 
     @Id
@@ -141,6 +142,15 @@ public class Operation {
 
     public void setHelpersById(Collection<Helper> helpersById) {
         this.helpersById = helpersById;
+    }
+
+    @OneToMany(mappedBy = "operationByOperationId")
+    public Collection<Notification> getNotificationsById() {
+        return notificationsById;
+    }
+
+    public void setNotificationsById(Collection<Notification> notificationsById) {
+        this.notificationsById = notificationsById;
     }
 
     @ManyToOne

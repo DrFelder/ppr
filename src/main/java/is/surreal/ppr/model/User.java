@@ -19,6 +19,7 @@ public class User {
     private Collection<Operationparticipation> operationparticipationsById;
     private Userdata userdataByUserdataId;
     private List<Role> roles;
+    private Collection<Notificationread> readsById;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns
@@ -132,5 +133,15 @@ public class User {
 
     public void setUserdataByUserdataId(Userdata userdataByUserdataId) {
         this.userdataByUserdataId = userdataByUserdataId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    @JsonIgnore
+    public Collection<Notificationread> getReadsById() {
+        return readsById;
+    }
+
+    public void setReadsById(Collection<Notificationread> readsById) {
+        this.readsById = readsById;
     }
 }

@@ -26,7 +26,8 @@
     </ul>
     </p>
     <p>
-      <h3>Edit Operation</h3>
+    <h3>Edit Operation</h3>
+    <!-- eslint-disable-next-line -->
     </p>
     <p>
       <label for="title">Title:</label>
@@ -63,56 +64,56 @@
 </template>
 
 <script>
-  import AXIOS from '../../../config/http-commons';
+import AXIOS from '../../../config/http-commons';
 
-  export default {
-    data() {
-      return {
-        errors: [],
-        operation: {
-          title: null,
-          date: null,
-          publicdescription: null,
-          privatedescription: null,
-          location: null,
-        },
-      };
-    },
-    created() {
-      this.operation.id = this.$parent.$route.query.operation_id;
-      this.operation.title = this.$parent.$route.query.operation_title;
-      this.operation.date = this.$parent.$route.query.operation_date;
-      this.operation.publicdescription = this.$parent.$route.query.operation_publicdescription;
-      this.operation.privatedescription = this.$parent.$route.query.operation_privatedescription;
-      this.operation.location = this.$parent.$route.query.operation_location;
-    },
-    methods: {
-      checkForm(e) {
-        if (this.operation.title && this.operation.date && this.operation.publicdescription
-          && this.operation.privatedescription && this.operation.location) {
-          AXIOS.post('http://localhost:8080/rest/operation/', this.operation, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
-            .then((response) => {
-            this.loading = false;
-          this.$router.push({
-            name: 'SingleOperation',
-            params: {  id: this.$parent.$route.params.id },
-            headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` },
-          });
-        })
-        .catch(() => {
-            this.loading = false;
-        });
-          return true;
-        }
-        this.errors = [];
-        if (!this.operation.title) this.errors.push('Title required.');
-        if (!this.operation.date) this.errors.push('Date required.');
-        if (!this.operation.publicdescription) this.errors.push('Public description required.');
-        if (!this.operation.privatedescription) this.errors.push('Private description required.');
-        if (!this.operation.location) this.errors.push('Location required.');
-        e.preventDefault();
-        return false;
+export default {
+  data() {
+    return {
+      errors: [],
+      operation: {
+        title: null,
+        date: null,
+        publicdescription: null,
+        privatedescription: null,
+        location: null,
       },
+    };
+  },
+  created() {
+    this.operation.id = this.$parent.$route.query.operation_id;
+    this.operation.title = this.$parent.$route.query.operation_title;
+    this.operation.date = this.$parent.$route.query.operation_date;
+    this.operation.publicdescription = this.$parent.$route.query.operation_publicdescription;
+    this.operation.privatedescription = this.$parent.$route.query.operation_privatedescription;
+    this.operation.location = this.$parent.$route.query.operation_location;
+  },
+  methods: {
+    checkForm(e) {
+      if (this.operation.title && this.operation.date && this.operation.publicdescription
+          && this.operation.privatedescription && this.operation.location) {
+        AXIOS.post('http://localhost:8080/rest/operation/', this.operation, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+          .then(() => {
+            this.loading = false;
+            this.$router.push({
+              name: 'SingleOperation',
+              params: { id: this.$parent.$route.params.id },
+              headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` },
+            });
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+        return true;
+      }
+      this.errors = [];
+      if (!this.operation.title) this.errors.push('Title required.');
+      if (!this.operation.date) this.errors.push('Date required.');
+      if (!this.operation.publicdescription) this.errors.push('Public description required.');
+      if (!this.operation.privatedescription) this.errors.push('Private description required.');
+      if (!this.operation.location) this.errors.push('Location required.');
+      e.preventDefault();
+      return false;
     },
-  };
+  },
+};
 </script>

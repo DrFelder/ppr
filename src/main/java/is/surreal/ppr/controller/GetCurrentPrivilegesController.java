@@ -43,9 +43,9 @@ public class GetCurrentPrivilegesController {
         if (userId == operationOrganizerId) return "ORGANIZER";
         for (Operationparticipation operationparticipation : this.userRepository.findById(userId).get().getOperationparticipationsById()) {
             if (operationparticipation.getEquipmentId() != null) {
-                if (operationparticipation.getEquipmentByEquipmentId().getOperationId() == operationId) return "PARTICIPATOR";
+                if (operationparticipation.getEquipmentByEquipmentId().getOperationId() == operationId && operationparticipation.getAccepted() == 1) return "PARTICIPATOR";
             } else {
-                if (operationparticipation.getHelperByHelperId().getOperationId() == operationId) return "PARTICIPATOR";
+                if (operationparticipation.getHelperByHelperId().getOperationId() == operationId && operationparticipation.getAccepted() == 1) return "PARTICIPATOR";
             }
         }
         return "WATCHER";
