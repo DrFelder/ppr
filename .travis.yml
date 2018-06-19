@@ -39,8 +39,7 @@ script:
 - "./gradlew updateChromedriver --console=plain"
 - "./gradlew bootRun --console=plain &"
 - sleep 30
-- "./gradlew check --console=plain --rerun-tasks"
-- "./gradlew jacocoTestReport --console=plain"
+- "./gradlew clean updateChromedriver junitPlatformTest jacocoTestReport"
 - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:

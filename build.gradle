@@ -88,24 +88,43 @@ node {
     nodeModulesDir = file("${project.projectDir}/frontend/node_modules")
 }
 
-junitPlatform {
-    platformVersion = "1.0.1"
-    filters {
-        engines {
-            include 'junit-jupiter'
-            include 'junit-vintage'
-        }
-    }
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
 checkstyle {
     toolVersion = '8.4'
     configFile = new File("config/Checkstyle/google_checks_updated.xml")
 }
+
+test {
+    systemProperties 'property' : 'value'
+}
+
+junitPlatform . enableStandardTestTask true
+
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion = '0.7.9'
+    applyTo junitPlatformTest
+}
+
+junitPlatformTest {
+    jacoco {
+        destinationFile = file ( "${buildDir}/jacoco/test.exec" )
+    }
+}
+
+ext {
+    jacocoExclusions = ['**/Main*']
+}
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExclusions)
+        })
+    }
+    reports {
+        xml . enabled true
+        csv . enabled false
+        html . enabled true
+    }
+}
+
