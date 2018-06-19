@@ -111,6 +111,7 @@ ul {
 
 .popup
 {
+  padding: 15px;
   border: solid 1px black;
   position: fixed;
   left: 50%;
@@ -192,3 +193,9 @@ ul {
   background: gray;
   margin: 20px;
 }
+
+.top-menu {
+  margin-bottom: 25px;
+}
+
+

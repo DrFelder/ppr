@@ -2,61 +2,62 @@
   <div>
     <h2>Detail page for {{ response.title }}</h2>
     <router-view></router-view>
-    <tbody>
-    <tr v-if="currentprivilege === 'ORGANIZER' ">
-      <th>Action</th>
-      <td>
-        <router-link :to="{ name: 'EditOperation',
+    <table>
+      <tbody>
+      <tr v-if="currentprivilege === 'ORGANIZER' ">
+        <th>Action</th>
+        <td>
+          <router-link :to="{ name: 'EditOperation',
         query: { operation_id: response.id, operation_title: response.title,
         operation_date: response.date, operation_publicdescription: response.publicdescription,
         operation_privatedescription: response.privatedescription,
         operation_location: response.location}}" tag="button">
-          Edit
-        </router-link>
-
-        <router-link v-if="response.startDate == null" :to="{ name: 'StartOperation',
+            Edit
+          </router-link>
+          <router-link v-if="response.startDate == null" :to="{ name: 'StartOperation',
         query: { operation_id: response.id, operation_title: response.title,
         operation_date: response.date, operation_publicdescription: response.publicdescription,
         operation_privatedescription: response.privatedescription,
         operation_location: response.location,
         operation_startdate: response.startDate}}" tag="button">
-          Start
-        </router-link>
-        <span v-else>
+            Start
+          </router-link>
+          <span v-else>
           Operation started: {{response.startDate}}
         </span>
-      </td>
-    </tr>
-    <tr>
-      <th>Title</th>
-      <td>{{ response.title }}</td>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <td>{{ response.date }}</td>
-    </tr>
-    <tr>
-      <th>Location</th>
-      <td>{{ response.location }}</td>
-    </tr>
-    <tr>
-      <th>Organizer</th>
-      <td>
-        <router-link :to="{ name: 'SingleUser',
+        </td>
+      </tr>
+      <tr>
+        <th>Title</th>
+        <td>{{ response.title }}</td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td>{{ response.date }}</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>{{ response.location }}</td>
+      </tr>
+      <tr>
+        <th>Organizer</th>
+        <td>
+          <router-link :to="{ name: 'SingleUser',
         params: { username: response.userByOrganizerId.username }}">
-          {{ response.userByOrganizerId.username }}
-        </router-link>
-      </td>
-    </tr>
-    <tr>
-      <th>Public description</th>
-      <td>{{ response.publicdescription }}</td>
-    </tr>
-    <tr  v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'">
-      <th>Private Description</th>
-      <td>{{ response.privatedescription }}</td>
-    </tr>
-    </tbody>
+            {{ response.userByOrganizerId.username }}
+          </router-link>
+        </td>
+      </tr>
+      <tr>
+        <th>Public description</th>
+        <td>{{ response.publicdescription }}</td>
+      </tr>
+      <tr  v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'">
+        <th>Private Description</th>
+        <td>{{ response.privatedescription }}</td>
+      </tr>
+      </tbody>
+    </table>
     <h2>Equipment</h2>
     <router-link :to="{ name: 'AddEquipment' }" tag="button">Add  new equipment</router-link>
     <tbody>

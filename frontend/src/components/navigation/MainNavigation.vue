@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="top-menu">
     <li style="float: left">
       <router-link :to="{ name: 'Home'}">
         home
