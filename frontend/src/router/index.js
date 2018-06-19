@@ -8,12 +8,16 @@ import Login from '@/components/pages/login/Login';
 import Registration from '@/components/pages/login/Registration';
 import AddEquipment from '@/components/pages/requirements/AddEquipment';
 import AddHelper from '@/components/pages/requirements/AddHelper';
+import EditEquipment from '@/components/pages/requirements/EditEquipment';
+import EditHelper from '@/components/pages/requirements/EditHelper';
 import HelperApplication from '@/components/pages/requirements/HelperApplication';
 import EquipmentApplication from '@/components/pages/requirements/EquipmentApplication';
 import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
 import OperationCreation from '@/components/pages/operation/OperationCreation';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/layouts/MainLayout';
+import EditOperation from '@/components/pages/operation/EditOperation';
+import StartOperation from '@/components/pages/operation/StartOperation';
 
 Vue.use(Router);
 
@@ -103,6 +107,30 @@ export default new Router({
               name: 'AddHelper',
               component: AddHelper,
               meta: { title: 'PPR - Add Helper' },
+            },
+            {
+              path: 'editequipment',
+              name: 'EditEquipment',
+              component: EditEquipment,
+              meta: { title: 'PPR - Edit Equipment' },
+            },
+            {
+              path: 'edithelper',
+              name: 'EditHelper',
+              component: EditHelper,
+              meta: { title: 'PPR - Edit Helper' },
+            },
+            {
+              path: 'editoperation',
+              name: 'EditOperation',
+              component: EditOperation,
+              meta: { title: 'PPR - Edit Operation' },
+            },
+            {
+              path: 'startoperation',
+              name: 'StartOperation',
+              component: StartOperation,
+              meta: { title: 'PPR - Start Operation' },
             },
           ],
         },

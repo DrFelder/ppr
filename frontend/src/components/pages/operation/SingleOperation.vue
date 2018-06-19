@@ -3,6 +3,30 @@
     <h2>Detail page for {{ response.title }}</h2>
     <router-view></router-view>
     <tbody>
+    <tr v-if="currentprivilege === 'ORGANIZER' ">
+      <th>Action</th>
+      <td>
+        <router-link :to="{ name: 'EditOperation',
+        query: { operation_id: response.id, operation_title: response.title,
+        operation_date: response.date, operation_publicdescription: response.publicdescription,
+        operation_privatedescription: response.privatedescription,
+        operation_location: response.location}}" tag="button">
+          Edit
+        </router-link>
+
+        <router-link v-if="response.startDate == null" :to="{ name: 'StartOperation',
+        query: { operation_id: response.id, operation_title: response.title,
+        operation_date: response.date, operation_publicdescription: response.publicdescription,
+        operation_privatedescription: response.privatedescription,
+        operation_location: response.location,
+        operation_startdate: response.startDate}}" tag="button">
+          Start
+        </router-link>
+        <span v-else>
+          Operation started: {{response.startDate}}
+        </span>
+      </td>
+    </tr>
     <tr>
       <th>Title</th>
       <td>{{ response.title }}</td>
@@ -28,13 +52,13 @@
       <th>Public description</th>
       <td>{{ response.publicdescription }}</td>
     </tr>
-    <tr>
+    <tr  v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'">
       <th>Private Description</th>
       <td>{{ response.privatedescription }}</td>
     </tr>
     </tbody>
     <h2>Equipment</h2>
-    <router-link :to="{ name: 'AddEquipment' }">Add equipment</router-link>
+    <router-link :to="{ name: 'AddEquipment' }" tag="button">Add  new equipment</router-link>
     <tbody>
     <tr>
       <th>
@@ -45,6 +69,9 @@
       </th>
       <th>
         Apply
+      </th>
+      <th v-if="currentprivilege === 'ORGANIZER'">
+        Edit
       </th>
     </tr>
     <!-- eslint-disable-next-line -->
@@ -70,10 +97,17 @@
           Apply
         </router-link>
       </td>
+      <td v-if="currentprivilege==='ORGANIZER'">
+        <router-link :to="{ name: 'EditEquipment',
+        query: { equipment_id: equipment.id, equipment_title: equipment.title,
+        equipment_description: equipment.description }}">
+          Edit
+        </router-link>
+      </td>
     </tr>
     </tbody>
     <h2>Helpers</h2>
-    <router-link :to="{ name: 'AddHelper' }">Add helper</router-link>
+    <router-link :to="{ name: 'AddHelper' }" tag="button">Add new helper</router-link>
     <tbody>
     <tr>
       <th>
@@ -84,6 +118,9 @@
       </th>
       <th>
         Apply
+      </th>
+      <th v-if="currentprivilege === 'ORGANIZER'">
+        Edit
       </th>
     </tr>
     <!-- eslint-disable-next-line -->
@@ -108,6 +145,13 @@
           Apply
         </router-link>
       </td>
+      <td v-if="currentprivilege==='ORGANIZER'">
+        <router-link :to="{ name: 'EditHelper',
+        query: { helper_id: helper.id, helper_title: helper.title,
+        helper_description: helper.description }}">
+          Edit
+        </router-link>
+      </td>
     </tr>
     </tbody>
   </div>
@@ -118,6 +162,7 @@ import AXIOS from '../../../config/http-commons';
 export default {
   data() {
     return {
+      currentprivilege: '',
       response: [],
       operationparticipation: {},
       errors: [],
@@ -127,6 +172,17 @@ export default {
 
   created() {
     this.loading = true;
+    AXIOS.get(`http://localhost:8080/rest/currentprivileges/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+      .then((response) => {
+        // eslint-disable-next-line
+        console.log(response.data)
+        this.$store.dispatch('setPrivilege', response.data).then(() => {
+          this.currentprivilege = this.$store.getters.privilege;
+        });
+      })
+      .catch((err) => {
+        this.currentprivilege = JSON.stringify(err);
+      });
     AXIOS.get(`http://localhost:8080/rest/operation/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
       .then((operationResponse) => {
         AXIOS.get(`http://localhost:8080/rest/operationparticipation/equipment/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })

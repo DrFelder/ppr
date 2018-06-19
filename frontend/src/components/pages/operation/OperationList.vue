@@ -14,10 +14,10 @@
     <tr v-for="operation in response">
       <td>{{ operation.title }}</td>
       <td>{{ operation.date }}</td>
-      <td>{{ operation.publicdescription }}</td>
+      <td>{{ operation.publicdescription | truncate(300, '...') }}</td>
       <td>{{ operation.location }}</td>
       <td>
-        <router-link :to="{ name: 'SingleOperation', params: { id: operation.id }}">
+        <router-link :to="{ name: 'SingleOperation', params: { id: operation.id }} " tag="button">
           details
         </router-link>
       </td>

@@ -16,6 +16,8 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+//TODO: für ein update unbedingt die rechte für das einzelne equipment prüfen
+
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
 @RequestMapping("/rest/equipment")

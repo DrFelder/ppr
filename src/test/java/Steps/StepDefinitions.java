@@ -127,13 +127,19 @@ public class StepDefinitions {
     @When("^I click on link having text \"([^\"]*)\"$")
     public void iClickOnLinkHavingText(String linkText) throws Throwable {
         waitForJS();
-        driver.findElement(By.linkText(linkText)).click();
+        driver.findElement(By.xpath("//a[contains(.,'" + linkText + "')]")).click();
     }
 
     @When("^I click on link having id \"([^\"]*)\"$")
     public void iClickOnLinkHavingId(String id) throws Throwable {
         waitForJS();
         driver.findElement(By.id(id)).click();
+    }
+
+    @When("^I click on button having text \"([^\"]*)\"$")
+    public void iClickOnButtonHavingText(String buttonText) throws Throwable {
+        waitForJS();
+        driver.findElement(By.xpath("//button[contains(.,'" + buttonText + "')]"));
     }
 
     @And("^I should not see \"([^\"]*)\"$")

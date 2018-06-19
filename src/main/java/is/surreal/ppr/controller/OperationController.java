@@ -1,6 +1,8 @@
 package is.surreal.ppr.controller;
 
+import is.surreal.ppr.model.Notification;
 import is.surreal.ppr.model.Operation;
+import is.surreal.ppr.repository.NotificationRepository;
 import is.surreal.ppr.repository.OperationRepository;
 import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Date;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
@@ -21,11 +24,13 @@ public class OperationController {
 
     private OperationRepository operationRepository;
     private UserRepository userRepository;
+    private NotificationRepository notificationRepository;
 
     @Autowired
-    public OperationController(OperationRepository operationRepository, UserRepository userRepository) {
+    public OperationController(OperationRepository operationRepository, UserRepository userRepository, NotificationRepository notificationRepository) {
         this.operationRepository = operationRepository;
         this.userRepository = userRepository;
+        this.notificationRepository = notificationRepository;
     }
 
     @GetMapping
@@ -50,8 +55,13 @@ public class OperationController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         input.setOrganizerId(this.userRepository.findByUsername(auth.getName()).getId());
         Operation result = this.operationRepository.save(input);
+        if (result.getStartDate() != null) {
+            Notification notification = new Notification();
+            notification.setOperationId(result.getId());
+            notification.setMessage("");
+            this.notificationRepository.save(notification);
+        }
         URI location = new URI("http://localhost:8081/#/operation/" + result.getId());
         return ResponseEntity.created(location).build();
     }
-
 }

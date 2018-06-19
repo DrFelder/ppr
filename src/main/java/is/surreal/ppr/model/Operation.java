@@ -10,12 +10,14 @@ public class Operation {
     private Long id;
     private String title;
     private Date date;
+    private Date startDate;
     private String publicdescription;
     private String privatedescription;
     private String location;
     private Long organizerId;
     private Collection<Equipment> equipmentById;
     private Collection<Helper> helpersById;
+    private Collection<Notification> notificationsById;
     private User userByOrganizerId;
 
     @Id
@@ -48,6 +50,16 @@ public class Operation {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Basic
+    @Column(name = "start_date")
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Basic
@@ -130,6 +142,15 @@ public class Operation {
 
     public void setHelpersById(Collection<Helper> helpersById) {
         this.helpersById = helpersById;
+    }
+
+    @OneToMany(mappedBy = "operationByOperationId")
+    public Collection<Notification> getNotificationsById() {
+        return notificationsById;
+    }
+
+    public void setNotificationsById(Collection<Notification> notificationsById) {
+        this.notificationsById = notificationsById;
     }
 
     @ManyToOne
