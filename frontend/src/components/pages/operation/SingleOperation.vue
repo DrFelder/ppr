@@ -23,7 +23,7 @@
             Start
           </router-link>
           <span v-else>
-          Operation started: {{response.startDate}}
+            Operation started: {{response.startDate}}
         </span>
         </td>
       </tr>

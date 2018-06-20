@@ -97,6 +97,7 @@ export default {
               params: { id: this.$parent.$route.params.id },
               headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` },
             });
+            location.reload();
           })
           .catch(() => {
             this.loading = false;

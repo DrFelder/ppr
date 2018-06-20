@@ -181,6 +181,7 @@ ul {
 
 .modal-notification-list {
   background-color: #4AAE9B;
+  padding: 0px 40px 0px 40px;
 }
 
 .modal-notification-item > a {

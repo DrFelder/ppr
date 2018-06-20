@@ -19,7 +19,7 @@
                 <div @click="close(); markAsRead(notification.id)">
                   <router-link :to="{ name: 'SingleOperation',
                   params: { id: notification.operationId }} ">
-                    An operation you are participating in has started:<br/>
+                    An operation you are participating in has started<br/>
                     {{ notification.message }}
                   </router-link>
                 </div>
