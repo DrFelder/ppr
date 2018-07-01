@@ -30,7 +30,7 @@ import EditEquipment from '@/components/pages/requirements/EditEquipment';
 import EditHelper from '@/components/pages/requirements/EditHelper';
 import HelperApplication from '@/components/pages/requirements/HelperApplication';
 import EquipmentApplication from '@/components/pages/requirements/EquipmentApplication';
-import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
+// import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
 import OperationCreation from '@/components/pages/operation/OperationCreation';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/layouts/MainLayout';
@@ -96,12 +96,12 @@ export default new Router({
           component: SingleOperation,
           meta: { title: 'PPR - Operation Details' },
           children: [
-            {
-              path: 'delete',
-              name: 'SingleOperationDeletion',
-              component: SingleOperationDeletion,
-              meta: { title: 'PPR - Delete Operation' },
-            },
+            // {
+            //   path: 'delete',
+            //   name: 'SingleOperationDeletion',
+            //   component: SingleOperationDeletion,
+            //   meta: { title: 'PPR - Delete Operation' },
+            // },
             {
               path: 'helperapplication',
               name: 'HelperApplication',
