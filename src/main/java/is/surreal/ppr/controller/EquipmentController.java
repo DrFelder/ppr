@@ -20,7 +20,6 @@ package is.surreal.ppr.controller;
 
 import is.surreal.ppr.model.Equipment;
 import is.surreal.ppr.repository.EquipmentRepository;
-import is.surreal.ppr.repository.HelperRepository;
 import is.surreal.ppr.repository.OperationRepository;
 import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

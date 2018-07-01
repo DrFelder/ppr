@@ -31,7 +31,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
@@ -68,7 +67,7 @@ public class NotificationreadController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         notificationread.setUserId(this.userRepository.findByUsername(auth.getName()).getId());
         notificationread.setDate(new Timestamp(System.currentTimeMillis()));
-        Notificationread result =  this.notificationreadRepository.save(notificationread);
+        Notificationread result = this.notificationreadRepository.save(notificationread);
         URI location = new URI("http://localhost:8081/#/rest/read" + result.getId());
         return ResponseEntity.created(location).build();
     }

@@ -18,7 +18,6 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Operation;
 import is.surreal.ppr.model.Operationparticipation;
 import is.surreal.ppr.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController

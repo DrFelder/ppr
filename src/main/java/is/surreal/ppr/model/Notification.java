@@ -21,7 +21,6 @@ package is.surreal.ppr.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public class Notification {
@@ -70,7 +69,8 @@ public class Notification {
 
         if (id != notification.id) return false;
         if (message != null ? !message.equals(notification.message) : notification.message != null) return false;
-        if (operationId != null ? !operationId.equals(notification.operationId) : notification.operationId != null) return false;
+        if (operationId != null ? !operationId.equals(notification.operationId) : notification.operationId != null)
+            return false;
 
         return true;
     }

@@ -18,7 +18,6 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Equipment;
 import is.surreal.ppr.model.Helper;
 import is.surreal.ppr.repository.HelperRepository;
 import is.surreal.ppr.repository.OperationRepository;

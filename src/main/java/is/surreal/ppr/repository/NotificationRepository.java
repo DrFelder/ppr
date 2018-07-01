@@ -18,7 +18,6 @@
 
 package is.surreal.ppr.repository;
 
-import is.surreal.ppr.model.Helper;
 import is.surreal.ppr.model.Notification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

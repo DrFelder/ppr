@@ -18,22 +18,15 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.Equipment;
-import is.surreal.ppr.model.Helper;
 import is.surreal.ppr.model.Operationparticipation;
 import is.surreal.ppr.repository.HelperRepository;
 import is.surreal.ppr.repository.OperationRepository;
 import is.surreal.ppr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
@@ -61,9 +54,11 @@ public class GetCurrentPrivilegesController {
         if (userId == operationOrganizerId) return "ORGANIZER";
         for (Operationparticipation operationparticipation : this.userRepository.findById(userId).get().getOperationparticipationsById()) {
             if (operationparticipation.getEquipmentId() != null) {
-                if (operationparticipation.getEquipmentByEquipmentId().getOperationId() == operationId && operationparticipation.getAccepted() == 1) return "PARTICIPATOR";
+                if (operationparticipation.getEquipmentByEquipmentId().getOperationId() == operationId && operationparticipation.getAccepted() == 1)
+                    return "PARTICIPATOR";
             } else {
-                if (operationparticipation.getHelperByHelperId().getOperationId() == operationId && operationparticipation.getAccepted() == 1) return "PARTICIPATOR";
+                if (operationparticipation.getHelperByHelperId().getOperationId() == operationId && operationparticipation.getAccepted() == 1)
+                    return "PARTICIPATOR";
             }
         }
         return "WATCHER";

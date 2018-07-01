@@ -24,10 +24,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import javax.persistence.ColumnResult;
-import javax.persistence.EntityResult;
-import javax.persistence.FieldResult;
-import javax.persistence.SqlResultSetMapping;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "helper", path = "helper")

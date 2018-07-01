@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Date;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
