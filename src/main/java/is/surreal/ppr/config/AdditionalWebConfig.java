@@ -1,3 +1,21 @@
+/*
+ * Project Puerto Rico
+ * Copyright (C) 2018  Thomas Pötzsch, Stephan Stroh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package is.surreal.ppr.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -11,16 +29,9 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nydiarra on 06/05/17.
- */
 @Configuration
 public class AdditionalWebConfig {
-    /**
-     * Allowing all origins, headers and methods here is only intended to keep this example simple.
-     * This is not a default recommended configuration. Make adjustments as
-     * necessary to your use case.
-     */
+
     @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
