@@ -18,39 +18,36 @@
 
 package is.surreal.ppr.controller;
 
-import is.surreal.ppr.model.User;
-import is.surreal.ppr.repository.UserRepository;
+import is.surreal.ppr.strategy.AdminStyle;
+import is.surreal.ppr.strategy.ChangingStyle;
+import is.surreal.ppr.strategy.NormalUserStyle;
+import is.surreal.ppr.strategy.OperationOwnerStyle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", exposedHeaders = "Location")
-@RequestMapping("/rest/user")
-public class UserController {
-
-    private UserRepository userRepository;
+@RequestMapping("/rest/style")
+public class StyleController {
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public StyleController() {
     }
 
     @GetMapping
-    Iterable<User> getUsers() {
-        return this.userRepository.findAll();
-    }
+    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
+    String getStyle(@RequestParam("role") String role) throws URISyntaxException {
 
-    @GetMapping("/{username}")
-    User getUserByName(@PathVariable String username) {
-        return this.userRepository.findByUsername(username);
-    }
-
-    @GetMapping("/current")
-    User getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return this.userRepository.findByUsername(auth.getName());
+        ChangingStyle changeStyle = new ChangingStyle(new NormalUserStyle());
+        if (role.equals("ADMIN")) {
+            changeStyle.changeStrategy(new AdminStyle());
+        } else if (role.equals("ORGANIZER")) {
+            changeStyle.changeStrategy(new OperationOwnerStyle());
+        }
+        return changeStyle.applyStyle();
     }
 
 }

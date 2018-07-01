@@ -1,6 +1,5 @@
 Feature: First Steps
 
-  @run
   Scenario: I want to look at the operation list
     When I am on the homepage
     Then the title should be "PPR - Home"
@@ -14,9 +13,7 @@ Feature: First Steps
     When I visit "http://localhost:8081/#/operation/"
     Then the title should be "PPR - Operation List"
     And I should see "delectus,aut,at"
-    Then I click on link having id "logout_button"
 
-    @run
   Scenario: I want to access the operation detail page
     When I visit "http://localhost:8081/#/operation/"
     Then I should see "PPR - Login"

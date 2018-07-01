@@ -1,5 +1,33 @@
+<!--
+  - Project Puerto Rico
+  - Copyright (C) 2018  Thomas Pötzsch, Stephan Stroh
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <template>
   <div>
+    <div v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'"
+         class="top-bar"
+         v-bind:style="{ background: style, padding: '10px', margin: '-25px -40px 0 -40px' }">
+      <span v-if="currentprivilege === 'ORGANIZER'">
+        You are the organizer of this operation!<br/>
+      </span>
+      <span v-if="currentprivilege === 'PARTICIPATOR'">
+        You participate in this operation!<br/>
+      </span>
+    </div>
     <h2>Detail page for {{ response.title }}</h2>
     <router-view></router-view>
     <table>
@@ -52,14 +80,14 @@
         <th>Public description</th>
         <td>{{ response.publicdescription }}</td>
       </tr>
-      <tr  v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'">
+      <tr v-if="currentprivilege === 'ORGANIZER' || currentprivilege === 'PARTICIPATOR'">
         <th>Private Description</th>
         <td>{{ response.privatedescription }}</td>
       </tr>
       </tbody>
     </table>
     <h2>Equipment</h2>
-    <router-link :to="{ name: 'AddEquipment' }" tag="button">Add  new equipment</router-link>
+    <router-link :to="{ name: 'AddEquipment' }" tag="button">Add new equipment</router-link>
     <tbody>
     <tr>
       <th>
@@ -164,6 +192,7 @@ export default {
   data() {
     return {
       currentprivilege: '',
+      style: '',
       response: [],
       operationparticipation: {},
       errors: [],
@@ -175,14 +204,13 @@ export default {
     this.loading = true;
     AXIOS.get(`http://localhost:8080/rest/currentprivileges/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
       .then((response) => {
-        // eslint-disable-next-line
-        console.log(response.data)
         this.$store.dispatch('setPrivilege', response.data).then(() => {
           this.currentprivilege = this.$store.getters.privilege;
+          AXIOS.get(`http://localhost:8080/rest/style?role=${this.currentprivilege}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
+            .then((style) => {
+              this.style = style.data;
+            });
         });
-      })
-      .catch((err) => {
-        this.currentprivilege = JSON.stringify(err);
       });
     AXIOS.get(`http://localhost:8080/rest/operation/${this.$route.params.id}`, { headers: { Authorization: `Bearer ${this.$store.getters.accessToken}` } })
       .then((operationResponse) => {

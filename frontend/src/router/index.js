@@ -1,3 +1,21 @@
+/*
+ * Project Puerto Rico
+ * Copyright (C) 2018  Thomas Pötzsch, Stephan Stroh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import Vue from 'vue';
 import Router from 'vue-router';
 import UserList from '@/components/pages/user/UserList';
@@ -12,7 +30,7 @@ import EditEquipment from '@/components/pages/requirements/EditEquipment';
 import EditHelper from '@/components/pages/requirements/EditHelper';
 import HelperApplication from '@/components/pages/requirements/HelperApplication';
 import EquipmentApplication from '@/components/pages/requirements/EquipmentApplication';
-import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
+// import SingleOperationDeletion from '@/components/pages/operation/SingleOperationDeletion';
 import OperationCreation from '@/components/pages/operation/OperationCreation';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/layouts/MainLayout';
@@ -78,12 +96,12 @@ export default new Router({
           component: SingleOperation,
           meta: { title: 'PPR - Operation Details' },
           children: [
-            {
-              path: 'delete',
-              name: 'SingleOperationDeletion',
-              component: SingleOperationDeletion,
-              meta: { title: 'PPR - Delete Operation' },
-            },
+            // {
+            //   path: 'delete',
+            //   name: 'SingleOperationDeletion',
+            //   component: SingleOperationDeletion,
+            //   meta: { title: 'PPR - Delete Operation' },
+            // },
             {
               path: 'helperapplication',
               name: 'HelperApplication',

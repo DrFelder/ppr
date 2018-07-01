@@ -16,13 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package is.surreal.ppr.repository;
+package is.surreal.ppr.strategy;
 
-import is.surreal.ppr.model.Operation;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-@RepositoryRestResource(collectionResourceRel = "operation", path = "operation")
-public interface OperationRepository extends PagingAndSortingRepository<Operation, Long> {
-
+public interface ChangingStyleStrategy {
+    String applyStyle();
 }
