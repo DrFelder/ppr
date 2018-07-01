@@ -20,7 +20,7 @@ package is.surreal.ppr.strategy;
 
 public class AdminStyle implements ChangingStyleStrategy {
     @Override
-    public void applyStyle() {
-        //Set style settings
+    public String applyStyle() {
+        return "#DC143C";
     }
 }

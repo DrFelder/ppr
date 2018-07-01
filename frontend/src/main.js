@@ -40,7 +40,6 @@ const filter = function (text, length, clamp) {
 Vue.filter('truncate', filter);
 
 router.beforeEach((to, from, next) => {
-// eslint-disable-next-line no-console
   const noAuthRequired = to.matched.some(route => route.meta.noAuth);
   const authed = !!store.state.userdata;
   if (!noAuthRequired && !authed) {

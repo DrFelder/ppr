@@ -20,7 +20,7 @@ package is.surreal.ppr.strategy;
 
 public class OperationOwnerStyle implements ChangingStyleStrategy{
     @Override
-    public void applyStyle() {
-        //Change Style
+    public String applyStyle() {
+        return " #9932CC";
     }
 }

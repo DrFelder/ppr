@@ -20,7 +20,7 @@ package is.surreal.ppr.strategy;
 
 public class NormalUserStyle implements ChangingStyleStrategy {
     @Override
-    public void applyStyle() {
-        //Set style settings
+    public String applyStyle() {
+        return "#008B8B";
     }
 }

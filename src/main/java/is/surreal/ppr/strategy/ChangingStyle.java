@@ -31,8 +31,8 @@ public class ChangingStyle {
         this.strategy = strategy;
     }
 
-    public void applyStyle() {
-        strategy.applyStyle();
+    public String applyStyle() {
+        return strategy.applyStyle();
     }
 
 
